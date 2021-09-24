@@ -21,6 +21,7 @@ namespace P_SpaceInvaders
         private string _header;                    //Titre du menu
         private string _text;                      //Text à afficher s'il y en a
         private List<MenuItem> _menuItems;         //Liste des options
+        private Menu _parentMenu;                  //Menu parent
 
 
         /// <summary>
@@ -57,6 +58,11 @@ namespace P_SpaceInvaders
                 _y += _LINEBREAK;
             }
         }
+        public void ShowwMenuText()
+        {
+            ShowTitle();
+            Console.Write(_text);
+        }
         public void ShowMenu()
         {
             //Redimonsionnement de la console
@@ -69,7 +75,7 @@ namespace P_SpaceInvaders
             _y = _YFIRSTOPTION;
             Console.SetCursorPosition(_x, _y);
             _exit = false;
-            //
+            //Selection d'options
             while (!_exit)
             {
                 SelectOption();
@@ -77,7 +83,7 @@ namespace P_SpaceInvaders
         }
         public void SelectOption()
         {
-            ChangeOptionColor(); //Couleur première option
+            ChangeOptionColor(); //Couleur première option        
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.UpArrow:
@@ -107,14 +113,17 @@ namespace P_SpaceInvaders
                     break;
                 case ConsoleKey.Escape:
                     {
-                        Environment.Exit(1);
+                        if (_parentMenu != null)
+                        {
+                            _exit = true;                    
+                        }
                     }
                     break;
                 case ConsoleKey.Enter:
                     {
                         Console.Clear();
-                        //Execution de l'action de l'option
                         _menuItems[_cursor].Action();
+                        Console.Clear();
                     }
                     break;
                 default:
@@ -153,6 +162,10 @@ namespace P_SpaceInvaders
             get { return _text; }
             set { _text = value; }
         }
-
+        public Menu ParentMenu
+        {
+            get { return _parentMenu; }
+            set { _parentMenu = value; }
+        }
     }
 }
