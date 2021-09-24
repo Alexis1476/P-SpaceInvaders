@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P_SpaceInvaders
@@ -65,7 +66,9 @@ namespace P_SpaceInvaders
                     break;
                 case ConsoleKey.Spacebar:
                     {
-
+                        Shoot newShoot = new Shoot(_x, _y, '^');
+                        Thread tir= new Thread(new ThreadStart(newShoot.ShowShoot));
+                        tir.Start();
                     }
                     break;
                 default:
