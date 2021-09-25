@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,164 +9,128 @@ namespace P_SpaceInvaders
 {
     class Menu
     {
-        private const int _MENUWIDTH = 138;                 //Width fenêtre ménu principal
-        private const int _MENUHEIGHT = 30;                 //Height fenêtre ménu principal
-        private const int _YFIRSTOPTION = 14;               //Coordonée première option
-        private const int _LINEBREAK = 2;
-        private int _x = 64;                                //Coordonnées en X pour l'affichage des options
-        private int _y = _YFIRSTOPTION;                     //Coordonnées en Y pour l'affichage des options
-        private bool _exit;                                 //Bool pour retourner au ménu principal
-        private int _cursor;                             //Position du curseur selection des options
-
-
-        private string _header;                    //Titre du menu
-        private string _text;                      //Text à afficher s'il y en a
-        private List<MenuItem> _menuItems;         //Liste des options
-        private Menu _parentMenu;                  //Menu parent
-
-
+        #region Déclaration des constantes
         /// <summary>
-        /// Constructor par défaut
+        /// Largeur de la fenêtre
+        /// </summary>
+        private const int _MENUWIDTH = 150;
+        /// <summary>
+        /// Hauteur de la fenêtre
+        /// </summary>
+        private const int _MENUHEIGHT = 30;
+        #endregion
+        #region Déclaration des variables
+        /// <summary>
+        /// Titre du menu
+        /// </summary>
+        private string _header;
+        /// <summary>
+        /// Text à afficher
+        /// </summary>
+        private string _text;
+        /// <summary>
+        /// Tableau des options
+        /// </summary>
+        private MenuItem[] _menuItems;
+        /// <summary>
+        /// Tableau des switchs de configuration 
+        /// </summary>
+        private OptionSwitch[] _optionSwitch;
+        /// <summary>
+        /// Menu parent
+        /// </summary>
+        private Menu _parentMenu;
+        #endregion
+
+        #region Constructeurs
+        /// <summary>
+        /// Constructeur par défaut
         /// </summary>
         public Menu()
         {
 
         }
+        /// <summary>
+        /// Constructeur ménu avec un titre
+        /// </summary>
+        /// <param name="header">Titre du ménu</param>
         public Menu(string header)
         {
             _header = header;
-            _menuItems = new List<MenuItem>();
         }
+        /// <summary>
+        /// Constructor ménu d'info
+        /// </summary>
+        /// <param name="header">Titre du menu</param>
+        /// <param name="text">Text ménu d'info</param>
         public Menu(string header, string text)
         {
-            _menuItems = new List<MenuItem>();
             _header = header;
             _text = text;
         }
-        public void ShowTitle()
+        /// <summary>
+        /// Constructor ménu avec des options
+        /// </summary>
+        /// <param name="header">Titre du menu</param>
+        /// <param name="menuItems">Tableau des options du ménu</param>
+        public Menu(string header, MenuItem[] menuItems)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(_header);
-            Console.ResetColor();
-        }
-        public void ShowOptions()
-        {
-            //Parcoure tous les items du ménu et les affiche
-            foreach (MenuItem element in _menuItems)
-            {
-                Console.SetCursorPosition(_x, _y);
-                Console.WriteLine(element.Text);
-                _y += _LINEBREAK;
-            }
-        }
-        public void ShowwMenuText()
-        {
-            ShowTitle();
-            Console.Write(_text);
-        }
-        public void ShowMenu()
-        {
-            //Redimonsionnement de la console
-            Console.SetWindowSize(_MENUWIDTH, _MENUHEIGHT);
-            Console.CursorVisible = false;
-            //Affichage du titre et des options
-            ShowTitle();
-            ShowOptions();
-            //Repositionnement du cursor à la première option
-            _y = _YFIRSTOPTION;
-            Console.SetCursorPosition(_x, _y);
-            _exit = false;
-            //Selection d'options
-            while (!_exit)
-            {
-                SelectOption();
-            }
-        }
-        public void SelectOption()
-        {
-            ChangeOptionColor(); //Couleur première option        
-            switch (Console.ReadKey(true).Key)
-            {
-                case ConsoleKey.UpArrow:
-                    {
-                        if (_cursor > 0)
-                        {
-                            ResetColor();
-                            //Changement d'option + changement de couleur
-                            _cursor--;
-                            _y -= _LINEBREAK;
-                            ChangeOptionColor();
-                        }
-                    }
-                    break;
-                case ConsoleKey.DownArrow:
-                    {
-                        //Si le cursor se trouve entre le nombre d'options possibles
-                        if (_cursor < _menuItems.Count() - 1)
-                        {
-                            ResetColor();
-                            //Changement d'option + changement de couleur
-                            _cursor++;
-                            _y += _LINEBREAK;
-                            ChangeOptionColor();
-                        }
-                    }
-                    break;
-                case ConsoleKey.Escape:
-                    {
-                        if (_parentMenu != null)
-                        {
-                            _exit = true;                    
-                        }
-                    }
-                    break;
-                case ConsoleKey.Enter:
-                    {
-                        Console.Clear();
-                        _menuItems[_cursor].Action();
-                        Console.Clear();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        public void ChangeOptionColor()
-        {
-            Console.SetCursorPosition(_x, _y);
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("{0}", _menuItems[_cursor].Text);
-        }
-        public void ResetColor()
-        {
-            Console.SetCursorPosition(_x, _y);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("{0}", _menuItems[_cursor].Text);
+            _header = header;
+            _menuItems = menuItems;
         }
         /// <summary>
-        /// Ajoute une option au ménu
+        /// Constructeur ménu configuration
         /// </summary>
-        /// <param name="id">Id de l'option</param>
-        /// <param name="text">Nom de l'option</param>
-        /// <param name="action">Methode pour l'option</param>
-        public void AddMenuItems(int id, string text, Action action)
+        /// <param name="header">Titre du menu</param>
+        /// <param name="optionSwitch">Tableau des switchs de configuration</param>
+        public Menu(string header, OptionSwitch[] optionSwitch)
         {
-            _menuItems.Add(new MenuItem(id, text, action));
+            _header = header;
+            _optionSwitch = optionSwitch;
         }
-        public string Header
+        #endregion
+
+        #region Methodes
+        /// <summary>
+        /// Redimensionne la fenêtre du ménu
+        /// </summary>
+        public void ResizeWindow()
         {
-            get { return _header; }
-            set { _header = value; }
+            Console.SetWindowSize(_MENUWIDTH,_MENUHEIGHT);
         }
-        public string Text
+        /// <summary>
+        /// Dessiner le titre
+        /// </summary>
+        public void DrawHeader()
         {
-            get { return _text; }
-            set { _text = value; }
+            ResizeWindow();
+            //StringReader pour lire ligne par ligne et centrer le texte
+            using (StringReader reader = new StringReader(_header))
+            {
+                string line = "";
+                Console.ForegroundColor=ConsoleColor.Red; //Changement de la couleur du texte
+                do
+                {
+                    line = reader.ReadLine();
+                    if (line != null)
+                    {
+                        Console.SetCursorPosition((Console.WindowWidth - line.Length) / 2, Console.CursorTop);
+                        Console.WriteLine(line);
+                    }
+                } 
+                while (line != null);
+                Console.ResetColor();
+            }
+            Console.Read();
         }
+        #endregion
+
+        #region Getteurs et Setteurs
         public Menu ParentMenu
         {
             get { return _parentMenu; }
             set { _parentMenu = value; }
         }
+        #endregion
     }
 }
