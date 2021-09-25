@@ -66,7 +66,7 @@ namespace P_SpaceInvaders
                     break;
                 case ConsoleKey.Spacebar:
                     {
-                        Shoot newShoot = new Shoot(_x, _y, '^');
+                        Shoot newShoot = new Shoot(_x, _y, '^'); //Attention création Shoot ici!!
                         Thread tir= new Thread(new ThreadStart(newShoot.ShowShoot));
                         tir.Start();
                     }
