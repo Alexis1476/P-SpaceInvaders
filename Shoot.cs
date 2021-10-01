@@ -15,8 +15,8 @@ namespace P_SpaceInvaders
 
         public Shoot(int x, int y, char bulletDesign)
         {
-            _x = x + 1; //+2 pour centrer le tir
-            _y = y - 1; //+1
+            _x = x + 1; //+1 pour centrer le tir
+            _y = y - 1; //-1
             _bulletDesign = bulletDesign;       
         }
         public void ShowShoot()
@@ -33,7 +33,7 @@ namespace P_SpaceInvaders
                 Console.SetCursorPosition(_x, _y);
                 DrawShoot();
                 //Effacement du tir lors de sa dernière position
-                if (i == 19) 
+                if (i == 19) //A modifier 19
                 {
                     Thread.Sleep(50);
                     Console.SetCursorPosition(_x, _y);
@@ -44,6 +44,16 @@ namespace P_SpaceInvaders
         public void DrawShoot()
         {
             Console.Write(_bulletDesign);
+        }
+        public int Y
+        {
+            get { return _y; }
+            set { _y = value; }
+        }
+        public int X
+        {
+            get { return _x; }
+            set { _x = value; }
         }
     }
 }

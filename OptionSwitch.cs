@@ -8,8 +8,6 @@ namespace P_SpaceInvaders
 {
     class OptionSwitch
     {
-        private int _itemId;
-        private string _text;
-        private Action _action;
+
     }
 }

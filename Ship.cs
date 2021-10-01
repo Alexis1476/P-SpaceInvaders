@@ -14,6 +14,7 @@ namespace P_SpaceInvaders
         private int _lifes;
         private string _shipDesign;
         private bool _alive;
+        Shoot _bullet;
 
         public Ship()
         {
@@ -25,6 +26,7 @@ namespace P_SpaceInvaders
             _shipDesign = shipDesign;
             _x = x;
             _y = y;
+            _bullet = new Shoot(_x, _y, '^');
         }
         
         public void DrawShip()
@@ -66,8 +68,10 @@ namespace P_SpaceInvaders
                     break;
                 case ConsoleKey.Spacebar:
                     {
-                        Shoot newShoot = new Shoot(_x, _y, '^'); //Attention création Shoot ici!!
-                        Thread tir= new Thread(new ThreadStart(newShoot.ShowShoot));
+                        //Shoot newShoot = new Shoot(_x, _y, '^'); //Attention création Shoot ici!!
+                        _bullet.Y = _y;
+                        _bullet.X = _x;
+                        Thread tir= new Thread(new ThreadStart(_bullet.ShowShoot));
                         tir.Start();
                     }
                     break;

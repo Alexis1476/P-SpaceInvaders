@@ -18,7 +18,13 @@ namespace P_SpaceInvaders
         {
             Console.Clear();
             ResizeWindows();
+            DrawGameInfo();
             ship.ShowShip();
+        }
+        public void DrawGameInfo()
+        {
+            Console.SetCursorPosition(1, Console.WindowHeight - 3);
+
         }
         public void ResizeWindows()
         {
