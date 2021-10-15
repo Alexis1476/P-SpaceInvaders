@@ -29,9 +29,9 @@ namespace P_SpaceInvaders
         /// </summary>
         private string _text;
         /// <summary>
-        /// Tableau des options
+        /// Liste des options
         /// </summary>
-        private MenuItem[] _menuItems;
+        private List<MenuItem> _menuItems;
         /// <summary>
         /// Tableau des switchs de configuration 
         /// </summary>
@@ -73,7 +73,7 @@ namespace P_SpaceInvaders
         /// </summary>
         /// <param name="header">Titre du menu</param>
         /// <param name="menuItems">Tableau des options du ménu</param>
-        public Menu(string header, MenuItem[] menuItems)
+        public Menu(string header, List<MenuItem> menuItems)
         {
             _header = header;
             _menuItems = menuItems;
@@ -121,7 +121,20 @@ namespace P_SpaceInvaders
                 while (line != null);
                 Console.ResetColor();
             }
-            Console.Read();
+        }
+        public void DrawOptions()
+        {
+            int y = Console.CursorTop;   //Coordonnes pour positionner les options dans l'axe Y
+            const int LINEBREAK = 2;     //Nb des sauts de ligne
+            foreach (MenuItem menuItem in _menuItems)
+            {
+                Console.SetCursorPosition(CalculCenterPosString(menuItem.NameItem), y += LINEBREAK);
+                Console.WriteLine(menuItem.NameItem);
+            }
+        }
+        public int CalculCenterPosString(string text)
+        {
+            return Console.WindowWidth / 2 - text.Length / 2;
         }
         #endregion
 
@@ -130,6 +143,11 @@ namespace P_SpaceInvaders
         {
             get { return _parentMenu; }
             set { _parentMenu = value; }
+        }
+        public List<MenuItem> MenuItems
+        {
+            get { return _menuItems; }
+            set { _menuItems = value; }
         }
         #endregion
     }

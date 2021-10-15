@@ -40,6 +40,10 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Getteurs et setteurs
+        public string NameItem
+        {
+            get { return _name; }
+        }
         #endregion
     }
 }
