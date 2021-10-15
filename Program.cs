@@ -12,7 +12,7 @@ namespace P_SpaceInvaders
         {
             //Creation instance game
             Game newGame = new Game();
-            newGame.InitializeGame();
+            //newGame.InitializeGame();
             Console.ReadLine();
         }
         public static void MethodeTest()
