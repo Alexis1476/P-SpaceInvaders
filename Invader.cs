@@ -36,6 +36,7 @@ namespace P_SpaceInvaders
                 Thread.Sleep(100);
                 x += dir;
                 //Si x = windowWidth - lineAlien.lenght
+                //Console.MoveBufferArea
                 if (x == Console.WindowWidth - 18)
                 {
                     dir = -1; //Inversion de la direcion
@@ -55,7 +56,7 @@ namespace P_SpaceInvaders
 
             }
         }
-        static void DrawInvader(string invader, int x, int y)
+        public void DrawInvader(string invader, int x, int y)
         {
             using (StringReader reader = new StringReader(invader))
             {

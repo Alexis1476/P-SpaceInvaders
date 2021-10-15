@@ -90,7 +90,8 @@ namespace P_SpaceInvaders
         public Game()
         {
             //Redimensionnement de la fenêtre et modif du fontSize
-
+            ConsoleHelper.SetCurrentFont("Consolas", 9);
+            Console.SetWindowSize(150, 80);
             _invadersList = new List<Invader>(); // Initialisation invaderList
             //TESTS
             for (int i = 0; i < 11; i++)
@@ -98,6 +99,12 @@ namespace P_SpaceInvaders
                 Invader newInvader = new Invader(_CRABFRAMES);
                 _invadersList.Add(newInvader);
             }
+            int x = 0;
+            foreach(Invader invader in _invadersList)
+            {
+                invader.DrawInvader(_SQUIDFRAMES[0], x+=12,0);
+            }
+            
         }
         #endregion
 

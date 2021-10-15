@@ -15,6 +15,8 @@ namespace P_SpaceInvaders
             //newGame.InitializeGame();
             Console.ReadLine();
         }
+
+
         public static void MethodeTest()
         {
            
