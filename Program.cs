@@ -40,6 +40,9 @@ namespace P_SpaceInvaders
             //Affichage du ménu
             mainMenu.DrawHeader();
             mainMenu.DrawOptions();
+
+            //TESTS
+            mainMenu.FirstOption();
             Console.ReadLine();
 
         }
