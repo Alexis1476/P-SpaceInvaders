@@ -18,6 +18,10 @@ namespace P_SpaceInvaders
         /// Hauteur de la fenêtre
         /// </summary>
         private const int _MENUHEIGHT = 30;
+        /// <summary>
+        /// Nombre des sauts de ligne par option
+        /// </summary>
+        private const int _LINEBREAK = 2;
         #endregion
 
         #region Déclaration des variables
@@ -134,18 +138,17 @@ namespace P_SpaceInvaders
         {
             int y = Console.CursorTop;      //Coordonnes pour positionner les options dans l'axe Y
             int count = 0;                  //Compteur pour reperer la position en X de la première option
-            const int LINEBREAK = 2;        //Nb des sauts de ligne
             foreach (MenuItem menuItem in _menuItems)
             {
                 //Récupération des coordonées de la première option
                 if (count == 0)
                 {
-                    _posY = Console.CursorTop + LINEBREAK;
+                    _posY = Console.CursorTop + _LINEBREAK;
                     _posX = CalculCenterPosString(menuItem.NameItem);
                 }
                 count++;
                 //Dessinne les options
-                Console.SetCursorPosition(CalculCenterPosString(menuItem.NameItem), y += LINEBREAK);
+                Console.SetCursorPosition(CalculCenterPosString(menuItem.NameItem), y += _LINEBREAK);
                 Console.WriteLine(menuItem.NameItem);
             }
         }
@@ -153,6 +156,37 @@ namespace P_SpaceInvaders
         {
             Console.SetCursorPosition(_posX, _posY);
             WriteTextInColor(_menuItems[0].NameItem, ConsoleColor.Red);
+            ///TEST
+            while (true)
+            {
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        {
+                            _posY -= _LINEBREAK;
+                            Console.SetCursorPosition(_posX, _posY);
+                        }
+                        break;
+                    case ConsoleKey.DownArrow:
+                        {
+                            _posY += _LINEBREAK;
+                            Console.SetCursorPosition(_posX, _posY);
+                        }
+                        break;
+                    case ConsoleKey.Escape:
+                        {
+
+                        }
+                        break;
+                    case ConsoleKey.Enter:
+                        {
+
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         /// <summary>
         /// Ecrit une chaîne de caractères d'une couleur définie
