@@ -67,6 +67,10 @@ namespace P_SpaceInvaders
             get { return _posY; }
             set { _posY = value; }
         }
+        public Action Action
+        {
+            get { return _action; }
+        }
         #endregion
     }
 }

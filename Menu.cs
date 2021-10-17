@@ -147,6 +147,8 @@ namespace P_SpaceInvaders
         {
             ///TEST
             int cursor = 0;
+            //Position sur l'option par défaut
+            Console.CursorVisible = false;
             Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
             WriteTextInColor(_menuItems[0].NameItem, ConsoleColor.Red);
             while (true)
@@ -158,8 +160,11 @@ namespace P_SpaceInvaders
                             //Si le cursor est supérieur à l'ID de la première option
                             if (cursor > 0)
                             {
+                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
                                 cursor--;
                                 Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
                             }
                         }
                         break;
@@ -168,8 +173,11 @@ namespace P_SpaceInvaders
                             //Tant que le cursor reste entre le nombre d'options possibles
                             if (cursor < _menuItems.Count - 1) 
                             {
+                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
                                 cursor++;
                                 Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
                             }                         
                         }
                         break;
@@ -180,7 +188,8 @@ namespace P_SpaceInvaders
                         break;
                     case ConsoleKey.Enter:
                         {
-
+                            //Execution de la méthode de l'option selectionnée
+                            _menuItems[cursor].Action();
                         }
                         break;
                     default:

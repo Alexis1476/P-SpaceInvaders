@@ -28,7 +28,7 @@ namespace P_SpaceInvaders
             Menu mainMenu = new Menu(TITLE);
             List<MenuItem> optionsMainMenu = new List<MenuItem> 
             { 
-                new MenuItem(1, "Play", MethodeTest),
+                new MenuItem(1, "Play", Play),
                 new MenuItem(2, "Options", MethodeTest),
                 new MenuItem(3, "Score", MethodeTest),
                 new MenuItem(4, "About", MethodeTest),
@@ -45,6 +45,11 @@ namespace P_SpaceInvaders
             mainMenu.FirstOption();
             Console.ReadLine();
 
+        }
+        public static void Play()
+        {
+            Console.Clear();
+            Console.WriteLine("HOLA COMO ESTAMOS");
         }
         public static void MethodeTest()
         {
