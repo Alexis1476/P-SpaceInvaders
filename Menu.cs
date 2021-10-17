@@ -45,10 +45,6 @@ namespace P_SpaceInvaders
         /// Menu parent
         /// </summary>
         private Menu _parentMenu;
-
-        //TEST
-        private int _posY;
-        private int _posX;
         #endregion
 
         #region Constructeurs
@@ -137,16 +133,11 @@ namespace P_SpaceInvaders
         public void DrawOptions()
         {
             int y = Console.CursorTop;      //Coordonnes pour positionner les options dans l'axe Y
-            int count = 0;                  //Compteur pour reperer la position en X de la première option
             foreach (MenuItem menuItem in _menuItems)
             {
                 //Récupération des coordonées de la première option
-                if (count == 0)
-                {
-                    _posY = Console.CursorTop + _LINEBREAK;
-                    _posX = CalculCenterPosString(menuItem.NameItem);
-                }
-                count++;
+                menuItem.PosY = y + _LINEBREAK;
+                menuItem.PosX = CalculCenterPosString(menuItem.NameItem);
                 //Dessinne les options
                 Console.SetCursorPosition(CalculCenterPosString(menuItem.NameItem), y += _LINEBREAK);
                 Console.WriteLine(menuItem.NameItem);
@@ -154,23 +145,32 @@ namespace P_SpaceInvaders
         }
         public void FirstOption()
         {
-            Console.SetCursorPosition(_posX, _posY);
-            WriteTextInColor(_menuItems[0].NameItem, ConsoleColor.Red);
             ///TEST
+            int cursor = 0;
+            Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+            WriteTextInColor(_menuItems[0].NameItem, ConsoleColor.Red);
             while (true)
             {
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.UpArrow:
                         {
-                            _posY -= _LINEBREAK;
-                            Console.SetCursorPosition(_posX, _posY);
+                            //Si le cursor est supérieur à l'ID de la première option
+                            if (cursor > 0)
+                            {
+                                cursor--;
+                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                            }
                         }
                         break;
                     case ConsoleKey.DownArrow:
                         {
-                            _posY += _LINEBREAK;
-                            Console.SetCursorPosition(_posX, _posY);
+                            //Tant que le cursor reste entre le nombre d'options possibles
+                            if (cursor < _menuItems.Count - 1) 
+                            {
+                                cursor++;
+                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                            }                         
                         }
                         break;
                     case ConsoleKey.Escape:

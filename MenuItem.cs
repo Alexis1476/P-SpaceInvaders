@@ -21,6 +21,10 @@ namespace P_SpaceInvaders
         /// Function de l'option
         /// </summary>
         private Action _action;
+
+        //TESTS
+        private int _posX;
+        private int _posY;
         #endregion
 
         #region Constructors
@@ -52,6 +56,16 @@ namespace P_SpaceInvaders
         public string NameItem
         {
             get { return _name; }
+        }
+        public int PosX
+        {
+            get { return _posX; }
+            set { _posX = value; }
+        }
+        public int PosY
+        {
+            get { return _posY; }
+            set { _posY = value; }
         }
         #endregion
     }
