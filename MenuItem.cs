@@ -9,8 +9,17 @@ namespace P_SpaceInvaders
     class MenuItem
     {
         #region Attributs
+        /// <summary>
+        /// Identifiant de l'option
+        /// </summary>
         private int _idItem;
+        /// <summary>
+        /// Nom de l'option
+        /// </summary>
         private string _name;
+        /// <summary>
+        /// Function de l'option
+        /// </summary>
         private Action _action;
         #endregion
 
