@@ -139,11 +139,12 @@ namespace P_SpaceInvaders
                 menuItem.PosY = y + _LINEBREAK;
                 menuItem.PosX = CalculCenterPosString(menuItem.NameItem);
                 //Dessinne les options
-                Console.SetCursorPosition(CalculCenterPosString(menuItem.NameItem), y += _LINEBREAK);
+                Console.SetCursorPosition(menuItem.PosX, menuItem.PosY);
                 Console.WriteLine(menuItem.NameItem);
+                y += _LINEBREAK;
             }
         }
-        public void FirstOption()
+        public void SelectOption()
         {
             ///TEST
             int cursor = 0;
@@ -160,8 +161,10 @@ namespace P_SpaceInvaders
                             //Si le cursor est supérieur à l'ID de la première option
                             if (cursor > 0)
                             {
+                                //Reecrit l'option précedent en blanc
                                 Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                 WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
+                                //Change d'option
                                 cursor--;
                                 Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                 WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
@@ -173,8 +176,10 @@ namespace P_SpaceInvaders
                             //Tant que le cursor reste entre le nombre d'options possibles
                             if (cursor < _menuItems.Count - 1) 
                             {
+                                //Reecrit l'option précedent en blanc
                                 Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                 WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
+                                //Change d'option
                                 cursor++;
                                 Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                 WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
@@ -183,7 +188,7 @@ namespace P_SpaceInvaders
                         break;
                     case ConsoleKey.Escape:
                         {
-
+                            
                         }
                         break;
                     case ConsoleKey.Enter:
