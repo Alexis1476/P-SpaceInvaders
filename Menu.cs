@@ -62,6 +62,17 @@ namespace P_SpaceInvaders
         public Menu(string header)
         {
             _header = header;
+            _menuItems = new List<MenuItem>();
+        }
+        /// <summary>
+        /// Constructor par header et menuParent
+        /// </summary>
+        /// <param name="header">Titre du ménu</param>
+        /// <param name="parentMenu">Menu parent</param>
+        public Menu(string header, Menu parentMenu)
+        {
+            _header = header;
+            _parentMenu = parentMenu;
         }
         /// <summary>
         /// Constructor ménu d'info
@@ -103,12 +114,30 @@ namespace P_SpaceInvaders
         {
             Console.SetWindowSize(_MENUWIDTH,_MENUHEIGHT);
         }
+        public void DrawAllMenu()
+        {
+            Console.Clear();
+            DrawHeader();
+            DrawOptions();
+            SelectOption();
+        }
+        /// <summary>
+        /// Ajoute une option au ménu
+        /// </summary>
+        /// <param name="id">Id de l'option</param>
+        /// <param name="text">Nom de l'option</param>
+        /// <param name="action">Methode pour l'option</param>
+        public void AddMenuItems(int id, string text, Action action)
+        {
+            _menuItems.Add(new MenuItem(id, text, action));
+        }
         /// <summary>
         /// Dessiner le titre centré
         /// </summary>
         public void DrawHeader()
         {
             ResizeWindow();
+            Console.SetCursorPosition(0, 0);
             //StringReader pour lire ligne par ligne et centrer le texte
             using (StringReader reader = new StringReader(_header))
             {
@@ -133,68 +162,94 @@ namespace P_SpaceInvaders
         public void DrawOptions()
         {
             int y = Console.CursorTop;      //Coordonnes pour positionner les options dans l'axe Y
-            foreach (MenuItem menuItem in _menuItems)
+            if (_menuItems != null)
             {
-                //Récupération des coordonées de la première option
-                menuItem.PosY = y + _LINEBREAK;
-                menuItem.PosX = CalculCenterPosString(menuItem.NameItem);
-                //Dessinne les options
-                Console.SetCursorPosition(menuItem.PosX, menuItem.PosY);
-                Console.WriteLine(menuItem.NameItem);
-                y += _LINEBREAK;
-            }
+                foreach (MenuItem menuItem in _menuItems)
+                {
+                    //Récupération des coordonées de la première option
+                    menuItem.PosY = y + _LINEBREAK;
+                    menuItem.PosX = CalculCenterPosString(menuItem.NameItem);
+                    //Dessinne les options
+                    Console.SetCursorPosition(menuItem.PosX, menuItem.PosY);
+                    Console.WriteLine(menuItem.NameItem);
+                    y += _LINEBREAK;
+                }
+            }   
         }
         public void SelectOption()
         {
-            ///TEST
-            int cursor = 0;
+            int cursor = 0; //Cursor pour savoir sur quel option on se trouve
+            bool exit = false;
             //Position sur l'option par défaut
             Console.CursorVisible = false;
-            Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
-            WriteTextInColor(_menuItems[0].NameItem, ConsoleColor.Red);
-            while (true)
+            //Si le ménu a des options
+            if (_menuItems != null)
+            {
+                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                WriteTextInColor(_menuItems[0].NameItem, ConsoleColor.Red);
+            }
+            while (!exit)
             {
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.UpArrow:
                         {
-                            //Si le cursor est supérieur à l'ID de la première option
-                            if (cursor > 0)
+                            //Si le ménu a des options
+                            if (_menuItems != null)
                             {
-                                //Reecrit l'option précedent en blanc
-                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
-                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
-                                //Change d'option
-                                cursor--;
-                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
-                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
-                            }
+                                //Si le cursor est supérieur à l'ID de la première option
+                                if (cursor > 0)
+                                {
+                                    //Reecrit l'option précedent en blanc
+                                    Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                    WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
+                                    //Change d'option
+                                    cursor--;
+                                    Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                    WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
+                                }
+                            }              
                         }
                         break;
                     case ConsoleKey.DownArrow:
                         {
-                            //Tant que le cursor reste entre le nombre d'options possibles
-                            if (cursor < _menuItems.Count - 1) 
+                            //Si le ménu a des options
+                            if (_menuItems != null)
                             {
-                                //Reecrit l'option précedent en blanc
-                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
-                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
-                                //Change d'option
-                                cursor++;
-                                Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
-                                WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
-                            }                         
+                                //Tant que le cursor reste entre le nombre d'options possibles
+                                if (cursor < _menuItems.Count - 1)
+                                {
+                                    //Reecrit l'option précedent en blanc
+                                    Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                    WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
+                                    //Change d'option
+                                    cursor++;
+                                    Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
+                                    WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
+                                }
+                            }
                         }
                         break;
                     case ConsoleKey.Escape:
                         {
-                            
+                            if (_parentMenu != null)
+                            {
+                                _parentMenu.DrawAllMenu();
+                            }
+                            else
+                            {
+                                Environment.Exit(1);
+                            }
                         }
                         break;
                     case ConsoleKey.Enter:
                         {
-                            //Execution de la méthode de l'option selectionnée
-                            _menuItems[cursor].Action();
+                            //Si le ménu a des options
+                            if (_menuItems != null)
+                            {
+                                //Execution de la méthode de l'option selectionnée
+                                _menuItems[cursor].Action();
+                            }
                         }
                         break;
                     default:
