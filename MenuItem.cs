@@ -21,9 +21,13 @@ namespace P_SpaceInvaders
         /// Function de l'option
         /// </summary>
         private Action _action;
-
-        //TESTS
+        /// <summary>
+        /// Position sur l'axe X de l'option dans la console
+        /// </summary>
         private int _posX;
+        /// <summary>
+        /// Position sur l'axe Y de l'option dans la console
+        /// </summary>
         private int _posY;
         #endregion
 
