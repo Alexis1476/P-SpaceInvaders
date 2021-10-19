@@ -53,12 +53,19 @@ namespace P_SpaceInvaders
                                          "  ▒   ▒▒ ░▒░▒   ░   ░ ▒ ▒░ ░░▒░ ░ ░     ░    \n" +
                                          "  ░   ▒    ░    ░ ░ ░ ░ ▒   ░░░ ░ ░   ░      \n" +
                                          "      ░  ░ ░          ░ ░     ░              \n\n";
+            const string TEXTABOUT =     "╔═══════════════════════════════════════════════════════════╗\n" +
+                                         "║                  P_DEV - Space Invaders                   ║\n" +
+                                         "║            ETML   CID2A (2021-2022)   Alexis Rojas        ║\n" +
+                                         "╠═══════════════════════════════════════════════════════════╣\n" +
+                                         "║ Récreation du fameux jeu 'Space Invaders' en mode console ║\n" +
+                                         "║ programmé en C#.                                          ║\n" +
+                                         "╚═══════════════════════════════════════════════════════════╝";
             #endregion
 
             #region Déclaration MainMenu et sous-menus
             Menu mainMenu = new Menu(MAINTITLE);
             Menu menuOptions = new Menu(TITLEOPTIONS, mainMenu);
-            Menu menuAbout = new Menu(TITLEABOUT, mainMenu);
+            Menu menuAbout = new Menu(TITLEABOUT, mainMenu, TEXTABOUT);
             Menu menuScore = new Menu(TITLESCORE, mainMenu);
             #endregion
 
