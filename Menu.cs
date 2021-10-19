@@ -78,10 +78,12 @@ namespace P_SpaceInvaders
         /// Constructor ménu d'info
         /// </summary>
         /// <param name="header">Titre du menu</param>
+        /// <param name="parentMenu">Menu parent</param>
         /// <param name="text">Text ménu d'info</param>
-        public Menu(string header, string text)
+        public Menu(string header, Menu parentMenu, string text)
         {
             _header = header;
+            _parentMenu = parentMenu;
             _text = text;
         }
         /// <summary>
@@ -116,9 +118,15 @@ namespace P_SpaceInvaders
         }
         public void DrawAllMenu()
         {
-            Console.Clear();
-            DrawHeader();
-            DrawOptions();
+            Console.Clear();    //Nettoie le ménu précedent
+            DrawHeader();       //Affiche le titre du ménu
+            DrawOptions();      //Affiche les options
+            //S'il y a un text dans le ménu
+            if (_text!=null)
+            {
+                WriteCenteredText(_text); 
+            }
+            //Selection d'option
             SelectOption();
         }
         /// <summary>
@@ -138,11 +146,21 @@ namespace P_SpaceInvaders
         {
             ResizeWindow();
             Console.SetCursorPosition(0, 0);
+            Console.ForegroundColor = ConsoleColor.Red; //Changement de la couleur du texte
+            WriteCenteredText(_header);
+            Console.ResetColor();
+        }
+        /// <summary>
+        /// Ecrit une chaine de caractères au centre de la fenêtre
+        /// </summary>
+        /// <param name="text">Texte à centrer</param>
+        public void WriteCenteredText(string text)
+        {
             //StringReader pour lire ligne par ligne et centrer le texte
-            using (StringReader reader = new StringReader(_header))
+            using (StringReader reader = new StringReader(text))
             {
                 string line = "";
-                Console.ForegroundColor=ConsoleColor.Red; //Changement de la couleur du texte
+
                 do
                 {
                     line = reader.ReadLine();
@@ -151,9 +169,8 @@ namespace P_SpaceInvaders
                         Console.SetCursorPosition((Console.WindowWidth - line.Length) / 2, Console.CursorTop);
                         Console.WriteLine(line);
                     }
-                } 
+                }
                 while (line != null);
-                Console.ResetColor();
             }
         }
         /// <summary>
