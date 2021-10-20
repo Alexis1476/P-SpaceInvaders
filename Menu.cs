@@ -38,9 +38,9 @@ namespace P_SpaceInvaders
         /// </summary>
         private List<MenuItem> _menuItems;
         /// <summary>
-        /// Tableau des switchs de configuration 
+        /// List des switchs de configuration 
         /// </summary>
-        private OptionSwitch[] _optionSwitch;
+        private List<OptionSwitch> _optionSwitch;
         /// <summary>
         /// Menu parent
         /// </summary>
