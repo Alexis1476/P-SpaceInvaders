@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,7 +59,10 @@ namespace P_SpaceInvaders
                                          "║            ETML   CID2A (2021-2022)   Alexis Rojas        ║\n" +
                                          "╠═══════════════════════════════════════════════════════════╣\n" +
                                          "║ Récreation du fameux jeu 'Space Invaders' en mode console ║\n" +
-                                         "║ programmé en C#.                                          ║\n" +
+                                         "║ programmé en C# (Projet en parallèle avec le module 226). ║\n" +
+                                         "║                                                           ║\n" +
+                                         "║ Le jeu vous permet de modifier la difficulté, d'activer   ║\n" +
+                                         "║ le son et de vous montrer les scores.                     ║\n" +
                                          "╚═══════════════════════════════════════════════════════════╝";
             #endregion
 
@@ -77,14 +81,13 @@ namespace P_SpaceInvaders
             mainMenu.AddMenuItems(5, "Exit", Exit);
             #endregion
 
+            //TESTS
+            SoundPlayer player = new SoundPlayer();
+            player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\music8Bits.wav";
+            player.Play();
 
             //Affichage du ménu
             mainMenu.DrawAllMenu();
-
-            //TESTS
-            mainMenu.SelectOption();
-            Console.ReadLine();
-
         }
         public static void Play()
         {

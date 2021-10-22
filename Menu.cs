@@ -101,7 +101,7 @@ namespace P_SpaceInvaders
         /// </summary>
         /// <param name="header">Titre du menu</param>
         /// <param name="optionSwitch">Tableau des switchs de configuration</param>
-        public Menu(string header, OptionSwitch[] optionSwitch)
+        public Menu(string header, List<OptionSwitch> optionSwitch)
         {
             _header = header;
             _optionSwitch = optionSwitch;
@@ -266,6 +266,11 @@ namespace P_SpaceInvaders
                             {
                                 //Execution de la méthode de l'option selectionnée
                                 _menuItems[cursor].Action();
+                            }
+                            //TESTS
+                            else if (_optionSwitch!=null)
+                            {
+
                             }
                         }
                         break;
