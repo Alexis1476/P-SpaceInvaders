@@ -133,11 +133,25 @@ namespace P_SpaceInvaders
         /// Ajoute une option au ménu
         /// </summary>
         /// <param name="id">Id de l'option</param>
-        /// <param name="text">Nom de l'option</param>
+        /// <param name="name">Nom de l'option</param>
         /// <param name="action">Methode pour l'option</param>
-        public void AddMenuItems(int id, string text, Action action)
+        public void AddMenuItems(int id, string name, Action action)
         {
-            _menuItems.Add(new MenuItem(id, text, action));
+            _menuItems.Add(new MenuItem(id, name, action));
+        }
+        /// <summary>
+        /// Methode qui permet d'ajouter un switch de configuration (Sound or Difficulty)
+        /// </summary>
+        /// <param name="id">Id du switch</param>
+        /// <param name="name">Nom du paramètre</param>
+        public void AddOptionSwitchItems(int id, string name)
+        {
+            //Si la liste est vide alors on l'initialise
+            if (_optionSwitch==null) 
+            {
+                _optionSwitch = new List<OptionSwitch>();
+            }
+            _optionSwitch.Add(new OptionSwitch(id, name));
         }
         /// <summary>
         /// Dessiner le titre centré
@@ -179,6 +193,7 @@ namespace P_SpaceInvaders
         public void DrawOptions()
         {
             int y = Console.CursorTop;      //Coordonnes pour positionner les options dans l'axe Y
+            //S'il y a une liste d'options
             if (_menuItems != null)
             {
                 foreach (MenuItem menuItem in _menuItems)
@@ -191,7 +206,21 @@ namespace P_SpaceInvaders
                     Console.WriteLine(menuItem.NameItem);
                     y += _LINEBREAK;
                 }
-            }   
+            }
+            //S'il y a une liste d'options Switch
+            else if (_optionSwitch != null)
+            {
+                foreach (OptionSwitch optionSwitch in _optionSwitch)
+                {
+                    //Récupération des coordonées de la première option
+                    optionSwitch.PosY = y + _LINEBREAK;
+                    optionSwitch.PosX = CalculCenterPosString(optionSwitch.Name);
+                    //Dessinne les options
+                    Console.SetCursorPosition(optionSwitch.PosX, optionSwitch.PosY);
+                    Console.WriteLine(optionSwitch.Name);
+                    y += _LINEBREAK;
+                }
+            }
         }
         public void SelectOption()
         {
@@ -204,6 +233,12 @@ namespace P_SpaceInvaders
             {
                 Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                 WriteTextInColor(_menuItems[0].NameItem, ConsoleColor.Red);
+            }
+            //Si le ménu a des switchs de configuration
+            else if (_optionSwitch != null)
+            {
+                Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
+                WriteTextInColor(_optionSwitch[0].Name, ConsoleColor.Red);
             }
             while (!exit)
             {
@@ -225,7 +260,22 @@ namespace P_SpaceInvaders
                                     Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                     WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
                                 }
-                            }              
+                            }
+                            //Si le ménu a des switchs de configuration
+                            else if (_optionSwitch != null)
+                            {
+                                //Si le cursor est supérieur à l'ID de la première option
+                                if (cursor > 0)
+                                {
+                                    //Reecrit l'option précedent en blanc
+                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
+                                    WriteTextInColor(_optionSwitch[cursor].Name, ConsoleColor.Gray);
+                                    //Change d'option
+                                    cursor--;
+                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
+                                    WriteTextInColor(_optionSwitch[cursor].Name, ConsoleColor.Red);
+                                }
+                            }
                         }
                         break;
                     case ConsoleKey.DownArrow:
@@ -243,6 +293,21 @@ namespace P_SpaceInvaders
                                     cursor++;
                                     Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                     WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Red);
+                                }
+                            }
+                            //Si le ménu a des switchs de configuration
+                            else if (_optionSwitch != null)
+                            {
+                                //Tant que le cursor reste entre le nombre d'options possibles
+                                if (cursor < _optionSwitch.Count - 1)
+                                {
+                                    //Reecrit l'option précedent en blanc
+                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
+                                    WriteTextInColor(_optionSwitch[cursor].Name, ConsoleColor.Gray);
+                                    //Change d'option
+                                    cursor++; 
+                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
+                                    WriteTextInColor(_optionSwitch[cursor].Name, ConsoleColor.Red);
                                 }
                             }
                         }
@@ -270,7 +335,7 @@ namespace P_SpaceInvaders
                             //TESTS
                             else if (_optionSwitch!=null)
                             {
-
+                                
                             }
                         }
                         break;
