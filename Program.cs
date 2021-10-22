@@ -81,6 +81,11 @@ namespace P_SpaceInvaders
             mainMenu.AddMenuItems(5, "Exit", Exit);
             #endregion
 
+            #region Ajout des switchs de configuration menu Options
+            menuOptions.AddOptionSwitchItems(1, "Sound");
+            menuOptions.AddOptionSwitchItems(2, "Difficulty");
+            #endregion
+
             //TESTS
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\music8Bits.wav";
