@@ -9,7 +9,7 @@ namespace P_SpaceInvaders
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             #region Titres des menus
             const string MAINTITLE =     "                                                                                                                 \n" +
@@ -99,7 +99,7 @@ namespace P_SpaceInvaders
             Console.Clear();
             Console.WriteLine("HOLA COMO ESTAMOS");
         }
-        public static void MethodeTest()
+        public void MethodeTest()
         {
            
         }

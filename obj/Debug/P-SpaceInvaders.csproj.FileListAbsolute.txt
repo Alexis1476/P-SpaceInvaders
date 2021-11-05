@@ -13,3 +13,4 @@ E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.exe
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.exe
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.pdb
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\music8Bits.wav
+F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\music8Bits.wav

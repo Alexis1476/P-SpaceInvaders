@@ -174,7 +174,6 @@ namespace P_SpaceInvaders
             using (StringReader reader = new StringReader(text))
             {
                 string line = "";
-
                 do
                 {
                     line = reader.ReadLine();
