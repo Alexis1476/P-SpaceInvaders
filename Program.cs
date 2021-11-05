@@ -97,7 +97,7 @@ namespace P_SpaceInvaders
         public static void Play()
         {
             Console.Clear();
-            Console.WriteLine("HOLA COMO ESTAMOS");
+            Game newgame = new Game();
         }
         public void MethodeTest()
         {

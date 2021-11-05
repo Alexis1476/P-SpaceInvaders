@@ -24,7 +24,7 @@ namespace P_SpaceInvaders
         private const int _LINEBREAK = 2;
         #endregion
 
-        #region Déclaration des variables
+        #region Attributs
         /// <summary>
         /// Titre du menu
         /// </summary>

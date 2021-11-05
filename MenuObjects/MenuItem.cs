@@ -31,7 +31,7 @@ namespace P_SpaceInvaders
         private int _posY;
         #endregion
 
-        #region Constructors
+        #region Constructeurs
         /// <summary>
         /// Constructor par texte et action de l'option
         /// </summary>
