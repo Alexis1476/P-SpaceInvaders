@@ -8,6 +8,7 @@ namespace P_SpaceInvaders
 {
     class OptionSwitch
     {
+
         #region Attributs
         /// <summary>
         /// Id du paramètre
