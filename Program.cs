@@ -88,7 +88,7 @@ namespace P_SpaceInvaders
 
             //TESTS
             SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\music8Bits.wav";
+            player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\Ressources\\music8Bits.wav";
             player.Play();
 
             //Affichage du ménu
