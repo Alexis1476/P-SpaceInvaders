@@ -10,13 +10,8 @@ namespace P_SpaceInvaders
     {
         static void Main(string[] args)
         {
-            //Creation instance game
-            Game newGame = new Game();
-            //newGame.InitializeGame();
-            Console.ReadLine();
+
         }
-
-
         public static void MethodeTest()
         {
            
