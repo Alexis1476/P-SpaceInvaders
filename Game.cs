@@ -43,9 +43,12 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Methodes
+        /// <summary>
+        /// Dessine la map et le vaisseau au centre de la fenêtre
+        /// </summary>
         public void Draw()
         {
-            //Dessinne la map
+            //Dessine la map
             _map.Draw();
 
             //Dessine le vaisseai
@@ -53,6 +56,14 @@ namespace P_SpaceInvaders
             {
                 _ship.Draw();
             }
+        }
+        /// <summary>
+        /// Si le vaisseau est toujours en vie ou s'il reste encore des invaders
+        /// </summary>
+        /// <returns>True si la partie continue</returns>
+        public bool IsPlaying()
+        {
+            return _ship != null || _invaders.Count > 0;
         }
         #endregion
 
@@ -65,14 +76,6 @@ namespace P_SpaceInvaders
         public Ship Ship
         {
             get { return _ship; }
-        }
-        /// <summary>
-        /// Si le vaisseau est toujours en vie ou s'il reste encore des invaders
-        /// </summary>
-        /// <returns>True si la partie continue</returns>
-        public bool IsPlaying()
-        {
-            return _ship != null || _invaders.Count > 0;
         }
         #endregion
 

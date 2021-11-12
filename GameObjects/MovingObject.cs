@@ -21,7 +21,7 @@ namespace P_SpaceInvaders
         }
         #endregion
 
-        #region Methodes
+        #region Getteurs et setteurs
         public int LastPosX
         {
             get { return _lastPosX; }
@@ -35,7 +35,24 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Methodes
-
+        public void Move(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    PosX--;
+                    break;
+                case Direction.Right:
+                    PosX++;
+                    break;
+                case Direction.Up:
+                    PosY--;
+                    break;
+                case Direction.Down:
+                    PosY++;
+                    break;
+            }
+        }
         #endregion
 
     }

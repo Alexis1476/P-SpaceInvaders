@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace P_SpaceInvaders
 {
-    class Ship : GameObject
+    class Ship : MovingObject
     {
         #region Attributs
 
@@ -25,7 +25,20 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Methodes
-
+        public new void Move(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    //PosX -1 vers la gauche, Math.Max pour ne pas laisser sortir le vaisseau de la map
+                    PosX = Math.Max(PosX - 1, Game.Map.Offset);
+                    break;
+                case Direction.Right:
+                    //PosX + 1 vers la droite, Math.Min pour ne pas laisser sortir le vaisseau de la map
+                    PosX = Math.Min(PosX + 1, Game.Map.Width - Widthchars);
+                    break;
+            }
+        }
         #endregion
 
         //private int _x;

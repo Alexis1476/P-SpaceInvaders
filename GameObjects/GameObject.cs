@@ -44,6 +44,10 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Getteurs et setteurs
+        public Game Game
+        {
+            get { return _game; }
+        }
         public int PosX
         {
             get { return _posX; }
