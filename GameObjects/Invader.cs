@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace P_SpaceInvaders
 {
-    class Invader : GameObject
+    class Invader : MovingObject
     {
         #region Attributs
 
         #endregion
 
         #region Constructeurs
-        public Invader(int posX, int posY, string chars) : base(posX, posY, chars)
+        public Invader(Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
         {
 
         }

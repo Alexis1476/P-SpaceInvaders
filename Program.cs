@@ -10,6 +10,9 @@ namespace P_SpaceInvaders
     class Program
     {
         private static Game _game;
+        private static int _windowWidth = 150;
+        private static int _windowHeight = 80;
+
         static void Main()
         {
             #region Titres des menus
@@ -95,30 +98,82 @@ namespace P_SpaceInvaders
             //Affichage du ménu
             mainMenu.DrawAllMenu();
         }
+        /// <summary>
+        /// Crée une partie
+        /// </summary>
         public static void Play()
         {
             Console.Clear();
             while (true)
             {     
+                //Titre
                 Console.Write("Press ENTER to start!");
                 Console.ReadLine();
+
+                //Instantiation objet Game et redimonsionnement de la fenêtre
                 Init();
 
-                //Initialisation de la partie
+                //Affiche la carte
+                _game.Draw();
 
+                //Initialisation de la partie
+                while (_game.IsPlaying()) 
+                {
+                    ReadInput();
+                }
             }        
         }
-        public static void Init()
+        private static void ReadInput()
         {
-            int windowWidth = 150;
-            int windowHeight = 80;
+            //Tant que le vaisseau existe et que le joueur tape une touche de mouvement
+            while (_game.Ship != null && Console.KeyAvailable)
+            {
+                //Switch pour la séléction du mouvement et pour le tir
+                switch (Console.ReadKey().Key)
+                {
+                    //Mouvement vers la gauche
+                    case ConsoleKey.LeftArrow:
+                        {
+
+                        }
+                        break;
+                    //Mouvement vers la droite
+                    case ConsoleKey.RightArrow:
+                        {
+
+                        }
+                        break;
+                    //Tir
+                    case ConsoleKey.Spacebar:
+                        {
+
+                        }
+                        break;
+                    //Si l'utilisateur tape sur une autre touche
+                    default:
+                        break;
+                }
+            }
+        }
+        /// <summary>
+        /// Initialise une partie et redimonsionne la fenêtre
+        /// </summary>
+        private static void Init()
+        {
+            //Nettoie la fenêtre
+            Console.Clear();
+
+            //Instance membre _game
+            _game = new Game(_windowWidth, _windowHeight);
+
             //Redimensionnement de la fenêtre et modif du fontSize
             ConsoleHelper.SetCurrentFont("Consolas", 9);
-            Console.SetWindowSize(windowWidth, windowHeight);
-            Console.Clear();
-            //Instance membre _game
-            _game = new Game();
+            Console.SetWindowSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
+            Console.SetBufferSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
         }
+        /// <summary>
+        /// Ferme le jeu
+        /// </summary>
         public static void Exit()
         {
             Environment.Exit(1);

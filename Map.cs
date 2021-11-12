@@ -25,24 +25,33 @@ namespace P_SpaceInvaders
         #region Methodes
         public void Draw()
         {
+            //Coin supérieur gauche
             Console.SetCursorPosition(0, 0);
             Console.Write('╔');
+            //Ligne horizontal supérieur
             for (int i = 0; i < Width; i++)
+            {
                 Console.Write('═');
+            }
+            //Coin supérieur droite   
             Console.Write('╗');
-
+            //Lignes verticales
             for (int i = Offset; i < Offset + Height; i++)
             {
                 Console.SetCursorPosition(0, i);
-                Console.Write('|');
+                Console.Write('║');
                 Console.SetCursorPosition(Offset + Width, i);
-                Console.Write('|');
+                Console.Write('║');
             }
-
+            //Coin inférieur gauche
             Console.SetCursorPosition(0, Offset + Height);
             Console.Write('╚');
+            //Ligne horizontal inférieur
             for (int i = 0; i < Width; i++)
+            {
                 Console.Write('═');
+            }
+            //Coin inférieur droite
             Console.Write('╝');
         }
         #endregion

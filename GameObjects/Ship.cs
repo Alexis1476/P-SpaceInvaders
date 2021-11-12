@@ -14,13 +14,17 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Constructeurs
-        public Ship(int posX, int posY, string chars) : base(posX, posY, chars)
+        public Ship(Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
         {
 
         }
         #endregion
 
         #region Getteurs et setteurs
+
+        #endregion
+
+        #region Methodes
 
         #endregion
 

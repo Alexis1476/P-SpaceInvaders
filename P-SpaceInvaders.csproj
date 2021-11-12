@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleHelper.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MenuObjects\OptionSwitch.cs" />

@@ -35,20 +35,47 @@ namespace P_SpaceInvaders
         #region Constructeurs
         public Game(int mapWidth, int mapHeight)
         {
-
+            _map = new Map(mapWidth, mapHeight);
+            _invaders = new List<Invader>();
+            _bullets = new List<Bullet>();
+            _ship = new Ship(this, "<X>", Map.Width / 2 - 3 / 2, Map.Height - 1);
         }
         #endregion
 
         #region Methodes
-        public void DrawGameMap()
+        public void Draw()
         {
-            
+            //Dessinne la map
+            _map.Draw();
+
+            //Dessine le vaisseai
+            if (_ship != null)
+            {
+                _ship.Draw();
+            }
         }
         #endregion
 
         #region Getteurs et setteurs
-
+        public Map Map
+        {
+            get { return _map; }
+            set { _map = value; }
+        }
+        public Ship Ship
+        {
+            get { return _ship; }
+        }
+        /// <summary>
+        /// Si le vaisseau est toujours en vie ou s'il reste encore des invaders
+        /// </summary>
+        /// <returns>True si la partie continue</returns>
+        public bool IsPlaying()
+        {
+            return _ship != null || _invaders.Count > 0;
+        }
         #endregion
+
         //#region Constantes
         ///// <summary>
         ///// Frames invader Crab

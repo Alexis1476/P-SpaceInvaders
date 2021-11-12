@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace P_SpaceInvaders
 {
-    class Bullet : GameObject
+    class Bullet : MovingObject
     {
         #region Attributs
 
         #endregion
 
         #region Constructeurs
-        public Bullet(int posX, int posY, string chars) : base(posX, posY, chars)
+        public Bullet(Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
         {
 
         }

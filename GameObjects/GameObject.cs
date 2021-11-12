@@ -11,6 +11,10 @@ namespace P_SpaceInvaders
     {
         #region Attributs
         /// <summary>
+        /// Partie à laquelle l'objet appartient
+        /// </summary>
+        Game _game;
+        /// <summary>
         /// Position sur l'axe X de la console
         /// </summary>
         int _posX;
@@ -29,11 +33,12 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Constructeurs
-        public GameObject(int posX, int posY, string chars)
+        public GameObject(Game game, string chars, int posX, int posY)
         {
-            _posX = posX;
-            _posY = posY;
+            _game = game;
             _chars = chars;
+            _posX = posX;
+            _posY = posY;      
             _widthChars = CalculateCharsWidth(_chars);
         }
         #endregion
@@ -69,6 +74,11 @@ namespace P_SpaceInvaders
                 line = reader.ReadLine();
                 return line.Length;
             }
+        }
+        public void Draw()
+        {
+            Console.SetCursorPosition(_posX, _posY);
+            Console.Write(_chars);
         }
         #endregion
     }
