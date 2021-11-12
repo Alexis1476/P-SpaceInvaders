@@ -38,11 +38,25 @@ namespace P_SpaceInvaders
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
-            _ship = new Ship(this, "<X>", Map.Width / 2 - 3 / 2, Map.Height - 1);
+            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1);
         }
         #endregion
 
         #region Methodes
+        public void Update()
+        {
+            //Si le vaisseau n'est pas mort
+            if (_ship != null)
+            {
+                //Efface le vaisseau de la position précédente
+                _ship.Clear();
+
+                //Redessine le vaisseau dans la nouvelle position
+                _ship.ReDraw();
+            }
+
+
+        }
         /// <summary>
         /// Dessine la map et le vaisseau au centre de la fenêtre
         /// </summary>
@@ -51,7 +65,7 @@ namespace P_SpaceInvaders
             //Dessine la map
             _map.Draw();
 
-            //Dessine le vaisseai
+            //Dessine le vaisseau s'il n'est pas mort
             if (_ship != null)
             {
                 _ship.Draw();

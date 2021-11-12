@@ -119,7 +119,11 @@ namespace P_SpaceInvaders
                 //Initialisation de la partie
                 while (_game.IsPlaying()) 
                 {
+                    //Lit les touches du clavier pour le mouvement du vaisseau
                     ReadInput();
+
+                    //Redessine les objects du jeu
+                    _game.Update();
                 }
             }        
         }
@@ -133,20 +137,16 @@ namespace P_SpaceInvaders
                 {
                     //Mouvement vers la gauche
                     case ConsoleKey.LeftArrow:
-                        {
-
-                        }
+                        _game.Ship.Move(Direction.Left);
                         break;
                     //Mouvement vers la droite
                     case ConsoleKey.RightArrow:
-                        {
-
-                        }
+                        _game.Ship.Move(Direction.Right);
                         break;
                     //Tir
                     case ConsoleKey.Spacebar:
                         {
-
+                            /*METHODE POUR LES TIRS*/
                         }
                         break;
                     //Si l'utilisateur tape sur une autre touche

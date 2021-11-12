@@ -35,6 +35,29 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Methodes
+        public void ReDraw()
+        {
+            //Si la position a changé
+            if (PosX != LastPosX || PosY != LastPosY)
+            {
+                //Dessine l'objet
+                Draw();
+
+                //Met à jour la position actuel
+                LastPosX = PosX;
+                LastPosY = PosY;
+            }
+        }
+        public void Clear()
+        {
+            //Si la position a changé
+            if (PosX != LastPosX || PosY != LastPosY)
+            {
+                //Efface l'objet de sa position précédente
+                Console.SetCursorPosition(LastPosX, LastPosY);
+                Console.Write(new string(' ', WidthChars));
+            }
+        }
         public void Move(Direction direction)
         {
             switch (direction)

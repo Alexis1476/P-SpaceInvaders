@@ -58,7 +58,7 @@ namespace P_SpaceInvaders
             get { return _posY; }
             set { _posY = value; }
         }
-        public int Widthchars
+        public int WidthChars
         {
             get { return _widthChars; }
         }
