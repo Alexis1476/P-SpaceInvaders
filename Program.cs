@@ -9,6 +9,7 @@ namespace P_SpaceInvaders
 {
     class Program
     {
+        private static Game _game;
         static void Main()
         {
             #region Titres des menus
@@ -86,7 +87,7 @@ namespace P_SpaceInvaders
             menuOptions.AddOptionSwitchItems(2, "Difficulty");
             #endregion
 
-            //TESTS
+            //TESTS SOUND
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\Ressources\\music8Bits.wav";
             player.Play();
@@ -97,11 +98,26 @@ namespace P_SpaceInvaders
         public static void Play()
         {
             Console.Clear();
-            Game newgame = new Game();
+            while (true)
+            {     
+                Console.Write("Press ENTER to start!");
+                Console.ReadLine();
+                Init();
+
+                //Initialisation de la partie
+
+            }        
         }
-        public void MethodeTest()
+        public static void Init()
         {
-           
+            int windowWidth = 150;
+            int windowHeight = 80;
+            //Redimensionnement de la fenêtre et modif du fontSize
+            ConsoleHelper.SetCurrentFont("Consolas", 9);
+            Console.SetWindowSize(windowWidth, windowHeight);
+            Console.Clear();
+            //Instance membre _game
+            _game = new Game();
         }
         public static void Exit()
         {

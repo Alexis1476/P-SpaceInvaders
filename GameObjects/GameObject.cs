@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P_SpaceInvaders.GameObjects
+namespace P_SpaceInvaders
 {
     class GameObject
     {

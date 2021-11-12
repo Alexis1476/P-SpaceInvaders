@@ -6,14 +6,25 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace P_SpaceInvaders.GameObjects
+namespace P_SpaceInvaders
 {
     class Invader : GameObject
     {
-        public Invader(int posY, int posX) : base(posX, posY)
+        #region Attributs
+
+        #endregion
+
+        #region Constructeurs
+        public Invader(int posX, int posY, string chars) : base(posX, posY, chars)
         {
 
         }
+        #endregion
+
+        #region Getteurs et setteurs
+
+        #endregion
+
         //#region Attributs
         //private bool _alive;
         //private string[] _invaderFrames;

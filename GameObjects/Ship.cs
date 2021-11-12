@@ -5,14 +5,25 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace P_SpaceInvaders.GameObjects
+namespace P_SpaceInvaders
 {
     class Ship : GameObject
     {
-        public Ship(int posY, int posX) : base(posX, posY)
+        #region Attributs
+
+        #endregion
+
+        #region Constructeurs
+        public Ship(int posX, int posY, string chars) : base(posX, posY, chars)
         {
 
         }
+        #endregion
+
+        #region Getteurs et setteurs
+
+        #endregion
+
         //private int _x;
         //private int _y;
         //private int _lifes;

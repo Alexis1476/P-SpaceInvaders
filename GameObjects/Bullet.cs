@@ -5,25 +5,25 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace P_SpaceInvaders.GameObjects
+namespace P_SpaceInvaders
 {
     class Bullet : GameObject
     {
         #region Attributs
-        char _symbol;
+
         #endregion
 
         #region Constructeurs
+        public Bullet(int posX, int posY, string chars) : base(posX, posY, chars)
+        {
 
+        }
         #endregion
 
         #region Getteurs et setteurs
 
         #endregion
-        public Bullet(int posY, int posX) : base(posX, posY)
-        {
 
-        }
         //private int _y;
         //private int _x;
         //private char _bulletDesign;

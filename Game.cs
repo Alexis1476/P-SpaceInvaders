@@ -9,7 +9,46 @@ namespace P_SpaceInvaders
 {
     class Game
     {
+        #region Attributs
+        /// <summary>
+        /// Carte du jeu
+        /// </summary>
+        Map _map;
+        /// <summary>
+        /// Vaisseau du joueur
+        /// </summary>
+        Ship _ship;
+        /// <summary>
+        /// Liste pour les tirs des invaders et du joueur
+        /// </summary>
+        List<Bullet> _bullets;
+        /// <summary>
+        /// Liste d'invaders
+        /// </summary>
+        List<Invader> _invaders;
+        /// <summary>
+        /// Score du joueur
+        /// </summary>
+        int _score;
+        #endregion
 
+        #region Constructeurs
+        public Game(int mapWidth, int mapHeight)
+        {
+
+        }
+        #endregion
+
+        #region Methodes
+        public void DrawGameMap()
+        {
+            
+        }
+        #endregion
+
+        #region Getteurs et setteurs
+
+        #endregion
         //#region Constantes
         ///// <summary>
         ///// Frames invader Crab
