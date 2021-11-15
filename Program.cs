@@ -149,9 +149,7 @@ namespace P_SpaceInvaders
                         break;
                     //Tir
                     case ConsoleKey.Spacebar:
-                        {
-                            /*METHODE POUR LES TIRS*/
-                        }
+                        _game.Ship.Fire();
                         break;
                     //Si l'utilisateur tape sur une autre touche
                     default:

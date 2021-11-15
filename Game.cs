@@ -91,6 +91,12 @@ namespace P_SpaceInvaders
         {
             get { return _ship; }
         }
+        public List<Bullet> Bullets
+        {
+            get { return _bullets; }
+            set { _bullets = value; }
+        }
+        
         #endregion
 
         //#region Constantes

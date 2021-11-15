@@ -10,13 +10,35 @@ namespace P_SpaceInvaders
     class Bullet : MovingObject
     {
         #region Attributs
-
+        Direction _direction;
         #endregion
 
         #region Constructeurs
-        public Bullet(Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
+        public Bullet(Game game, string chars, int posX, int posY, Direction direction) : base(game, chars, posX, posY)
         {
+            _direction = direction;
+            Draw();
+        }
+        #endregion
 
+        #region Methodes
+        public new void Draw()
+        {
+            //Si les tirs sont fait par le joueur
+            if (_direction == Direction.Up)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                base.Draw();
+                Console.ResetColor();
+            }
+
+            //Si les tirs sont fait par les invaders
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                base.Draw();
+                Console.ResetColor();
+            }          
         }
         #endregion
 
