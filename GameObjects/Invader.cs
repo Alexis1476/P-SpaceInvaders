@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace P_SpaceInvaders
+namespace P_SpaceInvaders.GameObjects
 {
     class Invader : MovingObject
     {
