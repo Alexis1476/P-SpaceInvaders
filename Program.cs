@@ -124,6 +124,10 @@ namespace P_SpaceInvaders
 
                     //Redessine les objects du jeu
                     _game.Update();
+
+                    //Score
+                    Console.SetCursorPosition(0, 2 * _game.Map.Offset + _game.Map.Height);
+                    Console.Write("Score: XX");
                 }
             }        
         }

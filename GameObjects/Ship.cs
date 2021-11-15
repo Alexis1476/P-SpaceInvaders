@@ -9,7 +9,7 @@ namespace P_SpaceInvaders
 {
     class Ship : MovingObject
     {
-        public const string CharShip = "<X>";
+        public const string CharShip = "====";
         #region Attributs
 
         #endregion
@@ -32,11 +32,11 @@ namespace P_SpaceInvaders
             {
                 case Direction.Left:
                     //PosX -1 vers la gauche, Math.Max pour ne pas laisser sortir le vaisseau de la map
-                    PosX = Math.Max(PosX - 1, Game.Map.Offset);
+                    PosX = Math.Max(PosX - 1, Game.Map.Offset + 1);
                     break;
                 case Direction.Right:
                     //PosX + 1 vers la droite, Math.Min pour ne pas laisser sortir le vaisseau de la map
-                    PosX = Math.Min(PosX + 1, Game.Map.Width - WidthChars + 1);
+                    PosX = Math.Min(PosX + 1, Game.Map.Width - WidthChars);
                     break;
             }
         }
