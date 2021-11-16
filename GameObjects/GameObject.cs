@@ -84,6 +84,19 @@ namespace P_SpaceInvaders.GameObjects
             Console.SetCursorPosition(_posX, _posY);
             Console.Write(_chars);
         }
+        /// <summary>
+        /// Vérifie si l'objet se trouve entre les coordonnées de la map
+        /// </summary>
+        /// <returns>True si l'objet n'est pas sortie de la map</returns>
+        public bool IsInMap()
+        {
+            //Si la PosY de l'objet se trouve entre les coordonnées de la map
+            if(PosY >= Game.Map.Offset && PosY <= Game.Map.Height - Game.Map.Offset)
+            {
+                return true;
+            }
+            else { return false; }
+        }
         #endregion
     }
 }

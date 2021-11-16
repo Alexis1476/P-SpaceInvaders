@@ -56,7 +56,31 @@ namespace P_SpaceInvaders
                 _ship.ReDraw();
             }
 
+            //Parcoure la liste de bullets
+            for (int i = 0; i < Bullets.Count; i++)
+            {
+                //Mouvement de la balle
+                Bullets[i].Move(Bullets[i].Direction);
+                Bullets[i].Clear();
 
+                //Si la balle n'est pas sortie de la map
+                if (Bullets[i].IsInMap())
+                {
+                    //Variable bool pour vérifier l'impact de la balle
+                    bool impact = false;
+
+                    //Si la balle impacte contre un objet
+                    if (impact)
+                    {
+                        //On efface la balle de la liste
+                        Bullets.RemoveAt(i);
+                    }
+                    else
+                    {
+                        Bullets[i].ReDraw();
+                    }
+                }
+            }
         }
         /// <summary>
         /// Dessine la map et le vaisseau au centre de la fenêtre

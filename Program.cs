@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using P_SpaceInvaders.MenuObjects;
+using System.Threading;
 
 namespace P_SpaceInvaders
 {
@@ -92,9 +93,9 @@ namespace P_SpaceInvaders
             #endregion
 
             //TESTS SOUND
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\Ressources\\music8Bits.wav";
-            player.Play();
+            //SoundPlayer player = new SoundPlayer();
+            //player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\Ressources\\music8Bits.wav";
+            //player.Play();
 
             //Affichage du ménu
             mainMenu.DrawAllMenu();
@@ -123,12 +124,13 @@ namespace P_SpaceInvaders
                     //Lit les touches du clavier pour le mouvement du vaisseau
                     ReadInput();
 
-                    //Redessine les objects du jeu
+                    //Redessine les objets du jeu
                     _game.Update();
 
                     //Score
                     Console.SetCursorPosition(0, 2 * _game.Map.Offset + _game.Map.Height);
                     Console.Write("Score: XX");
+                    Thread.Sleep(20);
                 }
             }        
         }

@@ -43,7 +43,10 @@ namespace P_SpaceInvaders.GameObjects
         #endregion
 
         #region Getteurs et setteurs
-
+        public Direction Direction
+        {
+            get { return _direction; }
+        }
         #endregion
 
         //private int _y;
