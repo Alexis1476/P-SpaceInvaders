@@ -11,13 +11,13 @@ namespace P_SpaceInvaders.GameObjects
     class Invader : MovingObject
     {
         #region Attributs
-
+        int _id;
         #endregion
 
         #region Constructeurs
-        public Invader(Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
+        public Invader(int id, Game game, string chars) : base(game, chars)
         {
-
+            _id = id;
         }
         #endregion
 

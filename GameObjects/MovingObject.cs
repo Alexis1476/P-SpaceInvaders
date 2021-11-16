@@ -19,6 +19,10 @@ namespace P_SpaceInvaders.GameObjects
             _lastPosX = x;
             _lastPosY = y;
         }
+        public MovingObject(Game game, string chars) : base(game, chars)
+        {
+
+        }
         #endregion
 
         #region Getteurs et setteurs

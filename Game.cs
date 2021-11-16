@@ -10,6 +10,11 @@ namespace P_SpaceInvaders
 {
     class Game
     {
+        #region Constantes
+        const int _INVADERSPERLIGNE = 10;
+        const int _INVADERPERCOLUMNS = 6;
+        #endregion
+
         #region Attributs
         /// <summary>
         /// Carte du jeu
@@ -39,7 +44,8 @@ namespace P_SpaceInvaders
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
-            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1);
+            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1); //A regler WidthChar
+            GenerateInvaders();
         }
         #endregion
 
@@ -47,13 +53,13 @@ namespace P_SpaceInvaders
         public void Update()
         {
             //Si le vaisseau n'est pas mort
-            if (_ship != null)
+            if (Ship != null)
             {
                 //Efface le vaisseau de la position précédente
-                _ship.Clear();
+                Ship.Clear();
 
                 //Redessine le vaisseau dans la nouvelle position
-                _ship.ReDraw();
+                Ship.ReDraw();
             }
 
             //Parcoure la liste de bullets
@@ -94,12 +100,39 @@ namespace P_SpaceInvaders
         public void Draw()
         {
             //Dessine la map
-            _map.Draw();
+            Map.Draw();
 
             //Dessine le vaisseau s'il n'est pas mort
             if (_ship != null)
             {
-                _ship.Draw();
+                Ship.Draw();
+            }
+
+            //Parcoure la liste d'invaders
+            foreach (Invader invader in Invaders)
+            {
+                //Desinne chaque invader
+                invader.Draw();
+            }
+        }
+        public void GenerateInvaders() 
+        {
+            //Ajout les invaders à la liste
+            for (int i = 0; i < 1; i++)
+            {
+                Invaders.Add(new Invader(i, this, "<<O-O>>")); //A regler WidthChar
+            }
+
+            //Calcul des positions des invaders
+            int count = 0;
+            for (int i = 0; i < Invaders.Count; i++)
+            {
+                Invaders[i].PosX = Map.Offset + i + 2 + Invaders[i].WidthChars;
+                Invaders[i].PosY = Map.Offset + i + 2 + Invaders[i].WidthChars;
+                if (count == _INVADERSPERLIGNE) 
+                {
+                    count = 0;
+                }             
             }
         }
         /// <summary>
@@ -108,7 +141,7 @@ namespace P_SpaceInvaders
         /// <returns>True si la partie continue</returns>
         public bool IsPlaying()
         {
-            return _ship != null || _invaders.Count > 0;
+            return Ship != null || _invaders.Count > 0;
         }
         #endregion
 
@@ -127,7 +160,11 @@ namespace P_SpaceInvaders
             get { return _bullets; }
             set { _bullets = value; }
         }
-        
+        public List<Invader> Invaders
+        {
+            get { return _invaders; }
+            set { _invaders = value; }
+        }
         #endregion
 
         //#region Constantes

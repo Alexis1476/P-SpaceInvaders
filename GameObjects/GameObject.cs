@@ -37,8 +37,14 @@ namespace P_SpaceInvaders.GameObjects
         {
             _game = game;
             _chars = chars;
+            _widthChars = CalculateCharsWidth(_chars);
             _posX = posX;
             _posY = posY;      
+        }
+        public GameObject(Game game, string chars)
+        {
+            _game = game;
+            _chars = chars;
             _widthChars = CalculateCharsWidth(_chars);
         }
         #endregion
