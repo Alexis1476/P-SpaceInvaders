@@ -80,6 +80,12 @@ namespace P_SpaceInvaders
                         Bullets[i].ReDraw();
                     }
                 }
+                //Si la balle est sortie de la map
+                else
+                {
+                    //Efface de la balle de la liste
+                    Bullets.RemoveAt(i--);
+                }
             }
         }
         /// <summary>
