@@ -11,8 +11,8 @@ namespace P_SpaceInvaders
     class Game
     {
         #region Constantes
-        const int _INVADERSPERLINE = 9;
-        const int _INVADERSPERCOLUMNS = 5;
+        const int _INVADERSPERLINE = 4;
+        const int _INVADERSPERCOLUMNS = 9;
         #endregion
 
         #region Attributs
@@ -117,42 +117,49 @@ namespace P_SpaceInvaders
         }
         public void GenerateInvaders() 
         {
-            //Agrégation des invaders dans la liste
-            for (int i = 0; i < 9; i++)
+            //Agrégation des invaders à la liste
+            for (int i = 0; i < _INVADERSPERLINE * _INVADERSPERCOLUMNS; i++)
             {
-                Invaders.Add(new Invader(i, this, "<<ovo>>"));
+                Invaders.Add(new Invader(i, this, "<<oo>>"));
             }
 
-            int count = 0;
-            int lastPosx = 2;
+            #region Calcul Position des Invaders
+
+            int count = 0;                  //Compteur des invaders
+            int lastPosX = Map.Offset * 2;  //Dernière PosX calculé
+            int lastPosY = Map.Offset * 2;  //Dernière PosY calculé
+
+            //Parcourt la liste d'invaders
             for (int i = 0; i < Invaders.Count; i++)
             {
-                count++;
-                //PosY premier invader
+                //Calcul position premier invader
                 if (i == 0)
                 {
-                    Invaders[i].PosX = Map.Offset * 2;
-                    Invaders[i].PosY = Map.Offset * 2;
+                    Invaders[i].PosX = lastPosX;
+                    Invaders[i].PosY = lastPosY;
                 }
+
+                //Calcul des positions de tous les autres invaders
                 else
                 {
-                    lastPosx += Invaders[i].WidthChars + Map.Offset * 2;
-                    Invaders[i].PosX = lastPosx;
-                    Invaders[i].PosY = Invaders[0].PosY;
-                    //if (count != _INVADERSPERCOLUMNS)
-                    //{
-                    //    Invaders[i].PosY = spaceInvaders + Invaders[i - 1].PosY;
-                    //}
-                    //else
-                    //{
-                    //    if (i < Invaders.Count - 1)
-                    //    {
-                    //        Invaders[i + 1].PosY += spaceInvaders;
-                    //    }
-                    //    count = 0;
-                    //}
+                    //Incrémentation de PosX des invaders (Map.Offset*2) = Espacement entre les invaders
+                    lastPosX += Invaders[0].WidthChars + Map.Offset * 2;
+
+                    //Dès qu'on arrive à la fin de la ligne
+                    if (count % _INVADERSPERCOLUMNS == 0)
+                    {
+                        //Reinitialisation de posX et incrémentation de PosY de 2 
+                        lastPosX = 2;
+                        lastPosY += 2;
+                    }
+
+                    //PosX et PosY de l'invader
+                    Invaders[i].PosX = lastPosX;
+                    Invaders[i].PosY = lastPosY;
                 }
+                count++;
             }
+            #endregion
         }
         /// <summary>
         /// Si le vaisseau est toujours en vie ou s'il reste encore des invaders
