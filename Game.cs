@@ -11,8 +11,8 @@ namespace P_SpaceInvaders
     class Game
     {
         #region Constantes
-        const int _INVADERSPERLIGNE = 10;
-        const int _INVADERPERCOLUMNS = 6;
+        const int _INVADERSPERLINE = 9;
+        const int _INVADERSPERCOLUMNS = 5;
         #endregion
 
         #region Attributs
@@ -117,22 +117,41 @@ namespace P_SpaceInvaders
         }
         public void GenerateInvaders() 
         {
-            //Ajout les invaders à la liste
-            for (int i = 0; i < 1; i++)
+            //Agrégation des invaders dans la liste
+            for (int i = 0; i < 9; i++)
             {
-                Invaders.Add(new Invader(i, this, "<<O-O>>")); //A regler WidthChar
+                Invaders.Add(new Invader(i, this, "<<ovo>>"));
             }
 
-            //Calcul des positions des invaders
             int count = 0;
+            int lastPosx = 2;
             for (int i = 0; i < Invaders.Count; i++)
             {
-                Invaders[i].PosX = Map.Offset + i + 2 + Invaders[i].WidthChars;
-                Invaders[i].PosY = Map.Offset + i + 2 + Invaders[i].WidthChars;
-                if (count == _INVADERSPERLIGNE) 
+                count++;
+                //PosY premier invader
+                if (i == 0)
                 {
-                    count = 0;
-                }             
+                    Invaders[i].PosX = Map.Offset * 2;
+                    Invaders[i].PosY = Map.Offset * 2;
+                }
+                else
+                {
+                    lastPosx += Invaders[i].WidthChars + Map.Offset * 2;
+                    Invaders[i].PosX = lastPosx;
+                    Invaders[i].PosY = Invaders[0].PosY;
+                    //if (count != _INVADERSPERCOLUMNS)
+                    //{
+                    //    Invaders[i].PosY = spaceInvaders + Invaders[i - 1].PosY;
+                    //}
+                    //else
+                    //{
+                    //    if (i < Invaders.Count - 1)
+                    //    {
+                    //        Invaders[i + 1].PosY += spaceInvaders;
+                    //    }
+                    //    count = 0;
+                    //}
+                }
             }
         }
         /// <summary>

@@ -15,6 +15,10 @@ namespace P_SpaceInvaders.GameObjects
         #endregion
 
         #region Constructeurs
+        public Invader(int id, Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
+        {
+            _id = id;
+        }
         public Invader(int id, Game game, string chars) : base(game, chars)
         {
             _id = id;
