@@ -217,12 +217,12 @@ namespace P_SpaceInvaders
             #endregion
         }
         /// <summary>
-        /// Si le vaisseau est toujours en vie ou s'il reste encore des invaders
+        /// Si le vaisseau est toujours en vie et s'il reste encore des invaders
         /// </summary>
         /// <returns>True si la partie continue</returns>
         public bool IsPlaying()
         {
-            return Ship != null || _invaders.Count > 0;
+              return Ship != null && _invaders.Count > 0;
         }
         #endregion
 

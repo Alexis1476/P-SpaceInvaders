@@ -13,7 +13,7 @@ namespace P_SpaceInvaders
     {
         private static Game _game;
         private static int _windowWidth = 150;
-        private static int _windowHeight = 80;
+        private static int _windowHeight = 50;
 
         static void Main()
         {
@@ -132,6 +132,7 @@ namespace P_SpaceInvaders
                     Console.Write("Score: XX");
                     Thread.Sleep(20);
                 }
+                Console.Write("Game OVER");
             }        
         }
         private static void ReadInput()
