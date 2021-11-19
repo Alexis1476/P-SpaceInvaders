@@ -29,6 +29,26 @@ namespace P_SpaceInvaders.GameObjects
 
         #endregion
 
+        #region Methodes
+        public new void Move(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    //PosX -1 vers la gauche, Math.Max pour ne pas laisser sortir l'invader de la map
+                    PosX -= 1;
+                    break;
+                case Direction.Right:
+                    //PosX + 1 vers la droite, Math.Min pour ne pas laisser sortir l'invader de la map
+                    PosX += 1;
+                    break;
+                case Direction.Down:
+                    PosY += 1;
+                    break;
+            }
+        }
+        #endregion
+
         //#region Attributs
         //private bool _alive;
         //private string[] _invaderFrames;

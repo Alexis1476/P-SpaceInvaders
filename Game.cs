@@ -48,10 +48,10 @@ namespace P_SpaceInvaders
             GenerateInvaders();
         }
         #endregion
-
         #region Methodes
         public void Update()
         {
+            #region Mouvement du vaisseau
             //Si le vaisseau n'est pas mort
             if (Ship != null)
             {
@@ -61,8 +61,10 @@ namespace P_SpaceInvaders
                 //Redessine le vaisseau dans la nouvelle position
                 Ship.ReDraw();
             }
+            #endregion
 
-            //Parcoure la liste de bullets
+            #region Mouvement des balles
+            //Parcourt la liste de bullets
             for (int i = 0; i < Bullets.Count; i++)
             {
                 //Mouvement de la balle
@@ -89,10 +91,38 @@ namespace P_SpaceInvaders
                 //Si la balle est sortie de la map
                 else
                 {
-                    //Efface de la balle de la liste
+                    //Efface la balle de la liste
                     Bullets.RemoveAt(i--);
                 }
             }
+            #endregion
+
+            #region Mouvement des invaders
+            //Si la liste d'invaders est déjà initialisé
+            if (Invaders != null)
+            {
+                //Parcourt la liste d'invaders
+                foreach (Invader invader in Invaders)
+                {        
+                    //Si l'invader arrive au limite X de la map
+                    if (invader.PosX == Map.Width - invader.WidthChars)
+                    {
+                        //Reinitialisation PosX de l'invader à 1 (Map.Offset)
+                        invader.PosX = Map.Offset;
+
+                        //Fait descendre l'invader
+                        invader.Move(Direction.Down);
+                    }
+
+                    //Mouvement de l'invader vers la droite
+                    invader.Move(Direction.Right);
+
+                    //L'invader est redesinné
+                    invader.Clear();
+                    invader.ReDraw();
+                }
+            }
+            #endregion
         }
         /// <summary>
         /// Dessine la map et le vaisseau au centre de la fenêtre
@@ -117,11 +147,12 @@ namespace P_SpaceInvaders
         }
         public void GenerateInvaders() 
         {
-            //Agrégation des invaders à la liste
+            #region Agrégation des invaders dans la liste
             for (int i = 0; i < _INVADERSPERLINE * _INVADERSPERCOLUMNS; i++)
             {
                 Invaders.Add(new Invader(i, this, "<<oo>>"));
             }
+            #endregion
 
             #region Calcul Position des Invaders
 
@@ -158,6 +189,13 @@ namespace P_SpaceInvaders
                     Invaders[i].PosY = lastPosY;
                 }
                 count++;
+            }
+
+            //LastPosX et LastPosY des invaders = PosX et posY initials
+            foreach (Invader invader in Invaders)
+            {
+                invader.LastPosX = invader.PosX;
+                invader.LastPosY = invader.PosY;
             }
             #endregion
         }
