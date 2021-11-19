@@ -52,6 +52,12 @@ namespace P_SpaceInvaders.GameObjects
                 LastPosY = PosY;
             }
         }
+        public void Delete()
+        {
+            //Efface l'objet de sa position précédente
+            Console.SetCursorPosition(LastPosX, LastPosY);
+            Console.Write(new string(' ', WidthChars));
+        }
         public void Clear()
         {
             //Si la position a changé

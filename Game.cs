@@ -51,18 +51,6 @@ namespace P_SpaceInvaders
         #region Methodes
         public void Update()
         {
-            #region Mouvement du vaisseau
-            //Si le vaisseau n'est pas mort
-            if (Ship != null)
-            {
-                //Efface le vaisseau de la position précédente
-                Ship.Clear();
-
-                //Redessine le vaisseau dans la nouvelle position
-                Ship.ReDraw();
-            }
-            #endregion
-
             #region Mouvement des balles
             //Parcourt la liste de bullets
             for (int i = 0; i < Bullets.Count; i++)
@@ -76,6 +64,23 @@ namespace P_SpaceInvaders
                 {
                     //Variable bool pour vérifier l'impact de la balle
                     bool impact = false;
+
+                    //Verifier si les balles touchent les invaders
+                    for (int j = 0; j < Invaders.Count; j++)
+                    {
+                        //Si la balle touche un invader
+                        if (Invaders[j].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) ||
+                            Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY))
+                        {
+                            //Impact reussie
+                            impact = true;
+
+                            //Effacement de la balle de l'écran et de la liste
+                            Invaders[j].Delete();
+                            Invaders.RemoveAt(j--);
+                        }
+                    }
+
 
                     //Si la balle impacte contre un objet
                     if (impact)
@@ -94,6 +99,18 @@ namespace P_SpaceInvaders
                     //Efface la balle de la liste
                     Bullets.RemoveAt(i--);
                 }
+            }
+            #endregion
+
+            #region Mouvement du vaisseau
+            //Si le vaisseau n'est pas mort
+            if (Ship != null)
+            {
+                //Efface le vaisseau de la position précédente
+                Ship.Clear();
+
+                //Redessine le vaisseau dans la nouvelle position
+                Ship.ReDraw();
             }
             #endregion
 

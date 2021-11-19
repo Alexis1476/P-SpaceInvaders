@@ -103,6 +103,10 @@ namespace P_SpaceInvaders.GameObjects
             }
             else { return false; }
         }
+        public bool IsAtCoordinates(int posX, int posY)
+        {
+            return posY == PosY && posX >= PosX && posX < PosX + WidthChars;
+        }
         #endregion
     }
 }
