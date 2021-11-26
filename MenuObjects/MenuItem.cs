@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class qui permet de créer une option d'un ménu laquelle exécute une action
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

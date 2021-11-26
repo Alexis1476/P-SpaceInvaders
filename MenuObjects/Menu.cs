@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class qui permet de créer des menu avec ou sans options
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

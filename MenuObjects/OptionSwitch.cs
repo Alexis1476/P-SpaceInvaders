@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Permet de créer un switch pour activer le son ou un switch pour modifier la difficulté du jeu
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

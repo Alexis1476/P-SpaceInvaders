@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Gérè le jeu et les rélations entre chaque objet
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

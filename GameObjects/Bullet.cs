@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class qui permet de créer une balle pour les ennemis et pour le joueur
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

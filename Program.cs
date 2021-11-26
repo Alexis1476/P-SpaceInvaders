@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Gère le déroulement du program principal
+using System;
 using System.Media;
 using System.Collections.Generic;
 using System.Linq;
