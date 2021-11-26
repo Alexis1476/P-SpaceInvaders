@@ -15,85 +15,101 @@ namespace P_SpaceInvaders
 {
     class Program
     {
-        private static Game _game;
-        private static int _windowWidth = 150;
-        private static int _windowHeight = 50;
+        static Game _game;
+        static int _windowWidth = 150;
+        static int _windowHeight = 50;
+        static Menu _mainMenu;
+        static Menu _menuOptions;
+        static Menu _menuAbout;
+        static Menu _menuScore;
+
+        #region Titres des menus
+        const string MAINTITLE = "                                                                                                                 \n" +
+                                     "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
+                                     "▒██    ▒ ▓██░  ██▒▒████▄    ▒██▀ ▀█  ▓█   ▀    ▓██▒ ██ ▀█   █▓██░   █▒▒████▄    ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒▒██    ▒ \n" +
+                                     "░ ▓██▄   ▓██░ ██▓▒▒██  ▀█▄  ▒▓█    ▄ ▒███      ▒██▒▓██  ▀█ ██▒▓██  █▒░▒██  ▀█▄  ░██   █▌▒███   ▓██ ░▄█ ▒░ ▓██▄   \n" +
+                                     "  ▒   ██▒▒██▄█▓▒ ▒░██▄▄▄▄██ ▒▓▓▄ ▄██▒▒▓█  ▄    ░██░▓██▒  ▐▌██▒ ▒██ █░░░██▄▄▄▄██ ░▓█▄   ▌▒▓█  ▄ ▒██▀▀█▄    ▒   ██▒\n" +
+                                     "▒██████▒▒▒██▒ ░  ░ ▓█   ▓██▒▒ ▓███▀ ░░▒████▒   ░██░▒██░   ▓██░  ▒▀█░   ▓█   ▓██▒░▒████▓ ░▒████▒░██▓ ▒██▒▒██████▒▒\n" +
+                                     "▒ ▒▓▒ ▒ ░▒▓▒░ ░  ░ ▒▒   ▓▒█░░ ░▒ ▒  ░░░ ▒░ ░   ░▓  ░ ▒░   ▒ ▒   ░ ▐░   ▒▒   ▓▒█░ ▒▒▓  ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░\n" +
+                                     "░ ░▒  ░ ░░▒ ░       ▒   ▒▒ ░  ░  ▒    ░ ░  ░    ▒ ░░ ░░   ░ ▒░  ░ ░░    ▒   ▒▒ ░ ░ ▒  ▒  ░ ░  ░  ░▒ ░ ▒░░ ░▒  ░ ░\n" +
+                                     "░  ░  ░  ░░         ░   ▒   ░           ░       ▒ ░   ░   ░ ░     ░░    ░   ▒    ░ ░  ░    ░     ░░   ░ ░  ░  ░  \n" +
+                                     "      ░                 ░  ░░ ░         ░  ░    ░           ░      ░        ░  ░   ░       ░  ░   ░           ░  \n" +
+                                     "                            ░                                     ░              ░                               \n\n";
+        const string TITLEOPTIONS = "                                                            \n" +
+                                     " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ \n" +
+                                     "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ \n" +
+                                     "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   \n" +
+                                     "▒██   ██░▒██▄█▓▒ ▒░ ▓██▓ ░ ░██░▒██   ██░▓██▒  ▐▌██▒  ▒   ██▒\n" +
+                                     "░ ████▓▒░▒██▒ ░  ░  ▒██▒ ░ ░██░░ ████▓▒░▒██░   ▓██░▒██████▒▒\n" +
+                                     "░ ▒░▒░▒░ ▒▓▒░ ░  ░  ▒ ░░   ░▓  ░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░\n" +
+                                     "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░\n" +
+                                     "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  \n" +
+                                     "    ░ ░                     ░      ░ ░           ░       ░  \n\n";
+        const string TITLESCORE = "                                           \n" +
+                                     "  ██████  ▄████▄   ▒█████   ██▀███  ▓█████ \n" +
+                                     "▒██    ▒ ▒██▀ ▀█  ▒██▒  ██▒▓██ ▒ ██▒▓█   ▀ \n" +
+                                     "░ ▓██▄   ▒▓█    ▄ ▒██░  ██▒▓██ ░▄█ ▒▒███   \n" +
+                                     "  ▒   ██▒▒▓▓▄ ▄██▒▒██   ██░▒██▀▀█▄  ▒▓█  ▄ \n" +
+                                     "▒██████▒▒▒ ▓███▀ ░░ ████▓▒░░██▓ ▒██▒░▒████▒\n" +
+                                     "▒ ▒▓▒ ▒ ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░░ ▒░ ░\n" +
+                                     "░ ░▒  ░ ░  ░  ▒     ░ ▒ ▒░   ░▒ ░ ▒░ ░ ░  ░\n" +
+                                     "░  ░  ░  ░        ░ ░ ░ ▒    ░░   ░    ░   \n" +
+                                     "      ░  ░ ░          ░ ░     ░        ░  ░\n" +
+                                     "         ░                                 \n\n";
+        const string TITLEABOUT = "                                             \n" +
+                                     " ▄▄▄       ▄▄▄▄    ▒█████   █    ██ ▄▄▄█████▓\n" +
+                                     "▒████▄    ▓█████▄ ▒██▒  ██▒ ██  ▓██▒▓  ██▒ ▓▒\n" +
+                                     "▒██  ▀█▄  ▒██▒ ▄██▒██░  ██▒▓██  ▒██░▒ ▓██░ ▒░\n" +
+                                     "░██▄▄▄▄██ ▒██░█▀  ▒██   ██░▓▓█  ░██░░ ▓██▓ ░ \n" +
+                                     " ▓█   ▓██▒░▓█  ▀█▓░ ████▓▒░▒▒█████▓   ▒██▒ ░ \n" +
+                                     " ▒▒   ▓▒█░░▒▓███▀▒░ ▒░▒░▒░ ░▒▓▒ ▒ ▒   ▒ ░░   \n" +
+                                     "  ▒   ▒▒ ░▒░▒   ░   ░ ▒ ▒░ ░░▒░ ░ ░     ░    \n" +
+                                     "  ░   ▒    ░    ░ ░ ░ ░ ▒   ░░░ ░ ░   ░      \n" +
+                                     "      ░  ░ ░          ░ ░     ░              \n\n";
+        const string TITLEGAMEOVER = "                                                                         \n" +
+                                     "  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
+                                     " ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
+                                     "▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
+                                     "░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
+                                     "░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
+                                     " ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
+                                     "  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
+                                     "░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
+                                     "      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
+                                     "                                                     ░                   ";
+        const string QUESTION = "Souhaitez-vous continuer le jeu? \n (Enter pour continuer) (Esc pour sortir au ménu principal)";
+        const string TEXTABOUT = "╔═══════════════════════════════════════════════════════════╗\n" +
+                                     "║                  P_DEV - Space Invaders                   ║\n" +
+                                     "║            ETML   CID2A (2021-2022)   Alexis Rojas        ║\n" +
+                                     "╠═══════════════════════════════════════════════════════════╣\n" +
+                                     "║ Récreation du fameux jeu 'Space Invaders' en mode console ║\n" +
+                                     "║ programmé en C# (Projet en parallèle avec le module 226). ║\n" +
+                                     "║                                                           ║\n" +
+                                     "║ Le jeu vous permet de modifier la difficulté, d'activer   ║\n" +
+                                     "║ le son et de vous montrer les scores.                     ║\n" +
+                                     "╚═══════════════════════════════════════════════════════════╝";
+        #endregion
 
         static void Main()
         {
-            #region Titres des menus
-            const string MAINTITLE =     "                                                                                                                 \n" +
-                                         "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
-                                         "▒██    ▒ ▓██░  ██▒▒████▄    ▒██▀ ▀█  ▓█   ▀    ▓██▒ ██ ▀█   █▓██░   █▒▒████▄    ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒▒██    ▒ \n" +
-                                         "░ ▓██▄   ▓██░ ██▓▒▒██  ▀█▄  ▒▓█    ▄ ▒███      ▒██▒▓██  ▀█ ██▒▓██  █▒░▒██  ▀█▄  ░██   █▌▒███   ▓██ ░▄█ ▒░ ▓██▄   \n" +
-                                         "  ▒   ██▒▒██▄█▓▒ ▒░██▄▄▄▄██ ▒▓▓▄ ▄██▒▒▓█  ▄    ░██░▓██▒  ▐▌██▒ ▒██ █░░░██▄▄▄▄██ ░▓█▄   ▌▒▓█  ▄ ▒██▀▀█▄    ▒   ██▒\n" +
-                                         "▒██████▒▒▒██▒ ░  ░ ▓█   ▓██▒▒ ▓███▀ ░░▒████▒   ░██░▒██░   ▓██░  ▒▀█░   ▓█   ▓██▒░▒████▓ ░▒████▒░██▓ ▒██▒▒██████▒▒\n" +
-                                         "▒ ▒▓▒ ▒ ░▒▓▒░ ░  ░ ▒▒   ▓▒█░░ ░▒ ▒  ░░░ ▒░ ░   ░▓  ░ ▒░   ▒ ▒   ░ ▐░   ▒▒   ▓▒█░ ▒▒▓  ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░\n" +
-                                         "░ ░▒  ░ ░░▒ ░       ▒   ▒▒ ░  ░  ▒    ░ ░  ░    ▒ ░░ ░░   ░ ▒░  ░ ░░    ▒   ▒▒ ░ ░ ▒  ▒  ░ ░  ░  ░▒ ░ ▒░░ ░▒  ░ ░\n" +
-                                         "░  ░  ░  ░░         ░   ▒   ░           ░       ▒ ░   ░   ░ ░     ░░    ░   ▒    ░ ░  ░    ░     ░░   ░ ░  ░  ░  \n" +
-                                         "      ░                 ░  ░░ ░         ░  ░    ░           ░      ░        ░  ░   ░       ░  ░   ░           ░  \n" +
-                                         "                            ░                                     ░              ░                               \n\n";
-            const string TITLEOPTIONS =  "                                                            \n" +
-                                         " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ \n" +
-                                         "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ \n" +
-                                         "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   \n" +
-                                         "▒██   ██░▒██▄█▓▒ ▒░ ▓██▓ ░ ░██░▒██   ██░▓██▒  ▐▌██▒  ▒   ██▒\n" +
-                                         "░ ████▓▒░▒██▒ ░  ░  ▒██▒ ░ ░██░░ ████▓▒░▒██░   ▓██░▒██████▒▒\n" +
-                                         "░ ▒░▒░▒░ ▒▓▒░ ░  ░  ▒ ░░   ░▓  ░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░\n" +
-                                         "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░\n" +
-                                         "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  \n" +
-                                         "    ░ ░                     ░      ░ ░           ░       ░  \n\n";
-            const string TITLESCORE =    "                                           \n" +
-                                         "  ██████  ▄████▄   ▒█████   ██▀███  ▓█████ \n" +
-                                         "▒██    ▒ ▒██▀ ▀█  ▒██▒  ██▒▓██ ▒ ██▒▓█   ▀ \n" +
-                                         "░ ▓██▄   ▒▓█    ▄ ▒██░  ██▒▓██ ░▄█ ▒▒███   \n" +
-                                         "  ▒   ██▒▒▓▓▄ ▄██▒▒██   ██░▒██▀▀█▄  ▒▓█  ▄ \n" +
-                                         "▒██████▒▒▒ ▓███▀ ░░ ████▓▒░░██▓ ▒██▒░▒████▒\n" +
-                                         "▒ ▒▓▒ ▒ ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░░ ▒░ ░\n" +
-                                         "░ ░▒  ░ ░  ░  ▒     ░ ▒ ▒░   ░▒ ░ ▒░ ░ ░  ░\n" +
-                                         "░  ░  ░  ░        ░ ░ ░ ▒    ░░   ░    ░   \n" +
-                                         "      ░  ░ ░          ░ ░     ░        ░  ░\n" +
-                                         "         ░                                 \n\n";
-            const string TITLEABOUT =    "                                             \n" +
-                                         " ▄▄▄       ▄▄▄▄    ▒█████   █    ██ ▄▄▄█████▓\n" +
-                                         "▒████▄    ▓█████▄ ▒██▒  ██▒ ██  ▓██▒▓  ██▒ ▓▒\n" +
-                                         "▒██  ▀█▄  ▒██▒ ▄██▒██░  ██▒▓██  ▒██░▒ ▓██░ ▒░\n" +
-                                         "░██▄▄▄▄██ ▒██░█▀  ▒██   ██░▓▓█  ░██░░ ▓██▓ ░ \n" +
-                                         " ▓█   ▓██▒░▓█  ▀█▓░ ████▓▒░▒▒█████▓   ▒██▒ ░ \n" +
-                                         " ▒▒   ▓▒█░░▒▓███▀▒░ ▒░▒░▒░ ░▒▓▒ ▒ ▒   ▒ ░░   \n" +
-                                         "  ▒   ▒▒ ░▒░▒   ░   ░ ▒ ▒░ ░░▒░ ░ ░     ░    \n" +
-                                         "  ░   ▒    ░    ░ ░ ░ ░ ▒   ░░░ ░ ░   ░      \n" +
-                                         "      ░  ░ ░          ░ ░     ░              \n\n";
-            const string TEXTABOUT =     "╔═══════════════════════════════════════════════════════════╗\n" +
-                                         "║                  P_DEV - Space Invaders                   ║\n" +
-                                         "║            ETML   CID2A (2021-2022)   Alexis Rojas        ║\n" +
-                                         "╠═══════════════════════════════════════════════════════════╣\n" +
-                                         "║ Récreation du fameux jeu 'Space Invaders' en mode console ║\n" +
-                                         "║ programmé en C# (Projet en parallèle avec le module 226). ║\n" +
-                                         "║                                                           ║\n" +
-                                         "║ Le jeu vous permet de modifier la difficulté, d'activer   ║\n" +
-                                         "║ le son et de vous montrer les scores.                     ║\n" +
-                                         "╚═══════════════════════════════════════════════════════════╝";
-            #endregion
-
             #region Déclaration MainMenu et sous-menus
-            Menu mainMenu = new Menu(MAINTITLE);
-            Menu menuOptions = new Menu(TITLEOPTIONS, mainMenu);
-            Menu menuAbout = new Menu(TITLEABOUT, mainMenu, TEXTABOUT);
-            Menu menuScore = new Menu(TITLESCORE, mainMenu);
+            _mainMenu = new Menu(MAINTITLE);
+            _menuOptions = new Menu(TITLEOPTIONS, _mainMenu);
+            _menuAbout = new Menu(TITLEABOUT, _mainMenu, TEXTABOUT);
+            _menuScore = new Menu(TITLESCORE, _mainMenu);
             #endregion
 
             #region Ajout des options à MainMenu
-            mainMenu.AddMenuItems(1, "Play", Play);
-            mainMenu.AddMenuItems(2, "Options", menuOptions.DrawAllMenu);
-            mainMenu.AddMenuItems(3, "Score", menuScore.DrawAllMenu);
-            mainMenu.AddMenuItems(4, "About", menuAbout.DrawAllMenu);
-            mainMenu.AddMenuItems(5, "Exit", Exit);
+            _mainMenu.AddMenuItems(1, "Play", Play);
+            _mainMenu.AddMenuItems(2, "Options", _menuOptions.DrawAllMenu);
+            _mainMenu.AddMenuItems(3, "Score", _menuScore.DrawAllMenu);
+            _mainMenu.AddMenuItems(4, "About", _menuAbout.DrawAllMenu);
+            _mainMenu.AddMenuItems(5, "Exit", Exit);
             #endregion
 
             #region Ajout des switchs de configuration menu Options
-            menuOptions.AddOptionSwitchItems(1, "Sound");
-            menuOptions.AddOptionSwitchItems(2, "Difficulty");
+            _menuOptions.AddOptionSwitchItems(1, "Sound");
+            _menuOptions.AddOptionSwitchItems(2, "Difficulty");
             #endregion
 
             //TESTS SOUND
@@ -102,15 +118,21 @@ namespace P_SpaceInvaders
             //player.Play();
 
             //Affichage du ménu
-            mainMenu.DrawAllMenu();
+            _mainMenu.DrawAllMenu();
         }
         /// <summary>
         /// Crée une partie
         /// </summary>
         public static void Play()
         {
+            //Nettoie la console
             Console.Clear();
-            while (true)
+
+            //Bool pour vérifier si l'utilisateur souhaite continuer le jeu
+            bool play = true;
+
+            //Boucle pour jouer
+            while (play)
             {     
                 //Titre
                 Console.Write("Press ENTER to start!");
@@ -136,8 +158,35 @@ namespace P_SpaceInvaders
                     Console.Write("Score: XX");
                     Thread.Sleep(20);
                 }
-                Console.Write("Game OVER");
+
+                //Affichage GameOver et demande à l'utilisateur s'il souhaite continuer
+                GameOver();
             }        
+        }
+        private static void GameOver()
+        {
+            //Nettoie la console et la redimonsionne
+            Console.Clear();
+            Menu.ResizeWindow();
+
+            //Repositionnement du curseur
+            Console.SetCursorPosition(0, 0);
+
+            //Affichage titre GameOver
+            Console.ForegroundColor = ConsoleColor.Red;
+            Menu.WriteCenteredText(TITLEGAMEOVER);
+            Console.ResetColor();
+
+            //Demande à l'utilisateur s'il souahite continuer une nouvelle partie
+            Menu.WriteCenteredText("Press 'Esc' to return to main menu\n Press 'Enter' to play again");
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.Escape:
+                    _mainMenu.DrawAllMenu();
+                    break;
+                case ConsoleKey.Enter:
+                    break;
+            }
         }
         private static void ReadInput()
         {

@@ -17,7 +17,7 @@ namespace P_SpaceInvaders.MenuObjects
         /// <summary>
         /// Largeur de la fenêtre
         /// </summary>
-        private const int _MENUWIDTH = 150;
+        private const int _MENUWIDTH = 180;
         /// <summary>
         /// Hauteur de la fenêtre
         /// </summary>
@@ -114,22 +114,35 @@ namespace P_SpaceInvaders.MenuObjects
 
         #region Methodes
         /// <summary>
-        /// Redimensionne la fenêtre du ménu
+        /// Redimensionne la fenêtre du ménu et la taille de police
         /// </summary>
-        public void ResizeWindow()
+        public static void ResizeWindow()
         {
+            //Change la taille de police
+            ConsoleHelper.SetCurrentFont("Consolas", 15);
+
             Console.SetWindowSize(_MENUWIDTH,_MENUHEIGHT);
         }
         public void DrawAllMenu()
         {
-            Console.Clear();    //Nettoie le ménu précedent
-            DrawHeader();       //Affiche le titre du ménu
-            DrawOptions();      //Affiche les options
+            //Redimonsionne la console
+            ResizeWindow();
+
+            //Nettoie le ménu précedent
+            Console.Clear();
+
+            //Affiche le titre du ménu
+            DrawHeader();
+
+            //Affiche les options
+            DrawOptions();      
+
             //S'il y a un text dans le ménu
             if (_text!=null)
             {
                 WriteCenteredText(_text); 
             }
+
             //Selection d'option
             SelectOption();
         }
@@ -162,7 +175,6 @@ namespace P_SpaceInvaders.MenuObjects
         /// </summary>
         public void DrawHeader()
         {
-            ResizeWindow();
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.Red; //Changement de la couleur du texte
             WriteCenteredText(_header);
@@ -172,7 +184,7 @@ namespace P_SpaceInvaders.MenuObjects
         /// Ecrit une chaine de caractères au centre de la fenêtre
         /// </summary>
         /// <param name="text">Texte à centrer</param>
-        public void WriteCenteredText(string text)
+        public static void WriteCenteredText(string text)
         {
             //StringReader pour lire ligne par ligne et centrer le texte
             using (StringReader reader = new StringReader(text))
