@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P_SpaceInvaders
+namespace P_SpaceInvaders.MenuObjects
 {
     class MenuItem
     {
@@ -31,7 +31,7 @@ namespace P_SpaceInvaders
         private int _posY;
         #endregion
 
-        #region Constructors
+        #region Constructeurs
         /// <summary>
         /// Constructor par texte et action de l'option
         /// </summary>

@@ -44,23 +44,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleHelper.cs" />
-    <Compile Include="OptionSwitch.cs" />
+    <Compile Include="Direction.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\MovingObject.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="MenuObjects\OptionSwitch.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Invader.cs" />
-    <Compile Include="MenuItem.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="GameObjects\Invader.cs" />
+    <Compile Include="MenuObjects\MenuItem.cs" />
+    <Compile Include="MenuObjects\Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ship.cs" />
-    <Compile Include="Shoot.cs" />
+    <Compile Include="GameObjects\Ship.cs" />
+    <Compile Include="GameObjects\Bullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="music8Bits.wav">
+    <Content Include="Ressources\music8Bits.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

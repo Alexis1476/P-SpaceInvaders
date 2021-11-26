@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P_SpaceInvaders
+namespace P_SpaceInvaders.MenuObjects
 {
     class OptionSwitch
     {
@@ -32,7 +32,7 @@ namespace P_SpaceInvaders
         private List<string> _options;
         #endregion
 
-        #region Constructors
+        #region Constructeurs
         public OptionSwitch(int idItem, string name)
         {
             //Si c'est pour parametrer le son
