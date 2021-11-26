@@ -26,10 +26,18 @@ namespace P_SpaceInvaders.GameObjects
         #endregion
 
         #region Getteurs et setteurs
-
+        public int Id
+        {
+            get { return _id; }
+        }
         #endregion
 
         #region Methodes
+        public void Fire()
+        {
+            //Ajout d'une balle qui se génère à partir du centre de l'objet et qui va vers le haut
+            Game.Bullets.Add(new Bullet(Game, "§", PosX + WidthChars / 2, PosY + 1, Direction.Down));
+        }
         public new void Move(Direction direction)
         {
             switch (direction)

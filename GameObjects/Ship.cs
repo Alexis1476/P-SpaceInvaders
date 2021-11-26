@@ -9,7 +9,7 @@ namespace P_SpaceInvaders.GameObjects
 {
     class Ship : MovingObject
     {
-        public const string CharShip = "====";
+        public const string CharShip = "<-^->";
         #region Attributs
 
         #endregion
