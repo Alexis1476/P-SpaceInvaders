@@ -129,13 +129,13 @@ namespace P_SpaceInvaders
             if (Invaders != null)
             {
                 //Tirs des invaders
-                int x = _random.Next(Invaders.Count + 1);
+                int x = _random.Next(Invaders.Count);
 
                 //Parcourt la liste d'invaders
                 foreach (Invader invader in Invaders)
                 {
-                    //Si le random est égal à l'id de l'invader et si timeToShoot == 20
-                    if (x == invader.Id && _timeToShoot % 15 == 0)
+                    //Si le random est égal à l'id de l'invader et si timeToShoot est multiple de 15
+                    if (invader.Id == x && _timeToShoot % 15 == 0)
                     {
                         //L'invader tire
                         invader.Fire();
@@ -160,7 +160,17 @@ namespace P_SpaceInvaders
                 }
                 _timeToShoot++;
             }
+
+            //Met à jour les ids des invaders
+            UpdateIdFromInvaders();
             #endregion
+        }
+        public void UpdateIdFromInvaders()
+        {
+            for (int i = 0; i < Invaders.Count; i++)
+            {
+                Invaders[i].Id = i;
+            }
         }
         /// <summary>
         /// Dessine la map et le vaisseau au centre de la fenêtre
