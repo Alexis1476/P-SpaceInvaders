@@ -53,6 +53,11 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Methodes
+        public void InitPosShip()
+        {
+            _ship.PosX = Map.Width / 2 - 3 / 2;
+            _ship.PosY = Map.Height - 1;
+        }
         public void Update()
         {
             #region Mouvement des balles
@@ -66,7 +71,7 @@ namespace P_SpaceInvaders
                 //Si la balle n'est pas sortie de la map
                 if (Bullets[i].IsInMap())
                 {
-                    //Variable bool pour vérifier l'impact de la balle
+                    //Variable bool pour vérifier l'impact de la balle contre le joueur
                     bool impact = false;
 
                     //Verifier si les balles touchent les invaders
@@ -76,32 +81,42 @@ namespace P_SpaceInvaders
                         if (Invaders[j].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) && Bullets[i].Direction != Direction.Down ||
                             Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY) && Bullets[i].Direction != Direction.Down)
                         {
-                            //Impact reussie
-                            impact = true;
+                            //On efface la balle de la liste
+                            Bullets.RemoveAt(i);
 
                             //Effacement de la balle de l'écran et de la liste
                             Invaders[j].Delete();
                             Invaders.RemoveAt(j--);
                         }
+
+                        //Si la balle n'impacte pas
+                        else
+                        {
+                            Bullets[i].ReDraw();
+                        }
+
                         //Si la balle touche le joueur
                         if (_ship != null && Ship.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY))
                         {
                             //On met le _ship à null
-                            _ship = null;
+                            impact = true;
                         }
                     }
 
-                    //Si la balle impacte contre un objet
+                    //Si la balle impacte contre le joueur
                     if (impact)
                     {
-                        //On efface la balle de la liste
-                        Bullets.RemoveAt(i);
-                    }
-                    //Si la balle n'impacte pas
-                    else
-                    {
-                        Bullets[i].ReDraw();
-                    }
+                        //Si la décrémentation des lives du joueur == 0
+                        if (--_ship.Lives == 0)
+                        {
+                            //On supprime le vaisseau
+                            _ship = null;
+                        }
+                        else
+                        {
+                            InitPosShip();
+                        }
+                    }               
                 }
                 //Si la balle est sortie de la map
                 else
@@ -165,6 +180,9 @@ namespace P_SpaceInvaders
             UpdateIdFromInvaders();
             #endregion
         }
+        /// <summary>
+        /// Met à jour l'ID de chaque invader
+        /// </summary>
         public void UpdateIdFromInvaders()
         {
             for (int i = 0; i < Invaders.Count; i++)

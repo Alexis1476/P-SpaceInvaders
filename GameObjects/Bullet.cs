@@ -27,7 +27,7 @@ namespace P_SpaceInvaders.GameObjects
             //Si les tirs sont fait par le joueur
             if (_direction == Direction.Up)
             {
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 base.Draw();
                 Console.ResetColor();
             }
@@ -39,6 +39,19 @@ namespace P_SpaceInvaders.GameObjects
                 base.Draw();
                 Console.ResetColor();
             }          
+        }
+        public new void ReDraw()
+        {
+            //Si la position a changé
+            if (PosX != LastPosX || PosY != LastPosY)
+            {
+                //Dessine la balle
+                Draw();
+
+                //Met à jour la position actuel
+                LastPosX = PosX;
+                LastPosY = PosY;
+            }
         }
         #endregion
 
