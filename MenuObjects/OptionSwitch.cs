@@ -12,6 +12,8 @@ namespace P_SpaceInvaders.MenuObjects
 {
     class OptionSwitch
     {
+        #region Constantes
+        #endregion
 
         #region Attributs
         /// <summary>
@@ -34,24 +36,33 @@ namespace P_SpaceInvaders.MenuObjects
         /// Liste string des differents options
         /// </summary>
         private List<string> _options;
+
+        private int _index;
+        private string _currentOption;
+        bool _active;
         #endregion
 
         #region Constructeurs
         public OptionSwitch(int idItem, string name)
         {
             //Si c'est pour parametrer le son
-            if (name=="Sound")
+            if (name == "Sound")
             {
                 _idItem = idItem;
                 _name = name;
                 _options = new List<string> { "ON", "OFF" };
+                _index = 0;
+                _active = false;
             }
+
             //Si c'est pour modifier la difficulté
-            else if (name=="Difficulty")
+            else if (name == "Difficulty")
             {
                 _idItem = idItem;
                 _name = name;
                 _options = new List<string> { "EASY", "NORMAL", "HARD" };
+                _index = 0;
+                _active = false;
             }
         }
         #endregion
@@ -68,9 +79,42 @@ namespace P_SpaceInvaders.MenuObjects
         //        return false;
         //    }
         //}
-        public int ChangeDifficulty()
+        public void ChangeOption()
         {
-            return 0;
+            //L'option a été choisie
+            _active = true;
+
+            //Si c'est option de son
+            if (_name == "Sound")
+            {
+                //Si l'index == 1 et si l'option à été activé
+                if (_index == 1 && _active)
+                {
+                    //Reinisialisation _index et bool _active pour la valeur par défaut
+                    _index = 0;
+                    _active = false;
+                }
+                else
+                {
+                    //Option Off
+                    _index = 1;
+                }            
+            }
+            //Si c'est l'option de difficulté
+            else if (_name == "Difficulty")
+            {
+                //Si l'index == 1 et si l'option à été activé
+
+                if (_index++ == _options.Count - 1)
+                {
+                    _index = 0;
+                }
+            }
+        }
+        public string NameAndOption()
+        {
+            string concat = _name + " [" + _options[_index] + "]\t";
+            return concat; 
         }
         #endregion
 
@@ -89,6 +133,10 @@ namespace P_SpaceInvaders.MenuObjects
         {
             get { return _name; }
             set { _name = value; }
+        }
+        public List<string> Options
+        {
+            get { return _options; }
         }
         #endregion
     }
