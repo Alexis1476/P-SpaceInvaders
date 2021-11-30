@@ -42,16 +42,20 @@ namespace P_SpaceInvaders
         int _score;
         Random _random;
         int _timeToShoot = 0;
+        bool _sound;
+        int _difficulty;
         #endregion
 
         #region Constructeurs
-        public Game(int mapWidth, int mapHeight)
+        public Game(int mapWidth, int mapHeight, bool sound, int difficulty)
         {
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
             _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1); //A regler WidthChar
             _random = new Random();
+            _sound = sound;
+            _difficulty = difficulty;
             GenerateInvaders();
         }
         #endregion

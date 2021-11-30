@@ -22,6 +22,8 @@ namespace P_SpaceInvaders
         static Menu _menuOptions;
         static Menu _menuAbout;
         static Menu _menuScore;
+        static bool _sound;
+        static int _difficulty;
 
         #region Titres des menus
         const string MAINTITLE = "                                                                                                                 \n" +
@@ -120,11 +122,29 @@ namespace P_SpaceInvaders
             //Affichage du ménu
             _mainMenu.DrawAllMenu();
         }
+        public static void CheckOptionsSwitch()
+        {
+            foreach(OptionSwitch optionSwitch in _menuOptions.OptionSwitch)
+            {
+                if (optionSwitch.Name == "Sound")
+                {
+                    _sound = optionSwitch.Active;
+                }
+                else if (optionSwitch.Name == "Difficulty")
+                {
+                    _difficulty = optionSwitch.Index;
+                }
+            }
+
+        }
         /// <summary>
         /// Crée une partie
         /// </summary>
         public static void Play()
         {
+            //Vérifier les options choisies
+            CheckOptionsSwitch();
+
             //Nettoie la console
             Console.Clear();
 
@@ -223,7 +243,7 @@ namespace P_SpaceInvaders
             Console.Clear();
 
             //Instance membre _game
-            _game = new Game(_windowWidth, _windowHeight);
+            _game = new Game(_windowWidth, _windowHeight, _sound, _difficulty);
 
             //Redimensionnement de la fenêtre et modif du fontSize
             ConsoleHelper.SetCurrentFont("Consolas", 9);

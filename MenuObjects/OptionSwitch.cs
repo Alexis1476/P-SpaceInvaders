@@ -38,7 +38,6 @@ namespace P_SpaceInvaders.MenuObjects
         private List<string> _options;
 
         private int _index;
-        private string _currentOption;
         bool _active;
         #endregion
 
@@ -50,7 +49,7 @@ namespace P_SpaceInvaders.MenuObjects
             {
                 _idItem = idItem;
                 _name = name;
-                _options = new List<string> { "ON", "OFF" };
+                _options = new List<string> { "OFF", "ON" };
                 _index = 0;
                 _active = false;
             }
@@ -68,17 +67,6 @@ namespace P_SpaceInvaders.MenuObjects
         #endregion
 
         #region Methodes
-        //public bool ActivateSound()
-        //{
-        //    if (3==2)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
         public void ChangeOption()
         {
             //L'option a été choisie
@@ -96,8 +84,9 @@ namespace P_SpaceInvaders.MenuObjects
                 }
                 else
                 {
-                    //Option Off
+                    //Option ON
                     _index = 1;
+                    _active = true;
                 }            
             }
             //Si c'est l'option de difficulté
@@ -137,6 +126,14 @@ namespace P_SpaceInvaders.MenuObjects
         public List<string> Options
         {
             get { return _options; }
+        }
+        public int Index
+        {
+            get { return _index; }
+        }
+        public bool Active
+        {
+            get { return _active;}
         }
         #endregion
     }

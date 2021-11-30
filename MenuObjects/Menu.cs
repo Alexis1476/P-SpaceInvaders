@@ -165,7 +165,7 @@ namespace P_SpaceInvaders.MenuObjects
         public void AddOptionSwitchItems(int id, string name)
         {
             //Si la liste est vide alors on l'initialise
-            if (_optionSwitch==null) 
+            if (_optionSwitch == null)
             {
                 _optionSwitch = new List<OptionSwitch>();
             }
@@ -412,6 +412,11 @@ namespace P_SpaceInvaders.MenuObjects
         {
             get { return _menuItems; }
             set { _menuItems = value; }
+        }
+        public List<OptionSwitch> OptionSwitch
+        {
+            get { return _optionSwitch; }
+            set { _optionSwitch = value; }
         }
         #endregion
     }
