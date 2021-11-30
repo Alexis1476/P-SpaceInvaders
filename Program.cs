@@ -27,6 +27,7 @@ namespace P_SpaceInvaders
         static int _difficulty;
         static System.Timers.Timer _timeToShoot; //TEST
         static bool _shoot;
+        static SoundPlayer _player;
         #region Titres des menus
         const string MAINTITLE = "                                                                                                                 \n" +
                                      "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
@@ -97,6 +98,7 @@ namespace P_SpaceInvaders
         static void Main()
         {
             _timeToShoot = new System.Timers.Timer(400);
+            _player = new SoundPlayer(".\\Ressources\\laserShoot.wav");
             #region Déclaration MainMenu et sous-menus
             _mainMenu = new Menu(MAINTITLE);
             _menuOptions = new Menu(TITLEOPTIONS, _mainMenu);
@@ -203,13 +205,19 @@ namespace P_SpaceInvaders
 
             //Demande à l'utilisateur s'il souahite continuer une nouvelle partie
             Menu.WriteCenteredText("Press 'Esc' to return to main menu\n Press 'Enter' to play again");
-            switch (Console.ReadKey().Key)
+            bool exit = false;
+            while (!exit)
             {
-                case ConsoleKey.Escape:
-                    _mainMenu.DrawAllMenu();
-                    break;
-                case ConsoleKey.Enter:
-                    break;
+                switch (Console.ReadKey().Key)
+                {
+                    case ConsoleKey.Escape:
+                        _mainMenu.DrawAllMenu();
+                        break;
+                    case ConsoleKey.Enter:
+                        exit = true;
+                        break;
+                }
+
             }
         }
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
@@ -238,6 +246,7 @@ namespace P_SpaceInvaders
                         {
                             _game.Ship.Fire();
                             _shoot = false;
+                            _player.Play();
                         }                   
                         break;
                     //Si l'utilisateur tape sur une autre touche
@@ -258,7 +267,7 @@ namespace P_SpaceInvaders
             _game = new Game(_windowWidth, _windowHeight, _sound, _difficulty);
 
             //Redimensionnement de la fenêtre et modif du fontSize
-            ConsoleHelper.SetCurrentFont("Consolas", 9);
+            ConsoleHelper.SetCurrentFont("Consolas", 12);
             Console.SetWindowSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
             Console.SetBufferSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
         }
