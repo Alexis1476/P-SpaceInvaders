@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using P_SpaceInvaders.MenuObjects;
 using System.Threading;
+using System.Timers;
 
 namespace P_SpaceInvaders
 {
@@ -24,7 +25,8 @@ namespace P_SpaceInvaders
         static Menu _menuScore;
         static bool _sound;
         static int _difficulty;
-
+        static System.Timers.Timer _timeToShoot; //TEST
+        static bool _shoot;
         #region Titres des menus
         const string MAINTITLE = "                                                                                                                 \n" +
                                      "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
@@ -94,6 +96,7 @@ namespace P_SpaceInvaders
 
         static void Main()
         {
+            _timeToShoot = new System.Timers.Timer(400);
             #region Déclaration MainMenu et sous-menus
             _mainMenu = new Menu(MAINTITLE);
             _menuOptions = new Menu(TITLEOPTIONS, _mainMenu);
@@ -142,6 +145,9 @@ namespace P_SpaceInvaders
         /// </summary>
         public static void Play()
         {
+            _timeToShoot.Elapsed += OnTimedEvent;
+            _timeToShoot.AutoReset = true;
+            _timeToShoot.Enabled = true;
             //Vérifier les options choisies
             CheckOptionsSwitch();
 
@@ -155,8 +161,6 @@ namespace P_SpaceInvaders
             while (play)
             {     
                 //Titre
-                Console.Write("Press ENTER to start!");
-                Console.ReadLine();
 
                 //Instantiation objet Game et redimonsionnement de la fenêtre
                 Init();
@@ -208,11 +212,15 @@ namespace P_SpaceInvaders
                     break;
             }
         }
-        private static void ReadInput()
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
+            _shoot = true;
+        }
+        private static void ReadInput()
+        {      
             //Tant que le vaisseau existe et que le joueur tape une touche de mouvement
             while (_game.Ship != null && Console.KeyAvailable)
-            {
+            {;
                 //Switch pour la séléction du mouvement et pour le tir
                 switch (Console.ReadKey().Key)
                 {
@@ -226,7 +234,11 @@ namespace P_SpaceInvaders
                         break;
                     //Tir
                     case ConsoleKey.Spacebar:
-                        _game.Ship.Fire();
+                        if (_shoot)
+                        {
+                            _game.Ship.Fire();
+                            _shoot = false;
+                        }                   
                         break;
                     //Si l'utilisateur tape sur une autre touche
                     default:
