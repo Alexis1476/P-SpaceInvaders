@@ -246,7 +246,10 @@ namespace P_SpaceInvaders
                         {
                             _game.Ship.Fire();
                             _shoot = false;
-                            _player.Play();
+                            if (_sound)
+                            {
+                                _player.Play();
+                            }               
                         }                   
                         break;
                     //Si l'utilisateur tape sur une autre touche
