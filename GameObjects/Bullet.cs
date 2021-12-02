@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class qui permet de créer une balle pour les ennemis et pour le joueur
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +31,7 @@ namespace P_SpaceInvaders.GameObjects
             //Si les tirs sont fait par le joueur
             if (_direction == Direction.Up)
             {
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 base.Draw();
                 Console.ResetColor();
             }
@@ -39,6 +43,19 @@ namespace P_SpaceInvaders.GameObjects
                 base.Draw();
                 Console.ResetColor();
             }          
+        }
+        public new void ReDraw()
+        {
+            //Si la position a changé
+            if (PosX != LastPosX || PosY != LastPosY)
+            {
+                //Dessine la balle
+                Draw();
+
+                //Met à jour la position actuel
+                LastPosX = PosX;
+                LastPosY = PosY;
+            }
         }
         #endregion
 

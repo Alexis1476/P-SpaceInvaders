@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class parent de tous les objets du jeu
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P_SpaceInvaders.GameObjects
 {
@@ -39,7 +39,7 @@ namespace P_SpaceInvaders.GameObjects
             _chars = chars;
             _widthChars = CalculateCharsWidth(_chars);
             _posX = posX;
-            _posY = posY;      
+            _posY = posY;
         }
         public GameObject(Game game, string chars)
         {
@@ -80,7 +80,7 @@ namespace P_SpaceInvaders.GameObjects
         {
             string line = "";
             using (StringReader reader = new StringReader(chars))
-            {      
+            {
                 line = reader.ReadLine();
                 return line.Length;
             }
@@ -97,7 +97,7 @@ namespace P_SpaceInvaders.GameObjects
         public bool IsInMap()
         {
             //Si la PosY de l'objet se trouve entre les coordonnées de la map
-            if(PosY >= Game.Map.Offset && PosY <= Game.Map.Height - Game.Map.Offset)
+            if (PosY >= Game.Map.Offset && PosY <= Game.Map.Height - Game.Map.Offset)
             {
                 return true;
             }

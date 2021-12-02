@@ -1,6 +1,11 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Gérè le jeu et les rélations entre chaque objet
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,22 +42,31 @@ namespace P_SpaceInvaders
         /// </summary>
         int _score;
         Random _random;
-        int _timeToShoot = 0;
+        int _timeToShoot;
+        bool _sound;
+        int _difficulty;
         #endregion
 
         #region Constructeurs
-        public Game(int mapWidth, int mapHeight)
+        public Game(int mapWidth, int mapHeight, bool sound, int difficulty)
         {
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
             _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1); //A regler WidthChar
             _random = new Random();
+            _sound = sound;
+            _difficulty = difficulty;
             GenerateInvaders();
         }
         #endregion
 
         #region Methodes
+        public void InitPosShip()
+        {
+            _ship.PosX = Map.Width / 2 - 3 / 2;
+            _ship.PosY = Map.Height - 1;
+        }
         public void Update()
         {
             #region Mouvement des balles
@@ -66,7 +80,7 @@ namespace P_SpaceInvaders
                 //Si la balle n'est pas sortie de la map
                 if (Bullets[i].IsInMap())
                 {
-                    //Variable bool pour vérifier l'impact de la balle
+                    //Variable bool pour vérifier l'impact de la balle contre le joueur
                     bool impact = false;
 
                     //Verifier si les balles touchent les invaders
@@ -76,32 +90,42 @@ namespace P_SpaceInvaders
                         if (Invaders[j].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) && Bullets[i].Direction != Direction.Down ||
                             Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY) && Bullets[i].Direction != Direction.Down)
                         {
-                            //Impact reussie
-                            impact = true;
+                            //On efface la balle de la liste
+                            Bullets.RemoveAt(i);
 
                             //Effacement de la balle de l'écran et de la liste
                             Invaders[j].Delete();
                             Invaders.RemoveAt(j--);
                         }
+
+                        //Si la balle n'impacte pas
+                        else
+                        {
+                            Bullets[i].ReDraw();
+                        }
+
                         //Si la balle touche le joueur
                         if (_ship != null && Ship.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY))
                         {
                             //On met le _ship à null
-                            _ship = null;
+                            impact = true;
                         }
                     }
 
-                    //Si la balle impacte contre un objet
+                    //Si la balle impacte contre le joueur
                     if (impact)
                     {
-                        //On efface la balle de la liste
-                        Bullets.RemoveAt(i);
-                    }
-                    //Si la balle n'impacte pas
-                    else
-                    {
-                        Bullets[i].ReDraw();
-                    }
+                        //Si la décrémentation des lives du joueur == 0
+                        if (--_ship.Lives == 0)
+                        {
+                            //On supprime le vaisseau
+                            _ship = null;
+                        }
+                        else
+                        {
+                            InitPosShip();
+                        }
+                    }               
                 }
                 //Si la balle est sortie de la map
                 else
@@ -129,13 +153,13 @@ namespace P_SpaceInvaders
             if (Invaders != null)
             {
                 //Tirs des invaders
-                int x = _random.Next(Invaders.Count + 1);
+                int x = _random.Next(Invaders.Count);
 
                 //Parcourt la liste d'invaders
                 foreach (Invader invader in Invaders)
                 {
-                    //Si le random est égal à l'id de l'invader et si timeToShoot == 20
-                    if (x == invader.Id && _timeToShoot % 15 == 0)
+                    //Si le random est égal à l'id de l'invader et si timeToShoot est multiple de 15
+                    if (invader.Id == x && _timeToShoot % _difficulty == 0)
                     {
                         //L'invader tire
                         invader.Fire();
@@ -160,7 +184,20 @@ namespace P_SpaceInvaders
                 }
                 _timeToShoot++;
             }
+
+            //Met à jour les ids des invaders
+            UpdateIdFromInvaders();
             #endregion
+        }
+        /// <summary>
+        /// Met à jour l'ID de chaque invader
+        /// </summary>
+        public void UpdateIdFromInvaders()
+        {
+            for (int i = 0; i < Invaders.Count; i++)
+            {
+                Invaders[i].Id = i;
+            }
         }
         /// <summary>
         /// Dessine la map et le vaisseau au centre de la fenêtre

@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class qui permet de créer un ennemi (Invader)
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,6 +33,7 @@ namespace P_SpaceInvaders.GameObjects
         public int Id
         {
             get { return _id; }
+            set { _id = value; }
         }
         #endregion
 

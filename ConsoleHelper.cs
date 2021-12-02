@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿///ETML
+///Auteur : https://stackoverflow.com/questions/6554536/possible-to-get-set-console-font-size-in-c-sharp-net
+///Date : 26.11.2021
+///Description: Permet de changer la taille de la police de la console
+using System;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P_SpaceInvaders
 {
@@ -22,7 +22,6 @@ namespace P_SpaceInvaders
         [return: MarshalAs(UnmanagedType.Bool)]
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         internal static extern bool GetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool MaximumWindow, ref FontInfo ConsoleCurrentFontEx);
-
 
         private static readonly IntPtr ConsoleOutputHandle = GetStdHandle(StandardOutputHandle);
 

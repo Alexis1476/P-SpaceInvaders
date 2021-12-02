@@ -63,6 +63,9 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ressources\laserShoot.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Ressources\music8Bits.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

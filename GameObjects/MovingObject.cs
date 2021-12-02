@@ -1,4 +1,8 @@
-﻿using System;
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class parent de tous les objets du jeu qui peuvent bouger
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
