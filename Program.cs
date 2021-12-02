@@ -137,7 +137,18 @@ namespace P_SpaceInvaders
                 }
                 else if (optionSwitch.Name == "Difficulty")
                 {
-                    _difficulty = optionSwitch.Index;
+                    if (optionSwitch.Index == 0)
+                    {
+                        _difficulty = 15;
+                    }
+                    else if (optionSwitch.Index == 1)
+                    {
+                        _difficulty = 10;
+                    }
+                    else
+                    {
+                        _difficulty = 5;
+                    }
                 }
             }
 

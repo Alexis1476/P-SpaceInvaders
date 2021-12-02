@@ -42,7 +42,7 @@ namespace P_SpaceInvaders
         /// </summary>
         int _score;
         Random _random;
-        int _timeToShoot = 0;
+        int _timeToShoot;
         bool _sound;
         int _difficulty;
         #endregion
@@ -159,7 +159,7 @@ namespace P_SpaceInvaders
                 foreach (Invader invader in Invaders)
                 {
                     //Si le random est égal à l'id de l'invader et si timeToShoot est multiple de 15
-                    if (invader.Id == x && _timeToShoot % 15 == 0)
+                    if (invader.Id == x && _timeToShoot % _difficulty == 0)
                     {
                         //L'invader tire
                         invader.Fire();
