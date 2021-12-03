@@ -192,7 +192,7 @@ namespace P_SpaceInvaders
 
                     //Score
                     Console.SetCursorPosition(0, 2 * _game.Map.Offset + _game.Map.Height);
-                    Console.Write("Score: XX");
+                    Console.Write("Score: {0}", _game.Score);
                     Thread.Sleep(20);
                 }
 
@@ -281,7 +281,7 @@ namespace P_SpaceInvaders
             _game = new Game(_windowWidth, _windowHeight, _sound, _difficulty);
 
             //Redimensionnement de la fenêtre et modif du fontSize
-            ConsoleHelper.SetCurrentFont("Consolas", 12);
+            //ConsoleHelper.SetCurrentFont("Consolas", 12);
             Console.SetWindowSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
             Console.SetBufferSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
         }

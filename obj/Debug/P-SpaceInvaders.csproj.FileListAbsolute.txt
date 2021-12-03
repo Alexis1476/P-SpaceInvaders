@@ -12,7 +12,6 @@ E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\obj\Debug\P-SpaceInvaders.pdb
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.exe.config
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.exe
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.pdb
-F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\music8Bits.wav
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\obj\Debug\P-SpaceInvaders.csproj.SuggestedBindingRedirects.cache
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\laserShoot.wav
 F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\laserShoot.wav

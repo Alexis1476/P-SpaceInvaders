@@ -96,6 +96,9 @@ namespace P_SpaceInvaders
                             //Effacement de la balle de l'écran et de la liste
                             Invaders[j].Delete();
                             Invaders.RemoveAt(j--);
+
+                            //Augmentation du score
+                            _score += 20;
                         }
 
                         //Si la balle n'impacte pas
@@ -304,167 +307,10 @@ namespace P_SpaceInvaders
             get { return _invaders; }
             set { _invaders = value; }
         }
+        public int Score
+        {
+            get { return _score; }
+        }
         #endregion
-
-        //#region Constantes
-        ///// <summary>
-        ///// Frames invader Crab
-        ///// </summary>
-        //readonly string[] _CRABFRAMES = new string[] 
-        //{
-        //    //Premier frame crab
-        //    "           \n" +
-        //    "   ▀▄ ▄▀   \n" +
-        //    "  ▄█▀█▀█▄  \n" +
-        //    " █▀█████▀█ \n" +
-        //    " █ █▀▀▀█ █ \n" +
-        //    "   ▀▀ ▀▀    ",
-        //    //Deuxieme frame crab
-        //    "           \n" +
-        //    " ▄ ▀▄ ▄▀ ▄ \n" +
-        //    " █▄█████▄█ \n" +
-        //    " ███▄█▄███ \n" +
-        //    " ▀███████▀ \n" +
-        //    "  ▄▀   ▀▄  "
-        //};
-        ///// <summary>
-        ///// Frames invader Octopus
-        ///// </summary>
-        //readonly string[] _OCTOPUSFRAMES = new string[]
-        //{
-        //    //Premier frame octopus
-        //    "           \n" +
-        //    "  ▄▄███▄▄  \n" +
-        //    " █████████ \n" +
-        //    " ██▄▄█▄▄██ \n" +
-        //    "  ▄▀ ▄ ▀▄  \n" +
-        //    "   ▀   ▀   ",
-        //    //Seconde frame octopus
-        //    "           \n" +
-        //    "  ▄▄███▄▄  \n" +
-        //    " █████████ \n" +
-        //    " ██▄▄█▄▄██ \n" +
-        //    "  ▄▀ ▄ ▀▄  \n" +
-        //    " ▀       ▀ "
-        //};
-        ///// <summary>
-        ///// Frames invader Squid
-        ///// </summary>
-        //readonly string[] _SQUIDFRAMES = new string[]
-        //{
-        //    //Premier frame squid
-        //    "           \n" +
-        //    "    ▄█▄    \n" +
-        //    "  ▄█████▄  \n" +
-        //    " ███▄█▄███ \n" +
-        //    "   ▄▀▄▀▄   \n" +
-        //    "  ▀ ▀ ▀ ▀  ",
-        //    //Deuxieme frame squid
-        //    "           \n" +
-        //    "    ▄█▄    \n" +
-        //    "  ▄█████▄  \n" +
-        //    " ███▄█▄███ \n" +
-        //    "  ▄▀   ▀▄  \n" +
-        //    "   ▀   ▀  "
-        //};
-        ///// <summary>
-        ///// Frame UFO
-        ///// </summary>
-        //readonly string _UFO = 
-        //    "               \n" +
-        //    "     ▄▄█▄▄     \n" +
-        //    "   ▄███████▄   \n" +
-        //    " ▄██▄█▄█▄█▄██▄ \n" +
-        //    "   ▀█▀ ▀ ▀█▀   ";
-        //#endregion
-
-        //#region Attributs
-        //private List<Invader> _invadersList;
-        //private Ship _ship;
-        //private Random _random;
-        //#endregion
-
-        //#region Constructeurs
-        //public Game()
-        //{
-        //    //Redimensionnement de la fenêtre et modif du fontSize
-        //    ConsoleHelper.SetCurrentFont("Consolas", 9);
-        //    Console.SetWindowSize(150, 80);
-        //    _invadersList = new List<Invader>(); // Initialisation invaderList
-        //    #region TEST
-        //    //TESTS
-        //    //for (int i = 0; i < 11; i++)
-        //    //{
-        //    //    Invader newInvader = new Invader(_CRABFRAMES);
-        //    //    _invadersList.Add(newInvader);
-        //    //}
-        //    //int x = 0;
-        //    //foreach(Invader invader in _invadersList)
-        //    //{
-        //    //    invader.DrawInvader(_SQUIDFRAMES[0], x+=12,0);
-        //    //}
-        //    Invader newInvader = new Invader(_CRABFRAMES);
-        //    _invadersList.Add(newInvader);
-        //    int y = 0, x = 0; //pos X et Y des invaders
-        //    int dir = 1; //Direction des invaders
-        //    for (int i = 0; ; i++)
-        //    {
-        //        Thread.Sleep(10);
-        //        x += dir;
-        //        //Si x = windowWidth - lineAlien.lenght
-        //        if (x == Console.WindowWidth - 11)
-        //        {
-        //            dir = -1; //Inversion de la direcion
-        //            y++; //Descend un pas en Y
-        //        }
-        //        //Si x=0 Direction positive
-        //        else if (x == 0)
-        //        {
-        //            y++;
-        //            dir = 1;
-        //        }
-        //        //Affichage invader
-        //        if (i % 6 == 0)
-        //        {
-        //            _invadersList[0].DrawInvader(_SQUIDFRAMES[0], x, y); //Dessiner invader
-        //        }
-        //        else
-        //        {
-        //            _invadersList[0].DrawInvader(_SQUIDFRAMES[1], x, y); //Dessiner invader
-        //        }
-        //    }
-        //    #endregion
-
-        //}
-        //#endregion
-
-        //#region Methodes
-        //#endregion
-
-        //#region Getteurs et setteurs
-        //#endregion
-
-        ////Ship ship = new Ship(50, 50, 3, "-^-");
-
-        ////public Game()
-        ////{
-
-        ////}
-        ////public void InitializeGame()
-        ////{
-        ////    Console.Clear();
-        ////    ResizeWindows();
-        ////    DrawGameInfo();
-        ////    ship.ShowShip();
-        ////}
-        ////public void DrawGameInfo()
-        ////{
-        ////    Console.SetCursorPosition(1, Console.WindowHeight - 3);
-
-        ////}
-        ////public void ResizeWindows()
-        ////{
-        ////    Console.SetWindowSize(100,50);
-        ////}
     }
 }
