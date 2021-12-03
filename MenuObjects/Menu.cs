@@ -399,10 +399,10 @@ namespace P_SpaceInvaders.MenuObjects
         /// </summary>
         /// <param name="text">Texte à écrire</param>
         /// <param name="color">Couleur du texte</param>
-        public void WriteTextInColor(string text, ConsoleColor color = ConsoleColor.White)
+        public static void WriteTextInColor(string text, ConsoleColor color = ConsoleColor.White)
         {
             Console.ForegroundColor = color;
-            Console.WriteLine(text);
+            Console.Write(text);
             Console.ResetColor();
         }
         /// <summary>

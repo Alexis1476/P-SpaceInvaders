@@ -197,6 +197,22 @@ namespace P_SpaceInvaders
                     //Score
                     Console.SetCursorPosition(0, 2 * _game.Map.Offset + _game.Map.Height);
                     Console.Write("Score: {0}", _game.Score);
+
+                    //Vies
+                    Console.SetCursorPosition(15, 2 * _game.Map.Offset + _game.Map.Height);
+                    Console.Write("Lifes : ");
+                    for (int i = 0; i < _game.SHIPLIFES; i++)
+                    {
+                        if (_game.Ship != null && _game.Ship.Lives > i)
+                        {
+                            Menu.WriteTextInColor("♥", ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            Console.Write(" ");
+                        }                       
+                    }
+
                     Thread.Sleep(20);
                 }
 

@@ -25,6 +25,7 @@ namespace P_SpaceInvaders
         /// Invaders par colonne
         /// </summary>
         const int _INVADERSPERCOLUMNS = 9;
+        public readonly int SHIPLIFES = 3;
         #endregion
 
         #region Attributs
@@ -88,7 +89,7 @@ namespace P_SpaceInvaders
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
-            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1); //A regler WidthChar
+            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1, SHIPLIFES); //A regler WidthChar
             _random = new Random();
             _difficulty = difficulty;           
             GenerateInvaders();
@@ -100,7 +101,7 @@ namespace P_SpaceInvaders
             #endregion
 
             #region Paramètres du Timer
-            _timerToShoot = new System.Timers.Timer(450);
+            _timerToShoot = new System.Timers.Timer(500);
             _timerToShoot.Elapsed += OnTimedEvent;
             _timerToShoot.AutoReset = true;
             _timerToShoot.Enabled = true;
