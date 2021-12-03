@@ -10,23 +10,27 @@ using System.Text;
 using System.Threading.Tasks;
 using P_SpaceInvaders.MenuObjects;
 using System.Threading;
-using System.Timers;
 
 namespace P_SpaceInvaders
 {
     class Program
     {
+        #region Constantes
+        static int _WINDOWWIDTH = 150;
+        static int _WINDOWHEIGHT = 50;
+        #endregion
+
+        #region Attributs
         static Game _game;
-        static int _windowWidth = 150;
-        static int _windowHeight = 50;
         static Menu _mainMenu;
         static Menu _menuOptions;
         static Menu _menuAbout;
         static Menu _menuScore;
         static bool _sound;
         static int _difficulty;
+        #endregion
 
-        #region Titres des menus
+        #region Titres ASCII ART
         const string MAINTITLE = "                                                                                                                 \n" +
                                      "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
                                      "▒██    ▒ ▓██░  ██▒▒████▄    ▒██▀ ▀█  ▓█   ▀    ▓██▒ ██ ▀█   █▓██░   █▒▒████▄    ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒▒██    ▒ \n" +
@@ -100,6 +104,8 @@ namespace P_SpaceInvaders
             set { _sound = value; }
         }
         #endregion
+
+        #region Methodes
         public static void PlaySound(SoundPlayer sound)
         {
             //Si le son est activé
@@ -260,12 +266,12 @@ namespace P_SpaceInvaders
             Console.Clear();
 
             //Instance membre _game
-            _game = new Game(_windowWidth, _windowHeight, _difficulty);
+            _game = new Game(_WINDOWWIDTH, _WINDOWHEIGHT, _difficulty);
 
             //Redimensionnement de la fenêtre et modif du fontSize
             //ConsoleHelper.SetCurrentFont("Consolas", 12);
-            Console.SetWindowSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
-            Console.SetBufferSize(2 + _windowWidth, 2 + _game.Map.Height + 10);
+            Console.SetWindowSize(2 + _WINDOWWIDTH, 2 + _game.Map.Height + 10);
+            Console.SetBufferSize(2 + _WINDOWWIDTH, 2 + _game.Map.Height + 10);
         }
         /// <summary>
         /// Ferme le jeu
@@ -274,5 +280,6 @@ namespace P_SpaceInvaders
         {
             Environment.Exit(1);
         }
+        #endregion
     }
 }
