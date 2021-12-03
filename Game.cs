@@ -17,7 +17,13 @@ namespace P_SpaceInvaders
     class Game
     {
         #region Constantes
+        /// <summary>
+        /// Invaders par ligne
+        /// </summary>
         const int _INVADERSPERLINE = 4;
+        /// <summary>
+        /// Invaders par colonne
+        /// </summary>
         const int _INVADERSPERCOLUMNS = 9;
         #endregion
 
@@ -51,10 +57,6 @@ namespace P_SpaceInvaders
         /// </summary>
         int _timeToShoot;
         /// <summary>
-        /// Active les sons
-        /// </summary>
-        static bool _sound;
-        /// <summary>
         /// Fréquence de tir des invaders
         /// </summary>
         int _difficulty;
@@ -67,27 +69,42 @@ namespace P_SpaceInvaders
         /// </summary>
         static SoundPlayer _shotSound;
         /// <summary>
+        /// Son quand un invader est impacté
+        /// </summary>
+        static SoundPlayer _explosionSound;
+        /// <summary>
+        /// Son quand le joueur mort
+        /// </summary>
+        static SoundPlayer _deathSound;
+        /// <summary>
         /// Timer qui détermine le moment pour tirer
         /// </summary>
         static System.Timers.Timer _timerToShoot;
         #endregion
 
         #region Constructeurs
-        public Game(int mapWidth, int mapHeight, bool sound, int difficulty)
+        public Game(int mapWidth, int mapHeight, int difficulty)
         {
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
             _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1); //A regler WidthChar
             _random = new Random();
-            _sound = sound;
-            _difficulty = difficulty;
+            _difficulty = difficulty;           
+            GenerateInvaders();
+
+            #region Effets audio
             _shotSound = new SoundPlayer(".\\Ressources\\laserShoot.wav");
+            _explosionSound = new SoundPlayer(".\\Ressources\\hitInvader.wav");
+            _deathSound = new SoundPlayer(".\\Ressources\\hitShip.wav");
+            #endregion
+
+            #region Paramètres du Timer
             _timerToShoot = new System.Timers.Timer(450);
             _timerToShoot.Elapsed += OnTimedEvent;
             _timerToShoot.AutoReset = true;
             _timerToShoot.Enabled = true;
-            GenerateInvaders();
+            #endregion
         }
         #endregion
 
@@ -131,13 +148,9 @@ namespace P_SpaceInvaders
                     case ConsoleKey.Spacebar:
                         //Si le joueur a le droit de tirer
                         if (_shoot)
-                        {        
-                            //Si le son est activé
-                            if (_sound)
-                            {
-                                //Réproduit le son du tir
-                                _shotSound.Play();
-                            }
+                        {
+                            //Réproduit l'effet de son
+                            Program.PlaySound(_shotSound);
 
                             //Le vaisseau tire
                             _ship.Fire();
@@ -184,7 +197,10 @@ namespace P_SpaceInvaders
                             //On efface la balle de la liste
                             Bullets.RemoveAt(i);
 
-                            //Effacement de la balle de l'écran et de la liste
+                            //Réproduit l'effet de son
+                            Program.PlaySound(_explosionSound);
+
+                            //Effacement de l'invader de l'écran et de la liste
                             Invaders[j].Delete();
                             Invaders.RemoveAt(j--);
 
@@ -209,6 +225,9 @@ namespace P_SpaceInvaders
                     //Si la balle impacte contre le joueur
                     if (impact)
                     {
+                        //Réproduit l'effet de son
+                        Program.PlaySound(_deathSound);
+
                         //Si la décrémentation des lives du joueur == 0
                         if (--_ship.Lives == 0)
                         {

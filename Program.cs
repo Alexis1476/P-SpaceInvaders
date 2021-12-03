@@ -25,7 +25,7 @@ namespace P_SpaceInvaders
         static Menu _menuScore;
         static bool _sound;
         static int _difficulty;
-        static SoundPlayer _player;
+
         #region Titres des menus
         const string MAINTITLE = "                                                                                                                 \n" +
                                      "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
@@ -93,6 +93,22 @@ namespace P_SpaceInvaders
                                      "╚═══════════════════════════════════════════════════════════╝";
         #endregion
 
+        #region Propriétés des attriburs
+        public static bool Sound
+        {
+            get { return _sound; }
+            set { _sound = value; }
+        }
+        #endregion
+        public static void PlaySound(SoundPlayer sound)
+        {
+            //Si le son est activé
+            if (Program.Sound)
+            {
+                //Réproduit l'effet audio
+                sound.Play();
+            }
+        }
         static void Main()
         {
             #region Déclaration MainMenu et sous-menus
@@ -228,7 +244,7 @@ namespace P_SpaceInvaders
             Console.Clear();
 
             //Instance membre _game
-            _game = new Game(_windowWidth, _windowHeight, _sound, _difficulty);
+            _game = new Game(_windowWidth, _windowHeight, _difficulty);
 
             //Redimensionnement de la fenêtre et modif du fontSize
             //ConsoleHelper.SetCurrentFont("Consolas", 12);

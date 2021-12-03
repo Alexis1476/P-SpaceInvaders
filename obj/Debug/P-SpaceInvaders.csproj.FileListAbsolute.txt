@@ -15,3 +15,6 @@ E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.pdb
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\obj\Debug\P-SpaceInvaders.csproj.SuggestedBindingRedirects.cache
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\laserShoot.wav
 F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\laserShoot.wav
+F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitInvader.wav
+F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\menuChange.wav
+F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitShip.wav

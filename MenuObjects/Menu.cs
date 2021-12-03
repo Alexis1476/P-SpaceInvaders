@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace P_SpaceInvaders.MenuObjects
         /// Nombre des sauts de ligne par option
         /// </summary>
         private const int _LINEBREAK = 2;
+        static readonly SoundPlayer _menuSound = new SoundPlayer(".\\Ressources\\menuChange.wav");
         #endregion
 
         #region Attributs
@@ -281,6 +283,9 @@ namespace P_SpaceInvaders.MenuObjects
                                 //Si le cursor est supérieur à l'ID de la première option
                                 if (cursor > 0)
                                 {
+                                    //Réproduit le son de changement d'option
+                                    Program.PlaySound(_menuSound);
+
                                     //Reecrit l'option précedent en blanc
                                     Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                     WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
@@ -297,6 +302,9 @@ namespace P_SpaceInvaders.MenuObjects
                                 //Si le cursor est supérieur à l'ID de la première option
                                 if (cursor > 0)
                                 {
+                                    //Réproduit le son de changement d'option
+                                    Program.PlaySound(_menuSound);
+
                                     //Reecrit l'option précedent en blanc
                                     Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
                                     WriteTextInColor(_optionSwitch[cursor].NameAndOption(), ConsoleColor.Gray);
@@ -317,6 +325,9 @@ namespace P_SpaceInvaders.MenuObjects
                                 //Tant que le cursor reste entre le nombre d'options possibles
                                 if (cursor < _menuItems.Count - 1)
                                 {
+                                    //Réproduit le son de changement d'option
+                                    Program.PlaySound(_menuSound);
+
                                     //Reecrit l'option précedent en blanc
                                     Console.SetCursorPosition(_menuItems[cursor].PosX, _menuItems[cursor].PosY);
                                     WriteTextInColor(_menuItems[cursor].NameItem, ConsoleColor.Gray);
@@ -333,6 +344,9 @@ namespace P_SpaceInvaders.MenuObjects
                                 //Tant que le cursor reste entre le nombre d'options possibles
                                 if (cursor < _optionSwitch.Count - 1)
                                 {
+                                    //Réproduit le son de changement d'option
+                                    Program.PlaySound(_menuSound);
+
                                     //Reecrit l'option précedent en blanc
                                     Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
                                     WriteTextInColor(_optionSwitch[cursor].NameAndOption(), ConsoleColor.Gray);
@@ -366,7 +380,7 @@ namespace P_SpaceInvaders.MenuObjects
                                 //Execution de la méthode de l'option selectionnée
                                 _menuItems[cursor].Action();
                             }
-                            //TESTS
+                            //Si le ménu a des switchs d'options
                             else if (_optionSwitch != null) 
                             {
                                 _optionSwitch[cursor].ChangeOption();

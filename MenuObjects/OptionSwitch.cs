@@ -81,19 +81,24 @@ namespace P_SpaceInvaders.MenuObjects
                     //Reinisialisation _index et bool _active pour la valeur par défaut
                     _index = 0;
                     _active = false;
+
+                    //Change le bool du Program.cs
+                    Program.Sound = false;
                 }
                 else
                 {
                     //Option ON
                     _index = 1;
                     _active = true;
+
+                    //Change le bool du Program.cs
+                    Program.Sound = true;
                 }            
             }
             //Si c'est l'option de difficulté
             else if (_name == "Difficulty")
             {
                 //Si l'index == 1 et si l'option à été activé
-
                 if (_index++ == _options.Count - 1)
                 {
                     _index = 0;
