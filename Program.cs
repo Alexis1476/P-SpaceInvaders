@@ -25,8 +25,6 @@ namespace P_SpaceInvaders
         static Menu _menuScore;
         static bool _sound;
         static int _difficulty;
-        static System.Timers.Timer _timeToShoot; //TEST
-        static bool _shoot;
         static SoundPlayer _player;
         #region Titres des menus
         const string MAINTITLE = "                                                                                                                 \n" +
@@ -97,8 +95,6 @@ namespace P_SpaceInvaders
 
         static void Main()
         {
-            _timeToShoot = new System.Timers.Timer(400);
-            _player = new SoundPlayer(".\\Ressources\\laserShoot.wav");
             #region Déclaration MainMenu et sous-menus
             _mainMenu = new Menu(MAINTITLE);
             _menuOptions = new Menu(TITLEOPTIONS, _mainMenu);
@@ -118,11 +114,6 @@ namespace P_SpaceInvaders
             _menuOptions.AddOptionSwitchItems(1, "Sound");
             _menuOptions.AddOptionSwitchItems(2, "Difficulty");
             #endregion
-
-            //TESTS SOUND
-            //SoundPlayer player = new SoundPlayer();
-            //player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\Ressources\\music8Bits.wav";
-            //player.Play();
 
             //Affichage du ménu
             _mainMenu.DrawAllMenu();
@@ -158,9 +149,6 @@ namespace P_SpaceInvaders
         /// </summary>
         public static void Play()
         {
-            _timeToShoot.Elapsed += OnTimedEvent;
-            _timeToShoot.AutoReset = true;
-            _timeToShoot.Enabled = true;
             //Vérifier les options choisies
             CheckOptionsSwitch();
 
@@ -185,7 +173,7 @@ namespace P_SpaceInvaders
                 while (_game.IsPlaying()) 
                 {
                     //Lit les touches du clavier pour le mouvement du vaisseau
-                    ReadInput();
+                    _game.ReadInput();
 
                     //Redessine les objets du jeu
                     _game.Update();
@@ -230,45 +218,7 @@ namespace P_SpaceInvaders
                 }
 
             }
-        }
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            _shoot = true;
-        }
-        private static void ReadInput()
-        {      
-            //Tant que le vaisseau existe et que le joueur tape une touche de mouvement
-            while (_game.Ship != null && Console.KeyAvailable)
-            {;
-                //Switch pour la séléction du mouvement et pour le tir
-                switch (Console.ReadKey().Key)
-                {
-                    //Mouvement vers la gauche
-                    case ConsoleKey.LeftArrow:
-                        _game.Ship.Move(Direction.Left);
-                        break;
-                    //Mouvement vers la droite
-                    case ConsoleKey.RightArrow:
-                        _game.Ship.Move(Direction.Right);
-                        break;
-                    //Tir
-                    case ConsoleKey.Spacebar:
-                        if (_shoot)
-                        {
-                            _game.Ship.Fire();
-                            _shoot = false;
-                            if (_sound)
-                            {
-                                _player.Play();
-                            }               
-                        }                   
-                        break;
-                    //Si l'utilisateur tape sur une autre touche
-                    default:
-                        break;
-                }
-            }
-        }
+        }     
         /// <summary>
         /// Initialise une partie et redimonsionne la fenêtre
         /// </summary>
