@@ -30,6 +30,10 @@ namespace P_SpaceInvaders.GameObjects
         /// Largeur de l'objet
         /// </summary>
         int _widthChars;
+        /// <summary>
+        /// Hauteur de l'objet
+        /// </summary>
+        int _heightChars;
         #endregion
 
         #region Constructeurs
@@ -37,15 +41,15 @@ namespace P_SpaceInvaders.GameObjects
         {
             _game = game;
             _chars = chars;
-            _widthChars = CalculateCharsWidth(_chars);
             _posX = posX;
             _posY = posY;
+            CalculateDimensionsObject(_chars);
         }
         public GameObject(Game game, string chars)
         {
             _game = game;
             _chars = chars;
-            _widthChars = CalculateCharsWidth(_chars);
+            CalculateDimensionsObject(_chars);
         }
         #endregion
 
@@ -68,27 +72,54 @@ namespace P_SpaceInvaders.GameObjects
         {
             get { return _widthChars; }
         }
+        public int HeightChars
+        {
+            get { return _heightChars; }
+        }
         #endregion
 
         #region Methodes
-        /// <summary>
-        /// Calcule la largeur des caractères de l'objet
-        /// </summary>
-        /// <param name="chars">Caractères de l'objet</param>
-        /// <returns>Largeur de l'objet</returns>
-        private int CalculateCharsWidth(string chars)
+
+        private void CalculateDimensionsObject(string chars)
         {
-            string line = "";
+            //Calcule la largeur de l'objet
             using (StringReader reader = new StringReader(chars))
             {
-                line = reader.ReadLine();
-                return line.Length;
+                string line = reader.ReadLine();
+                _widthChars = line.Length;
+            }
+
+            //Calcule la hauteur de l'objet
+            using (StringReader reader = new StringReader(chars))
+            {
+                int y = 0;
+                string line = "";
+                do
+                {
+                    line = reader.ReadLine();
+                    y++;
+                }
+                while (line != null);
+                _heightChars = y;
             }
         }
         public void Draw()
         {
             Console.SetCursorPosition(_posX, _posY);
-            Console.Write(_chars);
+            using (StringReader reader = new StringReader(_chars))
+            {
+                string line = "";
+                do
+                {
+                    line = reader.ReadLine();
+                    if (line != null)
+                    {
+                        Console.SetCursorPosition(_posX, Console.CursorTop);
+                        Console.WriteLine(line);
+                    }
+                }
+                while (line != null);
+            }
         }
         /// <summary>
         /// Vérifie si l'objet se trouve entre les coordonnées de la map
@@ -105,7 +136,8 @@ namespace P_SpaceInvaders.GameObjects
         }
         public bool IsAtCoordinates(int posX, int posY)
         {
-            return posY == PosY && posX >= PosX && posX < PosX + WidthChars;
+            return posY == PosY && posX >= PosX && posX < PosX + WidthChars ||
+                posY == PosY + HeightChars - 2 && posX >= PosX && posX < PosX + WidthChars;
         }
         #endregion
     }

@@ -60,7 +60,12 @@ namespace P_SpaceInvaders.GameObjects
         {
             //Efface l'objet de sa position précédente
             Console.SetCursorPosition(LastPosX, LastPosY);
-            Console.Write(new string(' ', WidthChars));
+
+            for (int i = 0; i < HeightChars - 1; i++)
+            {
+                Console.SetCursorPosition(LastPosX, LastPosY + i);
+                Console.Write(new string(' ', WidthChars));
+            }
         }
         public void Clear()
         {
@@ -69,7 +74,12 @@ namespace P_SpaceInvaders.GameObjects
             {
                 //Efface l'objet de sa position précédente
                 Console.SetCursorPosition(LastPosX, LastPosY);
-                Console.Write(new string(' ', WidthChars));
+
+                for (int i = 0; i < HeightChars-1 ; i++)
+                {
+                    Console.SetCursorPosition(LastPosX, LastPosY + i);
+                    Console.Write(new string(' ', WidthChars));
+                }           
             }
         }
         public void Move(Direction direction)

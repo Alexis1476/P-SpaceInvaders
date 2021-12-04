@@ -13,7 +13,11 @@ namespace P_SpaceInvaders.GameObjects
 {
     class Ship : MovingObject
     {
-        public const string CharShip = "<-^->";
+        public const string CharShip = "    █    \n" +
+                                       "   ███   \n" +
+                                       " ███■███ \n" +
+                                       "████▀████\n" +
+                                       " ▀█ ▼ █▀  ";
         #region Attributs
         int _lives;
         #endregion

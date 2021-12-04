@@ -14,6 +14,15 @@ namespace P_SpaceInvaders.GameObjects
 {
     class Invader : MovingObject
     {
+        #region Constantes
+        public const string CharInvader = "          \n" +
+                           "  ▀▄ ▄▀  \n" +
+                           " ▄█▀█▀█▄ \n" +
+                           "█▀█████▀█\n" +
+                           "█ █▀▀▀█ █\n" +
+                           "  ▀▀ ▀▀  ";
+        #endregion
+
         #region Attributs
         int _id;
         #endregion

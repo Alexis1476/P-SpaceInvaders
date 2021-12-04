@@ -18,7 +18,7 @@ namespace P_SpaceInvaders
     {
         #region Constantes
         static int _WINDOWWIDTH = 150;
-        static int _WINDOWHEIGHT = 50;
+        static int _WINDOWHEIGHT = 70;
         #endregion
 
         #region Attributs
@@ -294,7 +294,7 @@ namespace P_SpaceInvaders
             _game = new Game(_WINDOWWIDTH, _WINDOWHEIGHT, _difficulty);
 
             //Redimensionnement de la fenêtre et modif du fontSize
-            //ConsoleHelper.SetCurrentFont("Consolas", 12);
+            ConsoleHelper.SetCurrentFont("Consolas", 10);
             Console.SetWindowSize(2 + _WINDOWWIDTH, 2 + _game.Map.Height + 10);
             Console.SetBufferSize(2 + _WINDOWWIDTH, 2 + _game.Map.Height + 10);
         }

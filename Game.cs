@@ -24,7 +24,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Invaders par colonne
         /// </summary>
-        const int _INVADERSPERCOLUMNS = 9;
+        const int _INVADERSPERCOLUMNS = 4;
         public readonly int SHIPLIFES = 3;
         #endregion
 
@@ -89,7 +89,7 @@ namespace P_SpaceInvaders
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
-            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 1, SHIPLIFES); //A regler WidthChar
+            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 2, SHIPLIFES); //A regler WidthChar et posY
             _random = new Random();
             _difficulty = difficulty;           
             GenerateInvaders();
@@ -169,8 +169,8 @@ namespace P_SpaceInvaders
         }
         public void InitPosShip()
         {
-            _ship.PosX = Map.Width / 2 - 3 / 2;
-            _ship.PosY = Map.Height - 1;
+            _ship.PosX = Map.Width / 2 - 5 / 2;
+            _ship.PosY = Map.Height + Map.Offset - _ship.HeightChars;
         }
         public void Update()
         {
@@ -196,7 +196,7 @@ namespace P_SpaceInvaders
                             Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY) && Bullets[i].Direction != Direction.Down)
                         {
                             //On efface la balle de la liste
-                            Bullets.RemoveAt(i);
+                            Bullets.RemoveAt(i); 
 
                             //Réproduit l'effet de son
                             Program.PlaySound(_explosionSound);
@@ -342,7 +342,7 @@ namespace P_SpaceInvaders
             #region Agrégation des invaders dans la liste
             for (int i = 0; i < _INVADERSPERLINE * _INVADERSPERCOLUMNS; i++)
             {
-                Invaders.Add(new Invader(i, this, "<<oo>>"));
+                Invaders.Add(new Invader(i, this, Invader.CharInvader));
             }
             #endregion
 
@@ -377,7 +377,7 @@ namespace P_SpaceInvaders
                     {
                         //Reinitialisation de posX et incrémentation de PosY de 2 
                         lastPosX = 2;
-                        lastPosY += 2;
+                        lastPosY += Invaders[i].HeightChars;
                     }
 
                     //PosX et PosY de l'invader
