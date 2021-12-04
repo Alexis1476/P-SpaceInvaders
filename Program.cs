@@ -32,7 +32,7 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Titres ASCII ART
-        const string MAINTITLE = "                                                                                                                 \n" +
+        const string MAINTITLE =     "                                                                                                                 \n" +
                                      "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
                                      "▒██    ▒ ▓██░  ██▒▒████▄    ▒██▀ ▀█  ▓█   ▀    ▓██▒ ██ ▀█   █▓██░   █▒▒████▄    ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒▒██    ▒ \n" +
                                      "░ ▓██▄   ▓██░ ██▓▒▒██  ▀█▄  ▒▓█    ▄ ▒███      ▒██▒▓██  ▀█ ██▒▓██  █▒░▒██  ▀█▄  ░██   █▌▒███   ▓██ ░▄█ ▒░ ▓██▄   \n" +
@@ -43,7 +43,7 @@ namespace P_SpaceInvaders
                                      "░  ░  ░  ░░         ░   ▒   ░           ░       ▒ ░   ░   ░ ░     ░░    ░   ▒    ░ ░  ░    ░     ░░   ░ ░  ░  ░  \n" +
                                      "      ░                 ░  ░░ ░         ░  ░    ░           ░      ░        ░  ░   ░       ░  ░   ░           ░  \n" +
                                      "                            ░                                     ░              ░                               \n\n";
-        const string TITLEOPTIONS = "                                                            \n" +
+        const string TITLEOPTIONS =  "                                                            \n" +
                                      " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ \n" +
                                      "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ \n" +
                                      "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   \n" +
@@ -53,7 +53,7 @@ namespace P_SpaceInvaders
                                      "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░\n" +
                                      "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  \n" +
                                      "    ░ ░                     ░      ░ ░           ░       ░  \n\n";
-        const string TITLESCORE = "                                           \n" +
+        const string TITLESCORE =    "                                           \n" +
                                      "  ██████  ▄████▄   ▒█████   ██▀███  ▓█████ \n" +
                                      "▒██    ▒ ▒██▀ ▀█  ▒██▒  ██▒▓██ ▒ ██▒▓█   ▀ \n" +
                                      "░ ▓██▄   ▒▓█    ▄ ▒██░  ██▒▓██ ░▄█ ▒▒███   \n" +
@@ -64,7 +64,7 @@ namespace P_SpaceInvaders
                                      "░  ░  ░  ░        ░ ░ ░ ▒    ░░   ░    ░   \n" +
                                      "      ░  ░ ░          ░ ░     ░        ░  ░\n" +
                                      "         ░                                 \n\n";
-        const string TITLEABOUT = "                                             \n" +
+        const string TITLEABOUT =    "                                             \n" +
                                      " ▄▄▄       ▄▄▄▄    ▒█████   █    ██ ▄▄▄█████▓\n" +
                                      "▒████▄    ▓█████▄ ▒██▒  ██▒ ██  ▓██▒▓  ██▒ ▓▒\n" +
                                      "▒██  ▀█▄  ▒██▒ ▄██▒██░  ██▒▓██  ▒██░▒ ▓██░ ▒░\n" +
@@ -122,7 +122,7 @@ namespace P_SpaceInvaders
             _mainMenu = new Menu(MAINTITLE);
             _menuOptions = new Menu(TITLEOPTIONS, _mainMenu);
             _menuAbout = new Menu(TITLEABOUT, _mainMenu, TEXTABOUT);
-            _menuScore = new Menu(TITLESCORE, _mainMenu);
+            _menuScore = new Menu(TITLESCORE, _mainMenu); // Variable path
             #endregion
 
             #region Ajout des options à MainMenu
@@ -137,6 +137,9 @@ namespace P_SpaceInvaders
             _menuOptions.AddOptionSwitchItems(1, "Sound");
             _menuOptions.AddOptionSwitchItems(2, "Difficulty");
             #endregion
+
+            //Ajout fichier .score au ménu score
+            _menuScore.PathFile = ".\\score.txt";
 
             //Affichage du ménu
             _mainMenu.DrawAllMenu();
@@ -267,7 +270,7 @@ namespace P_SpaceInvaders
             }
         }
         private static void SaveScore(string filePath, string nick, string score)
-        {          
+        {
             // Si le fichier n'existe pas
             if (File.Exists(filePath) == false)
             {
@@ -276,7 +279,7 @@ namespace P_SpaceInvaders
                 createFile.Close();
             }
             StreamWriter writeInfile = new StreamWriter(filePath, append: true);
-            writeInfile.WriteLine(nick + " = " + score);
+            writeInfile.WriteLine(nick + "\t" + score);
             writeInfile.Close();
         }
         /// <summary>

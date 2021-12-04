@@ -51,6 +51,7 @@ namespace P_SpaceInvaders.MenuObjects
         /// Menu parent
         /// </summary>
         private Menu _parentMenu;
+        private string _pathFile;
         #endregion
 
         #region Constructeurs
@@ -115,6 +116,20 @@ namespace P_SpaceInvaders.MenuObjects
         #endregion
 
         #region Methodes
+        public void WriteScoreFile()
+        {
+            //En-têtes
+            WriteCenteredText("Pseudo\tScore\n\n");
+           
+            if (_pathFile != null)
+            {
+                using (StreamReader sr = new StreamReader(_pathFile))
+                {
+                    WriteCenteredText(sr.ReadToEnd());
+                }
+                
+            }
+        }
         /// <summary>
         /// Redimensionne la fenêtre du ménu et la taille de police
         /// </summary>
@@ -136,6 +151,12 @@ namespace P_SpaceInvaders.MenuObjects
 
             //Affiche le titre du ménu
             DrawHeader();
+
+            //Affiche les scores
+            if (_pathFile != null) 
+            {
+                WriteScoreFile();
+            }        
 
             //Affiche les options
             DrawOptions();      
@@ -425,12 +446,17 @@ namespace P_SpaceInvaders.MenuObjects
         public List<MenuItem> MenuItems
         {
             get { return _menuItems; }
-            set { _menuItems = value; }
+            private set { _menuItems = value; }
         }
         public List<OptionSwitch> OptionSwitch
         {
             get { return _optionSwitch; }
-            set { _optionSwitch = value; }
+            private set { _optionSwitch = value; }
+        }
+        public string PathFile
+        {
+            get { return _pathFile; }
+            set { _pathFile = value; }
         }
         #endregion
     }
