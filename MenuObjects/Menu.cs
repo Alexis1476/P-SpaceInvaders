@@ -410,7 +410,7 @@ namespace P_SpaceInvaders.MenuObjects
         /// </summary>
         /// <param name="text">Text à centrer</param>
         /// <returns>Position en l'axe X pour centrer le texte</returns>
-        public int CalculCenterPosString(string text)
+        public static int CalculCenterPosString(string text)
         {
             return Console.WindowWidth / 2 - text.Length / 2;
         }

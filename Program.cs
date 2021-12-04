@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using P_SpaceInvaders.MenuObjects;
 using System.Threading;
+using System.IO;
 
 namespace P_SpaceInvaders
 {
@@ -240,6 +241,14 @@ namespace P_SpaceInvaders
             Menu.WriteCenteredText(TITLEGAMEOVER);
             Console.ResetColor();
 
+            //Demande le pseudo à l'utilisateur
+            Menu.WriteCenteredText("Votre score : " + _game.Score);
+            Console.Write("Votre pseudo : ");
+            string nick = Console.ReadLine();
+
+            //Enregistre le score dans un fichier texte
+            SaveScore(".\\score.txt", nick, _game.Score.ToString());
+
             //Demande à l'utilisateur s'il souahite continuer une nouvelle partie
             Menu.WriteCenteredText("Press 'Esc' to return to main menu\n Press 'Enter' to play again");
             bool exit = false;
@@ -256,7 +265,20 @@ namespace P_SpaceInvaders
                 }
 
             }
-        }     
+        }
+        private static void SaveScore(string filePath, string nick, string score)
+        {          
+            // Si le fichier n'existe pas
+            if (File.Exists(filePath) == false)
+            {
+                // Création du fichier
+                StreamWriter createFile = new StreamWriter(filePath);
+                createFile.Close();
+            }
+            StreamWriter writeInfile = new StreamWriter(filePath, append: true);
+            writeInfile.WriteLine(nick + " = " + score);
+            writeInfile.Close();
+        }
         /// <summary>
         /// Initialise une partie et redimonsionne la fenêtre
         /// </summary>

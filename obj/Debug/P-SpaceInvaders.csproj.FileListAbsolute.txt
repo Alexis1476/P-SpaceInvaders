@@ -18,3 +18,6 @@ F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\laserSho
 F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitInvader.wav
 F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\menuChange.wav
 F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitShip.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitInvader.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\menuChange.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitShip.wav
