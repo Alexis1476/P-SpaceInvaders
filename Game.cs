@@ -89,9 +89,10 @@ namespace P_SpaceInvaders
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
-            _ship = new Ship(this, Ship.CharShip, Map.Width / 2 - 3 / 2, Map.Height - 2, SHIPLIFES); //A regler WidthChar et posY
+            _ship = new Ship(this, Ship.CharShip, SHIPLIFES);
             _random = new Random();
-            _difficulty = difficulty;           
+            _difficulty = difficulty;
+            ShipSpawnPos();
             GenerateInvaders();
 
             #region Effets audio
@@ -101,7 +102,7 @@ namespace P_SpaceInvaders
             #endregion
 
             #region Paramètres du Timer
-            _timerToShoot = new System.Timers.Timer(500);
+            _timerToShoot = new System.Timers.Timer(800);
             _timerToShoot.Elapsed += OnTimedEvent;
             _timerToShoot.AutoReset = true;
             _timerToShoot.Enabled = true;
@@ -167,9 +168,16 @@ namespace P_SpaceInvaders
                 }
             }
         }
+        public void ShipSpawnPos()
+        {
+            InitPosShip();
+            _ship.LastPosX = _ship.PosX;
+            _ship.LastPosY = _ship.PosY;
+        }
         public void InitPosShip()
         {
-            _ship.PosX = Map.Width / 2 - 5 / 2;
+            //Taille de la carte / 2 - largeur du vaisseau / 2 pour le centrer
+            _ship.PosX = Map.Width / 2 - _ship.WidthChars / 2;
             _ship.PosY = Map.Height + Map.Offset - _ship.HeightChars;
         }
         public void Update()
@@ -218,7 +226,9 @@ namespace P_SpaceInvaders
                         //Si la balle touche le joueur
                         if (_ship != null && Ship.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY))
                         {
-                            //On met le _ship à null
+                            //Efface la balle de la liste
+                            Bullets.RemoveAt(i);
+
                             impact = true;
                         }
                     }

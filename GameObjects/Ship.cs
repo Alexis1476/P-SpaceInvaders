@@ -23,7 +23,7 @@ namespace P_SpaceInvaders.GameObjects
         #endregion
 
         #region Constructeurs
-        public Ship(Game game, string chars, int posX, int posY, int lives) : base(game, chars, posX, posY)
+        public Ship(Game game, string chars, int lives) : base(game, chars)
         {
             _lives = lives;
         }

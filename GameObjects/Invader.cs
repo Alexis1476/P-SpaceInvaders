@@ -16,11 +16,11 @@ namespace P_SpaceInvaders.GameObjects
     {
         #region Constantes
         public const string CharInvader = "          \n" +
-                           "  ▀▄ ▄▀  \n" +
-                           " ▄█▀█▀█▄ \n" +
-                           "█▀█████▀█\n" +
-                           "█ █▀▀▀█ █\n" +
-                           "  ▀▀ ▀▀  ";
+                                          "  ▀▄ ▄▀  \n" +
+                                          " ▄█▀█▀█▄ \n" +
+                                          "█▀█████▀█\n" +
+                                          "█ █▀▀▀█ █\n" +
+                                          "  ▀▀ ▀▀  ";
         #endregion
 
         #region Attributs
@@ -65,7 +65,7 @@ namespace P_SpaceInvaders.GameObjects
                     PosX += 1;
                     break;
                 case Direction.Down:
-                    PosY += 1;
+                    PosY += 5;
                     break;
             }
         }
