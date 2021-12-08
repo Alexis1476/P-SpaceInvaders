@@ -187,8 +187,6 @@ namespace P_SpaceInvaders
             //Boucle pour jouer
             while (play)
             {     
-                //Titre
-
                 //Instantiation objet Game et redimonsionnement de la fenêtre
                 Init();
 
@@ -223,7 +221,7 @@ namespace P_SpaceInvaders
                         }                       
                     }
 
-                    Thread.Sleep(20);
+                    Thread.Sleep(15);
                 }
 
                 //Affichage GameOver et demande à l'utilisateur s'il souhaite continuer
