@@ -27,6 +27,10 @@ namespace P_SpaceInvaders.GameObjects
         {
 
         }
+        public MovingObject(Game game, string[] frames) : base(game, frames)
+        {
+
+        }
         #endregion
 
         #region Getteurs et setteurs

@@ -20,7 +20,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Invaders par ligne
         /// </summary>
-        const int _INVADERSPERLINE = 4;
+        const int _INVADERSPERLINE = 1;
         /// <summary>
         /// Invaders par colonne
         /// </summary>
@@ -352,7 +352,7 @@ namespace P_SpaceInvaders
             #region Agrégation des invaders dans la liste
             for (int i = 0; i < _INVADERSPERLINE * _INVADERSPERCOLUMNS; i++)
             {
-                Invaders.Add(new Invader(i, this, Invader.CharInvader));
+                Invaders.Add(new Invader(i, this, Invader.OCTOPUS));
             }
             #endregion
 
