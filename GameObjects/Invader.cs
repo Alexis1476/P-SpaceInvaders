@@ -15,12 +15,48 @@ namespace P_SpaceInvaders.GameObjects
     class Invader : MovingObject
     {
         #region Constantes
-        public const string CharInvader = "          \n" +
-                                          "  ▀▄ ▄▀  \n" +
-                                          " ▄█▀█▀█▄ \n" +
-                                          "█▀█████▀█\n" +
-                                          "█ █▀▀▀█ █\n" +
-                                          "  ▀▀ ▀▀  ";
+        public static readonly string[] CRAB = new string[]
+        {
+            "  ▀▄ ▄▀  \n" +
+            " ▄█▀█▀█▄ \n" +
+            "█▀█████▀█\n" +
+            "█ █▀▀▀█ █\n" +
+            "  ▀▀ ▀▀  ",
+            "▄ ▀▄ ▄▀ ▄\n" +
+            "█▄█████▄█\n" +
+            "███▄█▄███\n" +
+            "▀███████▀\n" +
+            " ▄▀   ▀▄ " };
+        public static readonly string[] OCTOPUS = new string[]
+        {
+            " ▄▄███▄▄ \n" +
+            "█████████\n" +
+            "██▄▄█▄▄██\n" +
+            " ▄▀ ▄ ▀▄ \n" +
+            "  ▀   ▀  ",
+            " ▄▄███▄▄ \n" +
+            "█████████\n" +
+            "██▄▄█▄▄██\n" +
+            " ▄▀ ▄ ▀▄ \n" +
+            "▀       ▀" };
+        public static readonly string[] SQUID = new string[]
+        {
+            "   ▄█▄   \n" +
+            " ▄█████▄ \n" +
+            "███▄█▄███\n" +
+            "  ▄▀▄▀▄  \n" +
+            " ▀ ▀ ▀ ▀ ",
+            "   ▄█▄   \n" +
+            " ▄█████▄ \n" +
+            "███▄█▄███\n" +
+            " ▄▀   ▀▄ \n" +
+            "  ▀   ▀  " };
+        const string UFO = 
+            "    ▄▄█▄▄    \n" +
+            "  ▄███████▄  \n" +
+            "▄██▄█▄█▄█▄██▄\n" +
+            "  ▀█▀ ▀ ▀█▀  ";
+
         #endregion
 
         #region Attributs
@@ -33,6 +69,10 @@ namespace P_SpaceInvaders.GameObjects
             _id = id;
         }
         public Invader(int id, Game game, string chars) : base(game, chars)
+        {
+            _id = id;
+        }
+        public Invader(int id, Game game, string[] frames) : base(game, frames)
         {
             _id = id;
         }
@@ -50,7 +90,7 @@ namespace P_SpaceInvaders.GameObjects
         public void Fire()
         {
             //Ajout d'une balle qui se génère à partir du centre de l'objet et qui va vers le haut
-            Game.Bullets.Add(new Bullet(Game, "§", PosX + WidthChars / 2, PosY + 1, Direction.Down));
+            Game.Bullets.Add(new Bullet(Game, "|\nv", PosX + WidthChars / 2, PosY + 1, Direction.Down));
         }
         public new void Move(Direction direction)
         {
@@ -70,80 +110,5 @@ namespace P_SpaceInvaders.GameObjects
             }
         }
         #endregion
-
-        //#region Attributs
-        //private bool _alive;
-        //private string[] _invaderFrames;
-        //private int _invaderWidth;
-        //#endregion
-
-        //#region Constructors
-        //public Invader(string[] invaderFrames, int posX, int posY) : base(posX, posY)
-        //{
-        //    _invaderFrames = invaderFrames;
-        //}
-        //#endregion
-
-        //#region Methodes
-        ////TESTS
-        //public void UpdateInvader()
-        //{
-        //    int y = 0, x = 0; //pos X et Y des invaders
-        //    int dir = 1; //Direction des invaders
-        //    for (int i = 0; ; i++)
-        //    {
-        //        Thread.Sleep(100);
-        //        x += dir;
-        //        //Si x = windowWidth - lineAlien.lenght
-        //        //Console.MoveBufferArea
-        //        if (x == Console.WindowWidth - 18)
-        //        {
-        //            dir = -1; //Inversion de la direcion
-        //            y++; //Descend un pas en Y
-        //        }
-        //        //Si x=0 Direction positive
-        //        else if (x == 0) { y++; dir = 1; }
-        //        //Affichage invader
-        //        if (i % 6 == 0)
-        //        {
-        //            DrawInvader(InvaderFrames[0], x, y); //Dessiner invader
-        //        }
-        //        else
-        //        {
-        //            DrawInvader(InvaderFrames[1], x, y); //Dessiner invader
-        //        }
-
-        //    }
-        //}
-        //public void DrawInvader(string invader, int x, int y)
-        //{
-        //    using (StringReader reader = new StringReader(invader))
-        //    {
-        //        string line = "";
-        //        do
-        //        {
-        //            line = reader.ReadLine();
-        //            if (line != null)
-        //            {
-        //                Console.SetCursorPosition(x, y);
-        //                Console.WriteLine(line);
-        //            }
-        //            y++;
-        //        }
-        //        while (line != null);
-        //    }
-        //}
-        //#endregion
-
-        //#region Getteurs et setteurs
-        //public string [] InvaderFrames
-        //{
-        //    get { return _invaderFrames; }
-        //}
-        //public int InvaderWidth
-        //{
-        //    get { return _invaderWidth; }
-        //}
-        //#endregion
     }
 }

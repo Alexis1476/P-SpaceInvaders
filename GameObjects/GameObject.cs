@@ -34,6 +34,8 @@ namespace P_SpaceInvaders.GameObjects
         /// Hauteur de l'objet
         /// </summary>
         int _heightChars;
+        string[] _frames;
+        int _indicFrame;
         #endregion
 
         #region Constructeurs
@@ -50,6 +52,12 @@ namespace P_SpaceInvaders.GameObjects
             _game = game;
             _chars = chars;
             CalculateDimensionsObject(_chars);
+        }
+        public GameObject(Game game, string[] frames)
+        {
+            _game = game;
+            _frames = frames;
+            CalculateDimensionsObject(_frames[0]);
         }
         #endregion
 
@@ -106,20 +114,42 @@ namespace P_SpaceInvaders.GameObjects
         public void Draw()
         {
             Console.SetCursorPosition(_posX, _posY);
-            using (StringReader reader = new StringReader(_chars))
+            //Si ce n'est qu'un frame
+            if (_chars != null)
             {
-                string line = "";
-                do
+                using (StringReader reader = new StringReader(_chars))
                 {
-                    line = reader.ReadLine();
-                    if (line != null)
+                    string line = "";
+                    do
                     {
-                        Console.SetCursorPosition(_posX, Console.CursorTop);
-                        Console.WriteLine(line);
+                        line = reader.ReadLine();
+                        if (line != null)
+                        {
+                            Console.SetCursorPosition(_posX, Console.CursorTop);
+                            Console.WriteLine(line);
+                        }
                     }
+                    while (line != null);
                 }
-                while (line != null);
             }
+            else if (_frames != null)
+            {
+                if (++_indicFrame == _frames.Length) { _indicFrame = 0; }
+                using (StringReader reader = new StringReader(_frames[_indicFrame]))
+                {
+                    string line = "";
+                    do
+                    {
+                        line = reader.ReadLine();
+                        if (line != null)
+                        {
+                            Console.SetCursorPosition(_posX, Console.CursorTop);
+                            Console.WriteLine(line);
+                        }
+                    }
+                    while (line != null);
+                }
+            }         
         }
         /// <summary>
         /// Vérifie si l'objet se trouve entre les coordonnées de la map
