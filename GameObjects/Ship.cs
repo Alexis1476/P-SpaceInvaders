@@ -49,7 +49,7 @@ namespace P_SpaceInvaders.GameObjects
         public void Fire()
         {
             //Ajout d'une balle qui se génère à partir du centre de l'objet et qui va vers le haut
-            Game.Bullets.Add(new Bullet(Game, ObjectChars.BULLETSHIP, PosX + WidthChars / 2, PosY - 1, Direction.Up));
+            Game.Bullets.Add(new Bullet(Game, AsciiChars.BULLETSHIP, PosX + WidthChars / 2, PosY - 1, Direction.Up));
         }
         /// <summary>
         /// Mouvement du vaisseau en fonction de la direction

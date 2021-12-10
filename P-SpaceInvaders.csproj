@@ -54,7 +54,7 @@
     <Compile Include="GameObjects\Invader.cs" />
     <Compile Include="MenuObjects\MenuItem.cs" />
     <Compile Include="MenuObjects\Menu.cs" />
-    <Compile Include="ObjectChars.cs" />
+    <Compile Include="AsciiChars.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameObjects\Ship.cs" />

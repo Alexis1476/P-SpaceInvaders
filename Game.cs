@@ -2,15 +2,11 @@
 ///Auteur : Alexis Rojas
 ///Date : 26.11.2021
 ///Description: Gérè le jeu et les rélations entre chaque objet
+using P_SpaceInvaders.GameObjects;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
-using P_SpaceInvaders.GameObjects;
 
 namespace P_SpaceInvaders
 {
@@ -109,7 +105,7 @@ namespace P_SpaceInvaders
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
-            _ship = new Ship(this, ObjectChars.CHARSHIP, SHIPLIFES);
+            _ship = new Ship(this, AsciiChars.CHARSHIP, SHIPLIFES);
             _random = new Random();
             _difficulty = difficulty;
 
@@ -149,7 +145,7 @@ namespace P_SpaceInvaders
         {
             //Tant que le vaisseau existe et que le joueur tape sur une touche de mouvement
             while (_ship != null && Console.KeyAvailable)
-            {    
+            {
                 //Switch pour la séléction du mouvement et pour le tir
                 switch (Console.ReadKey().Key)
                 {
@@ -170,54 +166,54 @@ namespace P_SpaceInvaders
                             {
                                 //Retour au ménu principal
                                 case ConsoleKey.Escape:
-                                {
-                                    //Affiche le ménu principal
-                                    Program.MainMenu.DrawAllMenu();
-                                    break;
-                                }                        
+                                    {
+                                        //Affiche le ménu principal
+                                        Program.MainMenu.DrawAllMenu();
+                                        break;
+                                    }
                                 //Retour à la partie
                                 case ConsoleKey.Spacebar:
-                                {
-                                    //Quitte la pause
-                                    pause = false;
+                                    {
+                                        //Quitte la pause
+                                        pause = false;
 
-                                    //Reinitialise les timers
-                                    _timerToMoveInvader.Start();
-                                    _timerToShoot.Start();
-                                    break;
-                                }                                  
+                                        //Reinitialise les timers
+                                        _timerToMoveInvader.Start();
+                                        _timerToShoot.Start();
+                                        break;
+                                    }
                             }
                         }
                         break;
                     //Mouvement vers la gauche
                     case ConsoleKey.LeftArrow:
-                    {
-                        _ship.Move(Direction.Left);
-                        break;
-                    }                     
+                        {
+                            _ship.Move(Direction.Left);
+                            break;
+                        }
                     //Mouvement vers la droite
                     case ConsoleKey.RightArrow:
-                    {
-                        _ship.Move(Direction.Right);
-                        break;
-                    }                      
+                        {
+                            _ship.Move(Direction.Right);
+                            break;
+                        }
                     //Tir
                     case ConsoleKey.Spacebar:
-                    {
-                        //Si le joueur a le droit de tirer
-                        if (_shoot)
                         {
-                            //Réproduit l'effet de son
-                            Program.PlaySound(_shotSound);
+                            //Si le joueur a le droit de tirer
+                            if (_shoot)
+                            {
+                                //Réproduit l'effet de son
+                                Program.PlaySound(_shotSound);
 
-                            //Le vaisseau tire
-                            _ship.Fire();
+                                //Le vaisseau tire
+                                _ship.Fire();
 
-                            //Le vaisseau ne peut plus tirer
-                            _shoot = false;
+                                //Le vaisseau ne peut plus tirer
+                                _shoot = false;
+                            }
+                            break;
                         }
-                        break;
-                    }
                     //Si l'utilisateur tape sur une autre touche
                     default:
                         break;
@@ -334,7 +330,7 @@ namespace P_SpaceInvaders
 
                     //Verifier si les balles touchent les invaders
                     for (int j = 0; j < Invaders.Count; j++)
-                    {                                   
+                    {
                         //Si la balle touche un invader et si ce n'est pas une balle d'un invader
                         if (Invaders[j].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) && Bullets[i].Direction != Direction.Down ||
                             Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY) && Bullets[i].Direction != Direction.Down)
@@ -365,10 +361,10 @@ namespace P_SpaceInvaders
                             Program.PlaySound(_deathSound);
                         }
                         //Si la balle n'impacte pas
-                        else if (!impactInvader && !impact) 
+                        else if (!impactInvader && !impact)
                         {
                             Bullets[i].ReDraw();
-                        }                     
+                        }
                     }
                     //Si la balle impacte un invader
                     if (impactInvader)
@@ -438,7 +434,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Initialise la liste d'invaders et calcule leur position
         /// </summary>
-        public void GenerateInvaders() 
+        public void GenerateInvaders()
         {
             #region [Agrégation des invaders à la liste]
             //Pour i jusqu'a invaders par ligne * invaders par collones
@@ -447,17 +443,17 @@ namespace P_SpaceInvaders
                 //Première ligne d'invaders
                 if (i < _INVADERSPERCOLUMNS)
                 {
-                    Invaders.Add(new Invader(i, this, ObjectChars.OCTOPUS));
+                    Invaders.Add(new Invader(i, this, AsciiChars.OCTOPUS));
                 }
                 //Deuxième ligne d'invaders
                 else if (i >= _INVADERSPERCOLUMNS && i < _INVADERSPERCOLUMNS * 2)
                 {
-                    Invaders.Add(new Invader(i, this, ObjectChars.SQUID));
+                    Invaders.Add(new Invader(i, this, AsciiChars.SQUID));
                 }
                 //Dernières lignes
                 else
                 {
-                    Invaders.Add(new Invader(i, this, ObjectChars.CRAB));
+                    Invaders.Add(new Invader(i, this, AsciiChars.CRAB));
                 }
             }
             #endregion
@@ -470,7 +466,7 @@ namespace P_SpaceInvaders
             int lastPosX = Map.Offset * 2;
 
             //Dernière PosY calculé
-            int lastPosY = Map.Offset * 2;  
+            int lastPosY = Map.Offset * 2;
 
             //Parcourt la liste d'invaders
             for (int i = 0; i < Invaders.Count; i++)
