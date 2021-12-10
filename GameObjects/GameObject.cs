@@ -233,17 +233,17 @@ namespace P_SpaceInvaders.GameObjects
         /// <returns></returns>
         public bool IsAtCoordinates(int posX, int posY)
         {
-            //for (int y = 0; y < HeightChars - 1 ; y++)
-            //{
-            //    if (posY == PosY + y && posX >= PosX && posX < PosX + WidthChars ||
-            //    posY == PosY + y && posX >= PosX && posX < PosX + WidthChars)
-            //    {
-            //        return true;
-            //    }
-            //}
-            //return false;
-            return posY == PosY && posX >= PosX && posX < PosX + WidthChars ||
-                posY == PosY + HeightChars - 2 && posX >= PosX && posX < PosX + WidthChars;
+            for (int y = 0; y < HeightChars - 1; y++)
+            {
+                if (posY == PosY + y && posX >= PosX && posX < PosX + WidthChars ||
+                posY == PosY + y && posX >= PosX && posX < PosX + WidthChars)
+                {
+                    return true;
+                }
+            }
+            return false;
+            //return posY == PosY && posX >= PosX && posX < PosX + WidthChars ||
+            //    posY == PosY + HeightChars - 2 && posX >= PosX && posX < PosX + WidthChars;
         }
         #endregion
     }
