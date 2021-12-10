@@ -21,7 +21,7 @@ namespace P_SpaceInvaders.GameObjects
         public Bullet(Game game, string chars, int posX, int posY, Direction direction) : base(game, chars, posX, posY)
         {
             _direction = direction;
-            Draw();
+            //Draw();
         }
         #endregion
 

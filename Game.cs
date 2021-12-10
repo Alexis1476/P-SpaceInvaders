@@ -20,11 +20,11 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Invaders par ligne
         /// </summary>
-        const int _INVADERSPERLINE = 1;
+        const int _INVADERSPERLINE = 4;
         /// <summary>
         /// Invaders par colonne
         /// </summary>
-        const int _INVADERSPERCOLUMNS = 4;
+        const int _INVADERSPERCOLUMNS = 9;
         public readonly int SHIPLIFES = 3;
         #endregion
 
@@ -36,7 +36,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Vaisseau du joueur
         /// </summary>
-        static Ship _ship;
+        Ship _ship;
         /// <summary>
         /// Liste pour les tirs des invaders et du joueur
         /// </summary>
@@ -65,6 +65,7 @@ namespace P_SpaceInvaders
         /// Détermine si le joueur peut tirer
         /// </summary>
         static bool _shoot;
+        static bool _moveInvader;
         /// <summary>
         /// Son de tir
         /// </summary>
@@ -81,6 +82,7 @@ namespace P_SpaceInvaders
         /// Timer qui détermine le moment pour tirer
         /// </summary>
         static System.Timers.Timer _timerToShoot;
+        static System.Timers.Timer _timerToMoveInvader;
         #endregion
 
         #region Constructeurs
@@ -107,11 +109,21 @@ namespace P_SpaceInvaders
             _timerToShoot.AutoReset = true;
             _timerToShoot.Enabled = true;
             #endregion
+
+            #region Paramètres du timer mouveInvader
+            _timerToMoveInvader = new System.Timers.Timer(250);
+            _timerToMoveInvader.Elapsed += OnTimedEventMoveInvader;
+            _timerToMoveInvader.AutoReset = true;
+            _timerToMoveInvader.Enabled = true;
+            #endregion
         }
         #endregion
 
         #region Methodes
-
+        static void OnTimedEventMoveInvader(Object source, ElapsedEventArgs e)
+        {
+            _moveInvader = true;
+        }
         public void ReadInput()
         {
             //Tant que le vaisseau existe et que le joueur tape une touche de mouvement
@@ -204,17 +216,11 @@ namespace P_SpaceInvaders
                             Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY) && Bullets[i].Direction != Direction.Down)
                         {
                             //On efface la balle de la liste
-                            Bullets.RemoveAt(i); 
+                            Bullets.RemoveAt(i);
 
-                            //Réproduit l'effet de son
-                            Program.PlaySound(_explosionSound);
-
-                            //Effacement de l'invader de l'écran et de la liste
+                            //Effacement de la balle de l'écran et de la liste
                             Invaders[j].Delete();
                             Invaders.RemoveAt(j--);
-
-                            //Augmentation du score
-                            _score += 20;
                         }
 
                         //Si la balle n'impacte pas
@@ -226,9 +232,7 @@ namespace P_SpaceInvaders
                         //Si la balle touche le joueur
                         if (_ship != null && Ship.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY))
                         {
-                            //Efface la balle de la liste
-                            Bullets.RemoveAt(i);
-
+                            //On met le _ship à null
                             impact = true;
                         }
                     }
@@ -236,9 +240,6 @@ namespace P_SpaceInvaders
                     //Si la balle impacte contre le joueur
                     if (impact)
                     {
-                        //Réproduit l'effet de son
-                        Program.PlaySound(_deathSound);
-
                         //Si la décrémentation des lives du joueur == 0
                         if (--_ship.Lives == 0)
                         {
@@ -249,7 +250,7 @@ namespace P_SpaceInvaders
                         {
                             InitPosShip();
                         }
-                    }               
+                    }
                 }
                 //Si la balle est sortie de la map
                 else
@@ -274,7 +275,7 @@ namespace P_SpaceInvaders
 
             #region Mouvement des invaders
             //Si la liste d'invaders est déjà initialisé
-            if (Invaders != null)
+            if (Invaders != null && _moveInvader)
             {
                 //Tirs des invaders
                 int idRandom = _random.Next(Invaders.Count);
@@ -306,6 +307,7 @@ namespace P_SpaceInvaders
                     invader.Clear();
                     invader.ReDraw();
                 }
+                _moveInvader = false;
                 _timeToShoot++;
             }
 
@@ -352,7 +354,18 @@ namespace P_SpaceInvaders
             #region Agrégation des invaders dans la liste
             for (int i = 0; i < _INVADERSPERLINE * _INVADERSPERCOLUMNS; i++)
             {
-                Invaders.Add(new Invader(i, this, Invader.OCTOPUS));
+                if (i < _INVADERSPERCOLUMNS)
+                {
+                    Invaders.Add(new Invader(i, this, Invader.OCTOPUS));
+                }
+                else if (i >= _INVADERSPERCOLUMNS && i < _INVADERSPERCOLUMNS * 2) 
+                {
+                    Invaders.Add(new Invader(i, this, Invader.SQUID));
+                }
+                else
+                {
+                    Invaders.Add(new Invader(i, this, Invader.CRAB));
+                }
             }
             #endregion
 
