@@ -104,6 +104,10 @@ namespace P_SpaceInvaders
             get { return _sound; }
             set { _sound = value; }
         }
+        public static Menu MainMenu
+        {
+            get { return _mainMenu; }
+        }
         #endregion
 
         #region Methodes
