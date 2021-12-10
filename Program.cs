@@ -14,20 +14,54 @@ using System.IO;
 
 namespace P_SpaceInvaders
 {
+    /// <summary>
+    /// Gère le déroulement du jeu
+    /// </summary>
     class Program
     {
         #region Constantes
+        /// <summary>
+        /// Largeur de la fenêtre
+        /// </summary>
         static int _WINDOWWIDTH = 150;
+        /// <summary>
+        /// Hauteur de la fenêtre
+        /// </summary>
         static int _WINDOWHEIGHT = 70;
+        /// <summary>
+        /// Path du fichier de scores
+        /// </summary>
+        static string _PATHSCORES = ".\\score.txt";
         #endregion
 
         #region Attributs
+        /// <summary>
+        /// Game pour initialiser une partie
+        /// </summary>
         static Game _game;
+        /// <summary>
+        /// Menu principal
+        /// </summary>
         static Menu _mainMenu;
+        /// <summary>
+        /// Menu d'options (Sound et difficulty)
+        /// </summary>
         static Menu _menuOptions;
+        /// <summary>
+        /// Menu à propos de
+        /// </summary>
         static Menu _menuAbout;
+        /// <summary>
+        /// Menu scores
+        /// </summary>
         static Menu _menuScore;
+        /// <summary>
+        /// Indique si le son doit être activé
+        /// </summary>
         static bool _sound;
+        /// <summary>
+        /// Indique la difficulté du jeu
+        /// </summary>
         static int _difficulty;
         #endregion
 
@@ -111,6 +145,10 @@ namespace P_SpaceInvaders
         #endregion
 
         #region Methodes
+        /// <summary>
+        /// Reproduit un son si le bool Sound est true
+        /// </summary>
+        /// <param name="sound">Son à reproduire</param>
         public static void PlaySound(SoundPlayer sound)
         {
             //Si le son est activé
@@ -120,16 +158,19 @@ namespace P_SpaceInvaders
                 sound.Play();
             }
         }
+        /// <summary>
+        /// Méthode principal dès qu'on ouvre l'application
+        /// </summary>
         static void Main()
         {
-            #region Déclaration MainMenu et sous-menus
+            #region [Déclaration MainMenu et sous-menus]
             _mainMenu = new Menu(MAINTITLE);
             _menuOptions = new Menu(TITLEOPTIONS, _mainMenu);
             _menuAbout = new Menu(TITLEABOUT, _mainMenu, TEXTABOUT);
-            _menuScore = new Menu(TITLESCORE, _mainMenu); // Variable path
+            _menuScore = new Menu(TITLESCORE, _mainMenu);
             #endregion
 
-            #region Ajout des options à MainMenu
+            #region [Ajout des options à MainMenu]
             _mainMenu.AddMenuItems(1, "Play", Play);
             _mainMenu.AddMenuItems(2, "Options", _menuOptions.DrawAllMenu);
             _mainMenu.AddMenuItems(3, "Score", _menuScore.DrawAllMenu);
@@ -137,38 +178,48 @@ namespace P_SpaceInvaders
             _mainMenu.AddMenuItems(5, "Exit", Exit);
             #endregion
 
-            #region Ajout des switchs de configuration menu Options
+            #region [Ajout des switchs de configuration menu Options]
             _menuOptions.AddOptionSwitchItems(1, "Sound");
             _menuOptions.AddOptionSwitchItems(2, "Difficulty");
             #endregion
 
             //Ajout fichier .score au ménu score
-            _menuScore.PathFile = ".\\score.txt";
+            _menuScore.PathFile = _PATHSCORES;
 
             //Affichage du ménu
             _mainMenu.DrawAllMenu();
         }
+        /// <summary>
+        /// Vérifie les options choisis par l'utilisateur (Sound, Difficulty)
+        /// </summary>
         public static void CheckOptionsSwitch()
         {
+            //Parcourt la liste de switchs d'options du _menuOptions
             foreach(OptionSwitch optionSwitch in _menuOptions.OptionSwitch)
             {
+                //Si c'est le switch pour le son
                 if (optionSwitch.Name == "Sound")
                 {
+                    //Active ou desactive le son en fonction de l'option selectionnée
                     _sound = optionSwitch.Active;
                 }
+                //Si c'est le switch de la difficulté
                 else if (optionSwitch.Name == "Difficulty")
                 {
+                    //Si difficulté = facil
                     if (optionSwitch.Index == 0)
-                    {
-                        _difficulty = 15;
-                    }
-                    else if (optionSwitch.Index == 1)
                     {
                         _difficulty = 10;
                     }
-                    else
+                    //Sinon, si difficulté = normal
+                    else if (optionSwitch.Index == 1)
                     {
                         _difficulty = 5;
+                    }
+                    //Sinon difficulté = hard
+                    else
+                    {
+                        _difficulty = 2;
                     }
                 }
             }
@@ -206,13 +257,14 @@ namespace P_SpaceInvaders
                     //Redessine les objets du jeu
                     _game.Update();
 
-                    //Score
+                    //Met à jour le score
                     Console.SetCursorPosition(0, 2 * _game.Map.Offset + _game.Map.Height);
                     Console.Write("Score: {0}", _game.Score);
 
-                    //Vies
+                    //Affiche les vies du joueur
                     Console.SetCursorPosition(15, 2 * _game.Map.Offset + _game.Map.Height);
                     Console.Write("Lifes : ");
+
                     for (int i = 0; i < _game.SHIPLIFES; i++)
                     {
                         if (_game.Ship != null && _game.Ship.Lives > i)
@@ -224,7 +276,7 @@ namespace P_SpaceInvaders
                             Console.Write(" ");
                         }                       
                     }
-                    Thread.Sleep(20);
+                    Thread.Sleep(_difficulty);
                 }
 
                 //Affichage GameOver et demande à l'utilisateur s'il souhaite continuer
@@ -270,12 +322,18 @@ namespace P_SpaceInvaders
 
             }
         }
+        /// <summary>
+        /// Sauvegarde le score dans un fichier texte
+        /// </summary>
+        /// <param name="filePath">Chemin + nom du fichier texte</param>
+        /// <param name="nick">Nom du joueur</param>
+        /// <param name="score">Score</param>
         private static void SaveScore(string filePath, string nick, string score)
         {
-            // Si le fichier n'existe pas
+            //Si le fichier n'existe pas
             if (File.Exists(filePath) == false)
             {
-                // Création du fichier
+                //Création du fichier
                 StreamWriter createFile = new StreamWriter(filePath);
                 createFile.Close();
             }

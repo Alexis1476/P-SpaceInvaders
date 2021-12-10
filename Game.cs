@@ -14,9 +14,12 @@ using P_SpaceInvaders.GameObjects;
 
 namespace P_SpaceInvaders
 {
+    /// <summary>
+    /// Gère le temps et les rélations entre les objets du jeu
+    /// </summary>
     class Game
     {
-        #region Constantes
+        #region [Constantes]
         /// <summary>
         /// Invaders par ligne
         /// </summary>
@@ -25,10 +28,13 @@ namespace P_SpaceInvaders
         /// Invaders par colonne
         /// </summary>
         const int _INVADERSPERCOLUMNS = 9;
+        /// <summary>
+        /// Vies du joueur
+        /// </summary>
         public readonly int SHIPLIFES = 3;
         #endregion
 
-        #region Attributs
+        #region [Attributs]
         /// <summary>
         /// Carte du jeu
         /// </summary>
@@ -65,6 +71,9 @@ namespace P_SpaceInvaders
         /// Détermine si le joueur peut tirer
         /// </summary>
         static bool _shoot;
+        /// <summary>
+        /// Détermine si les invaders peuvent se déplacer
+        /// </summary>
         static bool _moveInvader;
         /// <summary>
         /// Son de tir
@@ -82,10 +91,19 @@ namespace P_SpaceInvaders
         /// Timer qui détermine le moment pour tirer
         /// </summary>
         System.Timers.Timer _timerToShoot;
+        /// <summary>
+        /// Timer qui détermine le moment pour déplacer l'essaim d'invaders
+        /// </summary>
         System.Timers.Timer _timerToMoveInvader;
         #endregion
 
-        #region Constructeurs
+        #region [Constructeurs]
+        /// <summary>
+        /// Constructeur par hauteur, largeur de la fenêtre et difficulté
+        /// </summary>
+        /// <param name="mapWidth">Largeur de la fenêtre</param>
+        /// <param name="mapHeight">Hauteur de la fenêtre</param>
+        /// <param name="difficulty">Difficulté</param>
         public Game(int mapWidth, int mapHeight, int difficulty)
         {
             _map = new Map(mapWidth, mapHeight);
@@ -94,10 +112,14 @@ namespace P_SpaceInvaders
             _ship = new Ship(this, Ship.CharShip, SHIPLIFES);
             _random = new Random();
             _difficulty = difficulty;
+
+            //Initialise la position du vaisseau
             ShipSpawnPos();
+
+            //Génère les invaders
             GenerateInvaders();
 
-            #region Effets audio
+            #region [Effets audio]
             _shotSound = new SoundPlayer(".\\Ressources\\laserShoot.wav");
             _explosionSound = new SoundPlayer(".\\Ressources\\hitInvader.wav");
             _deathSound = new SoundPlayer(".\\Ressources\\hitShip.wav");
@@ -110,7 +132,7 @@ namespace P_SpaceInvaders
             _timerToShoot.Enabled = true;
             #endregion
 
-            #region Paramètres du timer mouveInvader
+            #region [Paramètres du timer mouveInvader]
             _timerToMoveInvader = new System.Timers.Timer(200);
             _timerToMoveInvader.Elapsed += OnTimedEventMoveInvader;
             _timerToMoveInvader.AutoReset = true;
@@ -119,14 +141,13 @@ namespace P_SpaceInvaders
         }
         #endregion
 
-        #region Methodes
-        static void OnTimedEventMoveInvader(Object source, ElapsedEventArgs e)
-        {
-            _moveInvader = true;
-        }
+        #region [Methodes]
+        /// <summary>
+        /// Lit ce que le joueur tape au clavier
+        /// </summary>
         public void ReadInput()
         {
-            //Tant que le vaisseau existe et que le joueur tape une touche de mouvement
+            //Tant que le vaisseau existe et que le joueur tape sur une touche de mouvement
             while (_ship != null && Console.KeyAvailable)
             {    
                 //Switch pour la séléction du mouvement et pour le tir
@@ -136,38 +157,53 @@ namespace P_SpaceInvaders
                     case ConsoleKey.Escape:
                         //Pause active
                         bool pause = true;
+
+                        //Arret des timers
                         _timerToMoveInvader.Stop();
                         _timerToShoot.Stop();
 
-                        //tant que la variable pause ne soit pas en false
+                        //Tant que la variable pause ne soit pas en false
                         while (pause)
                         {
+                            //Switch pour lire les touches
                             switch (Console.ReadKey(false).Key)
                             {
+                                //Retour au ménu principal
                                 case ConsoleKey.Escape:
+                                {
+                                    //Affiche le ménu principal
                                     Program.MainMenu.DrawAllMenu();
                                     break;
-                                case ConsoleKey.Enter:
+                                }                        
+                                //Retour à la partie
+                                case ConsoleKey.Spacebar:
+                                {
+                                    //Quitte la pause
                                     pause = false;
+
+                                    //Reinitialise les timers
                                     _timerToMoveInvader.Start();
                                     _timerToShoot.Start();
                                     break;
+                                }                                  
                             }
                         }
                         break;
-
                     //Mouvement vers la gauche
                     case ConsoleKey.LeftArrow:
+                    {
                         _ship.Move(Direction.Left);
                         break;
-
+                    }                     
                     //Mouvement vers la droite
                     case ConsoleKey.RightArrow:
+                    {
                         _ship.Move(Direction.Right);
                         break;
-
+                    }                      
                     //Tir
                     case ConsoleKey.Spacebar:
+                    {
                         //Si le joueur a le droit de tirer
                         if (_shoot)
                         {
@@ -176,33 +212,112 @@ namespace P_SpaceInvaders
 
                             //Le vaisseau tire
                             _ship.Fire();
-                            
-                            //Le vaisseai ne peut plus tirer
+
+                            //Le vaisseau ne peut plus tirer
                             _shoot = false;
                         }
                         break;
-
+                    }
                     //Si l'utilisateur tape sur une autre touche
                     default:
                         break;
                 }
             }
         }
+        /// <summary>
+        /// Initialise la position du vaisseau lors du lancement d'une partie
+        /// </summary>
         public void ShipSpawnPos()
         {
             InitPosShip();
             _ship.LastPosX = _ship.PosX;
             _ship.LastPosY = _ship.PosY;
         }
+        /// <summary>
+        /// Initialise la position du vaisseau au centre de la map lorsqu'il meurt
+        /// </summary>
         public void InitPosShip()
         {
             //Taille de la carte / 2 - largeur du vaisseau / 2 pour le centrer
             _ship.PosX = Map.Width / 2 - _ship.WidthChars / 2;
             _ship.PosY = Map.Height + Map.Offset - _ship.HeightChars;
         }
+        /// <summary>
+        /// Met à jour les positions des objets du jeu
+        /// </summary>
         public void Update()
         {
-            #region Mouvement des balles
+            //Met à jour les positions des balles
+            UpdateBullets();
+
+            //Met à jour la position du vaisseau
+            UpdateShip();
+
+            //Met à jour les positions des invaders
+            UpdateInvaders();
+        }
+        public void UpdateInvaders()
+        {
+            //Si la liste d'invaders est déjà initialisé
+            if (Invaders != null && _moveInvader)
+            {
+                //Tirs des invaders
+                int idRandom = _random.Next(Invaders.Count);
+
+                //Parcourt la liste d'invaders
+                foreach (Invader invader in Invaders)
+                {
+                    //Si le random est égal à l'id de l'invader et si timeToShoot est multiple de 15
+                    if (invader.Id == idRandom && _timeToShoot % _difficulty == 0)
+                    {
+                        //L'invader tire
+                        invader.Fire();
+                    }
+
+                    //Si l'invader arrive au limite X de la map
+                    if (invader.PosX == Map.Width - invader.WidthChars)
+                    {
+                        //Reinitialisation PosX de l'invader à 1 (Map.Offset)
+                        invader.PosX = Map.Offset;
+
+                        //Fait descendre l'invader
+                        invader.Move(Direction.Down);
+                    }
+
+                    //Mouvement de l'invader vers la droite
+                    invader.Move(Direction.Right);
+
+                    //L'invader est redesinné
+                    invader.Clear();
+                    invader.ReDraw();
+                }
+                _moveInvader = false;
+                _timeToShoot++;
+            }
+
+            //Met à jour les ids des invaders
+            UpdateIdFromInvaders();
+        }
+        /// <summary>
+        /// Met à jour la position du vaisseau
+        /// </summary>
+        public void UpdateShip()
+        {
+            //Si le vaisseau n'est pas mort
+            if (Ship != null)
+            {
+                //Efface le vaisseau de la position précédente
+                Ship.Clear();
+
+                //Redessine le vaisseau dans la nouvelle position
+                Ship.ReDraw();
+            }
+        }
+        /// <summary>
+        /// Met à jour la liste de balles
+        /// </summary>
+        public void UpdateBullets()
+        {
             //Parcourt la liste de bullets
             for (int i = 0; i < Bullets.Count; i++)
             {
@@ -256,9 +371,8 @@ namespace P_SpaceInvaders
                             {
                                 Bullets[i].ReDraw();
                             }
-                        }                                 
+                        }
                     }
-
                     //Si la balle impacte contre le joueur
                     if (impact)
                     {
@@ -266,7 +380,7 @@ namespace P_SpaceInvaders
                         if (--_ship.Lives == 0)
                         {
                             //On supprime le vaisseau
-                            _ship = null;              
+                            _ship = null;
                         }
                         else
                         {
@@ -281,69 +395,16 @@ namespace P_SpaceInvaders
                     Bullets.RemoveAt(i--);
                 }
             }
-            #endregion
-
-            #region Mouvement du vaisseau
-            //Si le vaisseau n'est pas mort
-            if (Ship != null)
-            {
-                //Efface le vaisseau de la position précédente
-                Ship.Clear();
-
-                //Redessine le vaisseau dans la nouvelle position
-                Ship.ReDraw();
-            }
-            #endregion
-
-            #region Mouvement des invaders
-            //Si la liste d'invaders est déjà initialisé
-            if (Invaders != null && _moveInvader)
-            {
-                //Tirs des invaders
-                int idRandom = _random.Next(Invaders.Count);
-
-                //Parcourt la liste d'invaders
-                foreach (Invader invader in Invaders)
-                {
-                    //Si le random est égal à l'id de l'invader et si timeToShoot est multiple de 15
-                    if (invader.Id == idRandom && _timeToShoot % _difficulty == 0)
-                    {
-                        //L'invader tire
-                        invader.Fire();
-                    }
-
-                    //Si l'invader arrive au limite X de la map
-                    if (invader.PosX == Map.Width - invader.WidthChars)
-                    {
-                        //Reinitialisation PosX de l'invader à 1 (Map.Offset)
-                        invader.PosX = Map.Offset;
-
-                        //Fait descendre l'invader
-                        invader.Move(Direction.Down);
-                    }
-
-                    //Mouvement de l'invader vers la droite
-                    invader.Move(Direction.Right);
-
-                    //L'invader est redesinné
-                    invader.Clear();
-                    invader.ReDraw();
-                }
-                _moveInvader = false;
-                _timeToShoot++;
-            }
-
-            //Met à jour les ids des invaders
-            UpdateIdFromInvaders();
-            #endregion
         }
         /// <summary>
         /// Met à jour l'ID de chaque invader
         /// </summary>
         public void UpdateIdFromInvaders()
         {
+            //Parcourt la liste d'invaders
             for (int i = 0; i < Invaders.Count; i++)
             {
+                //Actualise l'ID
                 Invaders[i].Id = i;
             }
         }
@@ -373,17 +434,21 @@ namespace P_SpaceInvaders
         /// </summary>
         public void GenerateInvaders() 
         {
-            #region Agrégation des invaders dans la liste
+            #region [Agrégation des invaders à la liste]
+            //Pour i jusqu'a invaders par ligne * invaders par collones
             for (int i = 0; i < _INVADERSPERLINE * _INVADERSPERCOLUMNS; i++)
             {
+                //Première ligne d'invaders
                 if (i < _INVADERSPERCOLUMNS)
                 {
                     Invaders.Add(new Invader(i, this, Invader.OCTOPUS));
                 }
-                else if (i >= _INVADERSPERCOLUMNS && i < _INVADERSPERCOLUMNS * 2) 
+                //Deuxième ligne d'invaders
+                else if (i >= _INVADERSPERCOLUMNS && i < _INVADERSPERCOLUMNS * 2)
                 {
                     Invaders.Add(new Invader(i, this, Invader.SQUID));
                 }
+                //Dernières lignes
                 else
                 {
                     Invaders.Add(new Invader(i, this, Invader.CRAB));
@@ -391,7 +456,7 @@ namespace P_SpaceInvaders
             }
             #endregion
 
-            #region Calcul Position des Invaders
+            #region [Calcul Position des Invaders]
             //Compteur des invaders
             int count = 0;
 
@@ -446,7 +511,7 @@ namespace P_SpaceInvaders
         /// <returns>True si la partie continue</returns>
         public bool IsPlaying()
         {
-              return Ship != null && _invaders.Count > 0;
+            return Ship != null && _invaders.Count > 0;
         }
         /// <summary>
         /// Permet au joueur de tirer quand le timer arrive aux millisecondes spécifiés
@@ -457,9 +522,18 @@ namespace P_SpaceInvaders
         {
             _shoot = true;
         }
+        /// <summary>
+        /// Evènement qui permet de faire bouger les invaders chaque n millisecondes
+        /// </summary>
+        /// <param name="source">Objet timer</param>
+        /// <param name="e">Fournit les données pour l'événement</param>
+        static void OnTimedEventMoveInvader(Object source, ElapsedEventArgs e)
+        {
+            _moveInvader = true;
+        }
         #endregion
 
-        #region Getteurs et setteurs
+        #region [Propriétés des attributs]
         /// <summary>
         /// Propriétés membre _map
         /// </summary>

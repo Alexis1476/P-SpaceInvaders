@@ -1,21 +1,17 @@
 ﻿///ETML
 ///Auteur : Alexis Rojas
 ///Date : 26.11.2021
-///Description: Permet de créer un switch pour activer le son ou un switch pour modifier la difficulté du jeu
-using System;
+///Description: Class qui permet de créer un switch pour activer le son ou un switch pour modifier la difficulté du jeu
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P_SpaceInvaders.MenuObjects
 {
+    /// <summary>
+    /// Permet de créer un switch pour activer le son ou un switch pour modifier la difficulté du jeu
+    /// </summary>
     class OptionSwitch
     {
-        #region Constantes
-        #endregion
-
-        #region Attributs
+        #region [Attributs]
         /// <summary>
         /// Id du paramètre
         /// </summary>
@@ -36,12 +32,22 @@ namespace P_SpaceInvaders.MenuObjects
         /// Liste string des differents options
         /// </summary>
         private List<string> _options;
-
+        /// <summary>
+        /// Détermine la difficulté du jeu avec un index de 0 à 2 (Facile -> Difficil)
+        /// </summary>
         private int _index;
+        /// <summary>
+        /// Détermine si l'option à été activé
+        /// </summary>
         bool _active;
         #endregion
 
-        #region Constructeurs
+        #region [Constructeurs]
+        /// <summary>
+        /// Constructeur par id et par nom (Sound ou Difficulty)
+        /// </summary>
+        /// <param name="idItem">Id de l'item</param>
+        /// <param name="name">"Sound" || "Difficulty"</param>
         public OptionSwitch(int idItem, string name)
         {
             //Si c'est pour parametrer le son
@@ -66,7 +72,10 @@ namespace P_SpaceInvaders.MenuObjects
         }
         #endregion
 
-        #region Methodes
+        #region [Methodes]
+        /// <summary>
+        /// Change l'option du switch
+        /// </summary>
         public void ChangeOption()
         {
             //L'option a été choisie
@@ -102,6 +111,10 @@ namespace P_SpaceInvaders.MenuObjects
                 }
             }
         }
+        /// <summary>
+        /// Retourne le nom du switch + le nom de l'option choisie
+        /// </summary>
+        /// <returns>Retourne concat de SwitchName+[OptionName]</returns>
         public string NameAndOption()
         {
             string concat = _name + " [" + _options[_index] + "]\t";
@@ -109,30 +122,40 @@ namespace P_SpaceInvaders.MenuObjects
         }
         #endregion
 
-        #region Getteurs et setteurs
+        #region [Propriétés des attributs]
+        /// <summary>
+        /// Propriétés membre _posX
+        /// </summary>
         public int PosX
         {
             get { return _posX; }
             set { _posX = value; }
         }
+        /// <summary>
+        /// Propriétés membre _posY
+        /// </summary>
         public int PosY
         {
             get { return _posY; }
             set { _posY = value; }
         }
+        /// <summary>
+        /// Propriétés membre _name
+        /// </summary>
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
         }
-        public List<string> Options
-        {
-            get { return _options; }
-        }
+        /// <summary>
+        /// Propriétés membre _index
+        /// </summary>
         public int Index
         {
             get { return _index; }
         }
+        /// <summary>
+        /// Propriétés membre _active
+        /// </summary>
         public bool Active
         {
             get { return _active;}

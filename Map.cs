@@ -3,22 +3,35 @@
 ///Date : 26.11.2021
 ///Description: Class qui permet de créer une map délimitée pour le jeu
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P_SpaceInvaders
 {
+    /// <summary>
+    /// Permet de créer une map délimitée pour le jeu
+    /// </summary>
     class Map
     {
-        #region Attributs
+        #region [Attributs]
+        /// <summary>
+        /// Largeur de la map
+        /// </summary>
         int _width;
+        /// <summary>
+        /// Hauteur de la map
+        /// </summary>
         int _height;
+        /// <summary>
+        /// Décalage entre la map et la fenêtre
+        /// </summary>
         int _offset = 1;
         #endregion
 
-        #region Constructeurs
+        #region [Constructeurs]
+        /// <summary>
+        /// Constructeur par largeur et par hauteur
+        /// </summary>
+        /// <param name="width">Largeur</param>
+        /// <param name="height">Hauteur</param>
         public Map(int width, int height)
         {
             _width = width;
@@ -26,7 +39,10 @@ namespace P_SpaceInvaders
         }
         #endregion
 
-        #region Methodes
+        #region [Methodes]
+        /// <summary>
+        /// Dessine les limites de la map
+        /// </summary>
         public void Draw()
         {
             //Coin supérieur gauche
@@ -66,23 +82,28 @@ namespace P_SpaceInvaders
         }
         #endregion
 
-        #region Getteurs et setteurs
+        #region [Propriétés des attributs]
+        /// <summary>
+        /// Propriété membre _width
+        /// </summary>
         public int Width
         {
             get { return _width; }
-            set { _width = value; }
         }
+        /// <summary>
+        /// Propriété membre _height
+        /// </summary>
         public int Height
         {
             get { return _height; }
-            set { _height = value; }
         }
+        /// <summary>
+        /// Propriété membre _offset
+        /// </summary>
         public int Offset
         {
             get { return _offset; }
-            set { _offset = value; }
         }
         #endregion
-
     }
 }
