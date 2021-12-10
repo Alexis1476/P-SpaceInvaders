@@ -10,51 +10,6 @@ namespace P_SpaceInvaders.GameObjects
     /// </summary>
     class Invader : MovingObject
     {
-        #region Constantes
-        public static readonly string[] CRAB = new string[]
-        {
-            "  ▀▄ ▄▀  \n" +
-            " ▄█▀█▀█▄ \n" +
-            "█▀█████▀█\n" +
-            "█ █▀▀▀█ █\n" +
-            "  ▀▀ ▀▀  ",
-            "▄ ▀▄ ▄▀ ▄\n" +
-            "█▄█████▄█\n" +
-            "███▄█▄███\n" +
-            "▀███████▀\n" +
-            " ▄▀   ▀▄ " };
-        public static readonly string[] OCTOPUS = new string[]
-        {
-            " ▄▄███▄▄ \n" +
-            "█████████\n" +
-            "██▄▄█▄▄██\n" +
-            " ▄▀ ▄ ▀▄ \n" +
-            "  ▀   ▀  ",
-            " ▄▄███▄▄ \n" +
-            "█████████\n" +
-            "██▄▄█▄▄██\n" +
-            " ▄▀ ▄ ▀▄ \n" +
-            "▀       ▀" };
-        public static readonly string[] SQUID = new string[]
-        {
-            "   ▄█▄   \n" +
-            " ▄█████▄ \n" +
-            "███▄█▄███\n" +
-            "  ▄▀▄▀▄  \n" +
-            " ▀ ▀ ▀ ▀ ",
-            "   ▄█▄   \n" +
-            " ▄█████▄ \n" +
-            "███▄█▄███\n" +
-            " ▄▀   ▀▄ \n" +
-            "  ▀   ▀  " };
-        const string UFO = 
-            "    ▄▄█▄▄    \n" +
-            "  ▄███████▄  \n" +
-            "▄██▄█▄█▄█▄██▄\n" +
-            "  ▀█▀ ▀ ▀█▀  ";
-
-        #endregion
-
         #region [Attributs]
         /// <summary>
         /// Id de l'invader
@@ -91,7 +46,7 @@ namespace P_SpaceInvaders.GameObjects
         public void Fire()
         {
             //Ajout d'une balle qui se génère à partir du centre de l'objet et qui va vers le haut
-            Game.Bullets.Add(new Bullet(Game, "█", PosX + WidthChars / 2, PosY + HeightChars , Direction.Down));
+            Game.Bullets.Add(new Bullet(Game, ObjectChars.BULLETINVADER, PosX + WidthChars / 2, PosY + HeightChars , Direction.Down));
         }
         /// <summary>
         /// Déplace l'invader dans une direction détérminée

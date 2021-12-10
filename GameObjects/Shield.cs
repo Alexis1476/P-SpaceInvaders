@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P_SpaceInvaders.GameObjects
 {
-    internal class Shield : GameObject
+    class Shield : GameObject
     {
         public Shield(Game game, string chars) : base(game, chars)
         {

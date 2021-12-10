@@ -95,7 +95,6 @@ namespace P_SpaceInvaders
         /// Timer qui détermine le moment pour déplacer l'essaim d'invaders
         /// </summary>
         System.Timers.Timer _timerToMoveInvader;
-        Bullet _bullet;
         #endregion
 
         #region [Constructeurs]
@@ -110,7 +109,7 @@ namespace P_SpaceInvaders
             _map = new Map(mapWidth, mapHeight);
             _invaders = new List<Invader>();
             _bullets = new List<Bullet>();
-            _ship = new Ship(this, Ship.CharShip, SHIPLIFES);
+            _ship = new Ship(this, ObjectChars.CHARSHIP, SHIPLIFES);
             _random = new Random();
             _difficulty = difficulty;
 
@@ -448,17 +447,17 @@ namespace P_SpaceInvaders
                 //Première ligne d'invaders
                 if (i < _INVADERSPERCOLUMNS)
                 {
-                    Invaders.Add(new Invader(i, this, Invader.OCTOPUS));
+                    Invaders.Add(new Invader(i, this, ObjectChars.OCTOPUS));
                 }
                 //Deuxième ligne d'invaders
                 else if (i >= _INVADERSPERCOLUMNS && i < _INVADERSPERCOLUMNS * 2)
                 {
-                    Invaders.Add(new Invader(i, this, Invader.SQUID));
+                    Invaders.Add(new Invader(i, this, ObjectChars.SQUID));
                 }
                 //Dernières lignes
                 else
                 {
-                    Invaders.Add(new Invader(i, this, Invader.CRAB));
+                    Invaders.Add(new Invader(i, this, ObjectChars.CRAB));
                 }
             }
             #endregion
