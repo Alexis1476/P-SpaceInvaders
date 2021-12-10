@@ -4,7 +4,9 @@
 ///Description: Gère le déroulement du program principal
 using P_SpaceInvaders.MenuObjects;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Threading;
 
@@ -19,15 +21,19 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Largeur de la fenêtre
         /// </summary>
-        static int _WINDOWWIDTH = 150;
+        const int _WINDOWWIDTH = 150;
         /// <summary>
         /// Hauteur de la fenêtre
         /// </summary>
-        static int _WINDOWHEIGHT = 70;
+        const int _WINDOWHEIGHT = 70;
         /// <summary>
         /// Path du fichier de scores
         /// </summary>
-        static string _PATHSCORES = ".\\score.txt";
+        const string _PATHSCORES = ".\\score.txt";
+        /// <summary>
+        /// Nombre de Scores à enregistrer
+        /// </summary>
+        const int _NBHIGHSCORE = 10;
         #endregion
 
         #region [Attributs]
@@ -238,7 +244,7 @@ namespace P_SpaceInvaders
             string nick = Console.ReadLine();
 
             //Enregistre le score dans un fichier texte
-            SaveScore(".\\score.txt", nick, _game.Score.ToString());
+            SaveScore(_PATHSCORES, nick, _game.Score);
 
             //Demande à l'utilisateur s'il souahite continuer une nouvelle partie
             Menu.WriteCenteredText("Press 'Esc' to return to main menu\n Press 'Enter' to play again");
@@ -263,7 +269,7 @@ namespace P_SpaceInvaders
         /// <param name="filePath">Chemin + nom du fichier texte</param>
         /// <param name="nick">Nom du joueur</param>
         /// <param name="score">Score</param>
-        private static void SaveScore(string filePath, string nick, string score)
+        private static void SaveScore(string filePath, string nick, int score)
         {
             //Si le fichier n'existe pas
             if (File.Exists(filePath) == false)
@@ -272,9 +278,50 @@ namespace P_SpaceInvaders
                 StreamWriter createFile = new StreamWriter(filePath);
                 createFile.Close();
             }
-            StreamWriter writeInfile = new StreamWriter(filePath, append: true);
-            writeInfile.WriteLine(nick + "\t" + score);
-            writeInfile.Close();
+            //Liste de scores existantes
+            List<Score> scores = new List<Score>();
+
+            //StreamReader pour lire le fichier de scores
+            StreamReader sr = new StreamReader(filePath); 
+
+            //Variable pour lire chaque ligne
+            string line = "";
+
+            //Tant que le streamReader n'arrive pas à la fin du texte
+            while ((line = sr.ReadLine()) != null)
+            {
+                //Tableau de string [0] = nickName [1] = score
+                string [] lineArray = line.Split('\t');
+
+                //Ajoute les scores dans la liste
+                scores.Add(new Score(lineArray[0], Convert.ToInt32(lineArray[1])));
+            }
+            //Ferme le streamReader
+            sr.Close();
+
+            //Ajout le Score actuel à la liste
+            scores.Add(new Score(nick, score));
+
+            //Trie les Scores par ordre décroissant
+            scores = scores.OrderByDescending(x => x.ScorePoints).ToList();
+
+            //StreamWriter pour écrire dans le fichier
+            StreamWriter sw = new StreamWriter(filePath);
+            for(int i = 0; i < _NBHIGHSCORE; i++)
+            {
+                //Si la liste n'a pas autant de scores enregistrés
+                if (i == scores.Count)
+                {
+                    break;
+                }
+                else
+                {
+                    //Ecris le score dans le fichier texte
+                    sw.WriteLine(scores[i].NickName + "\t" + scores[i].ScorePoints);
+                }             
+            }
+            //Ferme le StreamWriter
+            sw.Close();
         }
         /// <summary>
         /// Initialise une partie et redimonsionne la fenêtre

@@ -331,40 +331,44 @@ namespace P_SpaceInvaders
                     //Verifier si les balles touchent les invaders
                     for (int j = 0; j < Invaders.Count; j++)
                     {
-                        //Si la balle touche un invader et si ce n'est pas une balle d'un invader
-                        if (Invaders[j].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) && Bullets[i].Direction != Direction.Down ||
-                            Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY) && Bullets[i].Direction != Direction.Down)
+                        //S'il y a au moins une balle
+                        if (_bullets.Count!=0)
                         {
-                            //Réproduit l'effet de son
-                            Program.PlaySound(_explosionSound);
+                            //Si la balle touche un invader et si ce n'est pas une balle d'un invader
+                            if (Invaders[j].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) && Bullets[i].Direction != Direction.Down ||
+                                Invaders[j].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY) && Bullets[i].Direction != Direction.Down)
+                            {
+                                //Réproduit l'effet de son
+                                Program.PlaySound(_explosionSound);
 
-                            //La balle impacte un invader
-                            impactInvader = true;
+                                //La balle impacte un invader
+                                impactInvader = true;
 
-                            //Effacement de la balle de l'écran
-                            Bullets[i].Delete();
+                                //Effacement de la balle de l'écran
+                                Bullets[i].Delete();
 
-                            //Effacement de l'invader de l'écran et de la liste
-                            Invaders[j].Delete();
-                            Invaders.RemoveAt(j--);
-                        }
-                        //Si la balle touche le joueur
-                        else if (_ship != null && Ship.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY))
-                        {
-                            //Impact à true
-                            impact = true;
+                                //Effacement de l'invader de l'écran et de la liste
+                                Invaders[j].Delete();
+                                Invaders.RemoveAt(j--);
+                            }
+                            //Si la balle touche le joueur
+                            else if (_ship != null && Ship.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY))
+                            {
+                                //Impact à true
+                                impact = true;
 
-                            //Supprime la balle de la liste
-                            Bullets.RemoveAt(i);
+                                //Supprime la balle de la liste
+                                Bullets.RemoveAt(i);
 
-                            //Réproduit l'effet de son
-                            Program.PlaySound(_deathSound);
-                        }
-                        //Si la balle n'impacte pas
-                        else if (!impactInvader && !impact)
-                        {
-                            Bullets[i].ReDraw();
-                        }
+                                //Réproduit l'effet de son
+                                Program.PlaySound(_deathSound);
+                            }
+                            //Si la balle n'impacte pas
+                            else if (!impactInvader && !impact)
+                            {
+                                Bullets[i].ReDraw();
+                            }
+                        }                      
                     }
                     //Si la balle impacte un invader
                     if (impactInvader)

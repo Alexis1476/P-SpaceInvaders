@@ -117,8 +117,8 @@ namespace P_SpaceInvaders.MenuObjects
             {
                 using (StreamReader sr = new StreamReader(_pathFile))
                 {
-                    WriteCenteredText(sr.ReadLine());
-                }             
+                    WriteCenteredText(sr.ReadToEnd());
+                }
             }
         }
         /// <summary>
