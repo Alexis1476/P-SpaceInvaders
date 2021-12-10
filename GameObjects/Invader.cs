@@ -2,16 +2,12 @@
 ///Auteur : Alexis Rojas
 ///Date : 26.11.2021
 ///Description: Class qui permet de créer un ennemi (Invader)
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace P_SpaceInvaders.GameObjects
 {
+    /// <summary>
+    /// Permet de créer des ennemis (Invader) avec un tableau de frames
+    /// </summary>
     class Invader : MovingObject
     {
         #region Constantes
@@ -59,15 +55,14 @@ namespace P_SpaceInvaders.GameObjects
 
         #endregion
 
-        #region Attributs
+        #region [Attributs]
+        /// <summary>
+        /// Id de l'invader
+        /// </summary>
         int _id;
         #endregion
 
-        #region Constructeurs
-        public Invader(int id, Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
-        {
-            _id = id;
-        }
+        #region [Constructeurs]
         public Invader(int id, Game game, string chars) : base(game, chars)
         {
             _id = id;
@@ -78,7 +73,10 @@ namespace P_SpaceInvaders.GameObjects
         }
         #endregion
 
-        #region Getteurs et setteurs
+        #region [Propriétés des attributs]
+        /// <summary>
+        /// Propriétés du membre _id
+        /// </summary>
         public int Id
         {
             get { return _id; }
@@ -86,12 +84,19 @@ namespace P_SpaceInvaders.GameObjects
         }
         #endregion
 
-        #region Methodes
+        #region [Methodes]
+        /// <summary>
+        /// Permet à l'invader de tirer
+        /// </summary>
         public void Fire()
         {
             //Ajout d'une balle qui se génère à partir du centre de l'objet et qui va vers le haut
-            Game.Bullets.Add(new Bullet(Game, "|\nv", PosX + WidthChars / 2, PosY + 1, Direction.Down));
+            Game.Bullets.Add(new Bullet(Game, "█", PosX + WidthChars / 2, PosY + HeightChars , Direction.Down));
         }
+        /// <summary>
+        /// Déplace l'invader dans une direction détérminée
+        /// </summary>
+        /// <param name="direction">Direction</param>
         public new void Move(Direction direction)
         {
             switch (direction)

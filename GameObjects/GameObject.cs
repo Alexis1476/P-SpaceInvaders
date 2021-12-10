@@ -7,9 +7,12 @@ using System.IO;
 
 namespace P_SpaceInvaders.GameObjects
 {
+    /// <summary>
+    /// Class parent de tous les objets du jeu qui permet d'afficher l'objet crée et de vérifier ses positions
+    /// </summary>
     class GameObject
     {
-        #region Attributs
+        #region [Attributs]
         /// <summary>
         /// Partie à laquelle l'objet appartient
         /// </summary>
@@ -23,7 +26,7 @@ namespace P_SpaceInvaders.GameObjects
         /// </summary>
         int _posY;
         /// <summary>
-        /// Image de l'objet faite avec des caractères
+        /// String représenant l'objet
         /// </summary>
         string _chars;
         /// <summary>
@@ -34,11 +37,24 @@ namespace P_SpaceInvaders.GameObjects
         /// Hauteur de l'objet
         /// </summary>
         int _heightChars;
+        /// <summary>
+        /// Tableau de string qui répresente les frames
+        /// </summary>
         string[] _frames;
-        int _indicFrame;
+        /// <summary>
+        /// Indique le frame à afficher
+        /// </summary>
+        int _frame;
         #endregion
 
-        #region Constructeurs
+        #region [Constructeurs]
+        /// <summary>
+        /// Constructeur par game, caractères, posX et posY
+        /// </summary>
+        /// <param name="game">Game</param>
+        /// <param name="chars">String représenant l'objet</param>
+        /// <param name="posX">Position en X</param>
+        /// <param name="posY">Position en Y</param>
         public GameObject(Game game, string chars, int posX, int posY)
         {
             _game = game;
@@ -47,12 +63,22 @@ namespace P_SpaceInvaders.GameObjects
             _posY = posY;
             CalculateDimensionsObject(_chars);
         }
+        /// <summary>
+        /// Constructeur par game et caractères
+        /// </summary>
+        /// <param name="game">Game</param>
+        /// <param name="chars">String représenant l'objet</param>
         public GameObject(Game game, string chars)
         {
             _game = game;
             _chars = chars;
             CalculateDimensionsObject(_chars);
         }
+        /// <summary>
+        /// Constructeur par game et par tableau de string (frames)
+        /// </summary>
+        /// <param name="game">Game</param>
+        /// <param name="frames">Tableau de string représentant les frames</param>
         public GameObject(Game game, string[] frames)
         {
             _game = game;
@@ -61,33 +87,51 @@ namespace P_SpaceInvaders.GameObjects
         }
         #endregion
 
-        #region Getteurs et setteurs
+        #region [Propriétés des attributs]
+        /// <summary>
+        /// Propriétés membre _game
+        /// </summary>
         public Game Game
         {
             get { return _game; }
         }
+        /// <summary>
+        /// Propriétés membre _posX
+        /// </summary>
         public int PosX
         {
             get { return _posX; }
             set { _posX = value; }
         }
+        /// <summary>
+        /// Propriétés membre _posY
+        /// </summary>
         public int PosY
         {
             get { return _posY; }
             set { _posY = value; }
         }
+        /// <summary>
+        /// Propriétés membre _widthChars
+        /// </summary>
         public int WidthChars
         {
             get { return _widthChars; }
         }
+        /// <summary>
+        /// Propriétés membre _heightChars
+        /// </summary>
         public int HeightChars
         {
             get { return _heightChars; }
         }
         #endregion
 
-        #region Methodes
-
+        #region [Methodes]
+        /// <summary>
+        /// Calcule les dimensions de l'objet (Hauteur et largeur)
+        /// </summary>
+        /// <param name="chars">String représenant l'objet</param>
         private void CalculateDimensionsObject(string chars)
         {
             //Calcule la largeur de l'objet
@@ -111,10 +155,15 @@ namespace P_SpaceInvaders.GameObjects
                 _heightChars = y;
             }
         }
+        /// <summary>
+        /// Dessine l'objet dans la console
+        /// </summary>
         public void Draw()
         {
+            //Positionne le curseur
             Console.SetCursorPosition(_posX, _posY);
-            //Si ce n'est qu'un frame
+
+            //S'il n'y a qu'un frame
             if (_chars != null)
             {
                 using (StringReader reader = new StringReader(_chars))
@@ -126,16 +175,25 @@ namespace P_SpaceInvaders.GameObjects
                         if (line != null)
                         {
                             Console.SetCursorPosition(_posX, Console.CursorTop);
+
+                            //Dessine ligne par ligne
                             Console.WriteLine(line);
                         }
                     }
+                    //Tant qu'il n'est pas arrivé à la fin du string
                     while (line != null);
                 }
             }
+            //Si l'objet a des frames
             else if (_frames != null)
             {
-                if (++_indicFrame == _frames.Length) { _indicFrame = 0; }
-                using (StringReader reader = new StringReader(_frames[_indicFrame]))
+                //Si l'incrémentation de l'indicateur de frames est égal au nombre de frames
+                if (++_frame == _frames.Length) 
+                {
+                    //Réinitialise l'indicateur du frame à afficher
+                    _frame = 0; 
+                }
+                using (StringReader reader = new StringReader(_frames[_frame]))
                 {
                     string line = "";
                     do
@@ -144,9 +202,12 @@ namespace P_SpaceInvaders.GameObjects
                         if (line != null)
                         {
                             Console.SetCursorPosition(_posX, Console.CursorTop);
+
+                            //Dessine ligne par ligne
                             Console.WriteLine(line);
                         }
                     }
+                    //Tant qu'il n'est pas arrivé à la fin du string
                     while (line != null);
                 }
             }         
@@ -154,7 +215,7 @@ namespace P_SpaceInvaders.GameObjects
         /// <summary>
         /// Vérifie si l'objet se trouve entre les coordonnées de la map
         /// </summary>
-        /// <returns>True si l'objet n'est pas sortie de la map</returns>
+        /// <returns>True si l'objet n'est pas sortie de la map; sinon false</returns>
         public bool IsInMap()
         {
             //Si la PosY de l'objet se trouve entre les coordonnées de la map
@@ -164,8 +225,23 @@ namespace P_SpaceInvaders.GameObjects
             }
             else { return false; }
         }
+        /// <summary>
+        /// Vérifie si l'objet se trouve à une position spécifiée
+        /// </summary>
+        /// <param name="posX">Position en X</param>
+        /// <param name="posY">Position en Y</param>
+        /// <returns></returns>
         public bool IsAtCoordinates(int posX, int posY)
         {
+            //for (int y = 0; y < HeightChars - 1 ; y++)
+            //{
+            //    if (posY == PosY + y && posX >= PosX && posX < PosX + WidthChars ||
+            //    posY == PosY + y && posX >= PosX && posX < PosX + WidthChars)
+            //    {
+            //        return true;
+            //    }
+            //}
+            //return false;
             return posY == PosY && posX >= PosX && posX < PosX + WidthChars ||
                 posY == PosY + HeightChars - 2 && posX >= PosX && posX < PosX + WidthChars;
         }
