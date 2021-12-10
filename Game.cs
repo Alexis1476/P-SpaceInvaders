@@ -81,8 +81,8 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Timer qui détermine le moment pour tirer
         /// </summary>
-        static System.Timers.Timer _timerToShoot;
-        static System.Timers.Timer _timerToMoveInvader;
+        System.Timers.Timer _timerToShoot;
+        System.Timers.Timer _timerToMoveInvader;
         #endregion
 
         #region Constructeurs
@@ -104,14 +104,14 @@ namespace P_SpaceInvaders
             #endregion
 
             #region Paramètres du Timer
-            _timerToShoot = new System.Timers.Timer(800);
+            _timerToShoot = new System.Timers.Timer(1000);
             _timerToShoot.Elapsed += OnTimedEvent;
             _timerToShoot.AutoReset = true;
             _timerToShoot.Enabled = true;
             #endregion
 
             #region Paramètres du timer mouveInvader
-            _timerToMoveInvader = new System.Timers.Timer(250);
+            _timerToMoveInvader = new System.Timers.Timer(200);
             _timerToMoveInvader.Elapsed += OnTimedEventMoveInvader;
             _timerToMoveInvader.AutoReset = true;
             _timerToMoveInvader.Enabled = true;
@@ -136,17 +136,21 @@ namespace P_SpaceInvaders
                     case ConsoleKey.Escape:
                         //Pause active
                         bool pause = true;
+                        _timerToMoveInvader.Stop();
+                        _timerToShoot.Stop();
 
                         //tant que la variable pause ne soit pas en false
                         while (pause)
                         {
-                            switch (Console.ReadKey().Key)
+                            switch (Console.ReadKey(false).Key)
                             {
                                 case ConsoleKey.Escape:
                                     Program.MainMenu.DrawAllMenu();
                                     break;
                                 case ConsoleKey.Enter:
                                     pause = false;
+                                    _timerToMoveInvader.Start();
+                                    _timerToShoot.Start();
                                     break;
                             }
                         }

@@ -292,7 +292,7 @@ namespace P_SpaceInvaders
             Console.Clear();
 
             //Instance membre _game
-            _game = new Game(_WINDOWWIDTH, _WINDOWHEIGHT, _difficulty);
+             _game = new Game(_WINDOWWIDTH, _WINDOWHEIGHT, _difficulty);
 
             //Redimensionnement de la fenêtre et modif du fontSize
             ConsoleHelper.SetCurrentFont("Consolas", 10);
