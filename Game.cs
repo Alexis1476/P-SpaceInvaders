@@ -28,6 +28,14 @@ namespace P_SpaceInvaders
         /// Vies du joueur
         /// </summary>
         public readonly int SHIPLIFES = 3;
+        /// <summary>
+        /// Temps en millisecondes pour permettre au vaisseau de tirer
+        /// </summary>
+        const int _TIMETOSHOOT = 1000;
+        /// <summary>
+        /// Temps en millisecondes pour le déplacement des invaders
+        /// </summary>
+        const int _TIMETOMOVEINVADER = 200;
         #endregion
 
         #region [Attributs]
@@ -86,11 +94,12 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Timer qui détermine le moment pour tirer
         /// </summary>
-        System.Timers.Timer _timerToShoot;
+        Timer _timerToShoot;
         /// <summary>
         /// Timer qui détermine le moment pour déplacer l'essaim d'invaders
         /// </summary>
-        System.Timers.Timer _timerToMoveInvader;
+        Timer _timerToMoveInvader;
+        int _combo;
         #endregion
 
         #region [Constructeurs]
@@ -108,6 +117,7 @@ namespace P_SpaceInvaders
             _ship = new Ship(this, AsciiChars.CHARSHIP, SHIPLIFES);
             _random = new Random();
             _difficulty = difficulty;
+            _combo = 1;
 
             //Initialise la position du vaisseau
             ShipSpawnPos();
@@ -122,14 +132,14 @@ namespace P_SpaceInvaders
             #endregion
 
             #region Paramètres du Timer
-            _timerToShoot = new System.Timers.Timer(1000);
+            _timerToShoot = new Timer(_TIMETOSHOOT);
             _timerToShoot.Elapsed += OnTimedEvent;
             _timerToShoot.AutoReset = true;
             _timerToShoot.Enabled = true;
             #endregion
 
             #region [Paramètres du timer mouveInvader]
-            _timerToMoveInvader = new System.Timers.Timer(200);
+            _timerToMoveInvader = new Timer(_TIMETOMOVEINVADER);
             _timerToMoveInvader.Elapsed += OnTimedEventMoveInvader;
             _timerToMoveInvader.AutoReset = true;
             _timerToMoveInvader.Enabled = true;
@@ -332,7 +342,7 @@ namespace P_SpaceInvaders
                     for (int j = 0; j < Invaders.Count; j++)
                     {
                         //S'il y a au moins une balle
-                        if (_bullets.Count!=0)
+                        if (_bullets.Count != 0)
                         {
                             //Si la balle touche un invader et si ce n'est pas une balle d'un invader
                             if (Invaders[j].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) && Bullets[i].Direction != Direction.Down ||
@@ -368,7 +378,7 @@ namespace P_SpaceInvaders
                             {
                                 Bullets[i].ReDraw();
                             }
-                        }                      
+                        }
                     }
                     //Si la balle impacte un invader
                     if (impactInvader)
@@ -377,7 +387,7 @@ namespace P_SpaceInvaders
                         Bullets.RemoveAt(i--);
 
                         //Incrémentation du score
-                        _score += 20;
+                        _score += (20 * _combo++);
                     }
                     //Si la balle impacte contre le joueur
                     if (impact)
@@ -391,6 +401,9 @@ namespace P_SpaceInvaders
                         else
                         {
                             InitPosShip();
+
+                            //Reinitialisation du combo
+                            _combo = 1;
                         }
                     }
                 }
@@ -517,7 +530,18 @@ namespace P_SpaceInvaders
         /// <returns>True si la partie continue</returns>
         public bool IsPlaying()
         {
-            return Ship != null && _invaders.Count > 0;
+            //Si l'invader n'est pas mort et s'il reste des invaders vivants
+            if (Ship != null && _invaders.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                //Arret des timers
+                _timerToMoveInvader.Stop();
+                _timerToShoot.Stop();
+                return false;
+            }
         }
         /// <summary>
         /// Permet au joueur de tirer quand le timer arrive aux millisecondes spécifiés

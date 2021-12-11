@@ -150,17 +150,17 @@ namespace P_SpaceInvaders
                     //Si difficulté = facil
                     if (optionSwitch.Index == 0)
                     {
-                        _difficulty = 10;
+                        _difficulty = 8;
                     }
                     //Sinon, si difficulté = normal
                     else if (optionSwitch.Index == 1)
                     {
-                        _difficulty = 5;
+                        _difficulty = 4;
                     }
                     //Sinon difficulté = hard
                     else
                     {
-                        _difficulty = 2;
+                        _difficulty = 1;
                     }
                 }
             }
@@ -217,7 +217,7 @@ namespace P_SpaceInvaders
                             Console.Write(" ");
                         }                       
                     }
-                    Thread.Sleep(_difficulty);
+                    Thread.Sleep(2);
                 }
 
                 //Affichage GameOver et demande à l'utilisateur s'il souhaite continuer

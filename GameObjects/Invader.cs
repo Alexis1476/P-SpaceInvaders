@@ -65,7 +65,7 @@ namespace P_SpaceInvaders.GameObjects
                     PosX += 1;
                     break;
                 case Direction.Down:
-                    PosY += 5;
+                    PosY += HeightChars;
                     break;
             }
         }
