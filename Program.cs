@@ -267,7 +267,7 @@ namespace P_SpaceInvaders
                     case ConsoleKey.Escape:
                         _mainMenu.DrawAllMenu();
                         break;
-                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
                         exit = true;
                         break;
                 }

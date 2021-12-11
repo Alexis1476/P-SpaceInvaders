@@ -21,3 +21,7 @@ F:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitShip.
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitInvader.wav
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\menuChange.wav
 E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\Ressources\hitShip.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.exe.manifest
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\bin\Debug\P-SpaceInvaders.application
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\obj\Debug\P-SpaceInvaders.exe.manifest
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\obj\Debug\P-SpaceInvaders.application
