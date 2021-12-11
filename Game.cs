@@ -363,7 +363,23 @@ namespace P_SpaceInvaders
                     //Variable bool pour vérifier l'impact de la balle
                     bool impact = false;
                     bool impactInvader = false;
+                    bool impactShield = false;
 
+                    //Verifier si la balle impacte un bouclier
+                    for (int k = 0; k < _shields.Count; k++)
+                    {
+                        //Si la balle touche le bouclier
+                        if (_shields[k].IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) || _shields[k].IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY))
+                        {
+                            //Efface le bouclier de la liste et de l'écran
+                            _shields[k].Delete();
+                            _shields.RemoveAt(k--);
+                            impactShield = true;
+
+                            //Effacement de la balle de l'écran
+                            Bullets[i].Delete();
+                        }
+                    }
                     //Verifier si les balles touchent les invaders
                     for (int j = 0; j < Invaders.Count; j++)
                     {
@@ -400,7 +416,7 @@ namespace P_SpaceInvaders
                                 Program.PlaySound(_deathSound);
                             }
                             //Si la balle n'impacte pas
-                            else if (!impactInvader && !impact)
+                            else if (!impactInvader && !impact && !impactShield)
                             {
                                 Bullets[i].ReDraw();
                             }
@@ -415,8 +431,8 @@ namespace P_SpaceInvaders
                         //Incrémentation du score
                         _score += (20 * _combo++);
                     }
-                    //Si la balle impacte contre le joueur
-                    if (impact)
+                    //Si la balle impacte le joueur
+                    else if (impact)
                     {
                         //Si la décrémentation des lives du joueur == 0
                         if (--_ship.Lives == 0)
@@ -431,6 +447,11 @@ namespace P_SpaceInvaders
                             //Reinitialisation du combo
                             _combo = 1;
                         }
+                    }
+                    else if (impactShield)
+                    {
+                        //On efface la balle de la liste
+                        Bullets.RemoveAt(i--);
                     }
                 }
                 //Si la balle est sortie de la map

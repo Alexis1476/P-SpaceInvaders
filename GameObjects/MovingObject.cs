@@ -94,7 +94,7 @@ namespace P_SpaceInvaders.GameObjects
         /// <summary>
         /// Efface l'objet de la console
         /// </summary>
-        public void Delete()
+        public new void Delete()
         {
             //Efface l'objet de sa position précédente
             Console.SetCursorPosition(LastPosX, LastPosY);

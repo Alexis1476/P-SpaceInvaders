@@ -129,6 +129,20 @@ namespace P_SpaceInvaders.GameObjects
 
         #region [Methodes]
         /// <summary>
+        /// Efface l'objet de la console
+        /// </summary>
+        public void Delete()
+        {
+            //Efface l'objet de sa position précédente
+            Console.SetCursorPosition(PosX, PosY);
+
+            for (int i = 0; i < HeightChars - 1; i++)
+            {
+                Console.SetCursorPosition(PosX, PosY);
+                Console.Write(new string(' ', WidthChars));
+            }
+        }
+        /// <summary>
         /// Calcule les dimensions de l'objet (Hauteur et largeur)
         /// </summary>
         /// <param name="chars">String représenant l'objet</param>

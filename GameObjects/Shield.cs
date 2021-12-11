@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿///ETML
+///Auteur : Alexis Rojas
+///Date : 26.11.2021
+///Description: Class qui permet de créer un bouclier
 namespace P_SpaceInvaders.GameObjects
 {
+    /// <summary>
+    /// Permet de créer un bouclier
+    /// </summary>
     class Shield : GameObject
     {
-        public const string CHARSHIELD = "■";
+        /// <summary>
+        /// Constructeur par game et par caractère
+        /// </summary>
+        /// <param name="game">Game</param>
+        /// <param name="chars">String réprésentant l'objet</param>
         public Shield(Game game, string chars) : base(game, chars)
         {
 
         }
-        #region [Attributs]
-
-        #endregion
-
-        #region [Constructeurs]
-
-        #endregion
-
-        #region [Methodes]
-
-        #endregion
     }
 }
