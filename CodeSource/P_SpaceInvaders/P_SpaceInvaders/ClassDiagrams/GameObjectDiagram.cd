@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="P_SpaceInvaders.GameObjects.Bullet">
+    <Position X="0.5" Y="11.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAACAAAAAEACAAAAAAAABIAAAAAAA=</HashCode>
+      <FileName>GameObjects\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.GameObject">
+    <Position X="6.25" Y="0.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAgAQAAAEwAAAAI8gIAAAAAAAgAEEQAQ=</HashCode>
+      <FileName>GameObjects\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.Invader">
+    <Position X="9.25" Y="11.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAAAAAAAABAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Invader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.MovingObject">
+    <Position X="4.75" Y="7" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAIAAgAAAAAAAAAAAAAEAAAAAABBAAABAAAA=</HashCode>
+      <FileName>GameObjects\MovingObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.Shield">
+    <Position X="13" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Shield.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.Ship">
+    <Position X="5.75" Y="11.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAQAAAAAEAAACAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Ship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

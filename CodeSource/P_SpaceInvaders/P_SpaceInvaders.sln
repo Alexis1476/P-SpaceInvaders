@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_SpaceInvaders", "P_SpaceInvaders\P_SpaceInvaders.csproj", "{23FD6993-567C-467C-A69C-6D0AF4804E1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_SpaceInvaders.Tests", "P_SpaceInvaders.Tests\P_SpaceInvaders.Tests.csproj", "{E8F6D07E-DE46-49A8-AADB-16C5C6022A04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23FD6993-567C-467C-A69C-6D0AF4804E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FD6993-567C-467C-A69C-6D0AF4804E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FD6993-567C-467C-A69C-6D0AF4804E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FD6993-567C-467C-A69C-6D0AF4804E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8F6D07E-DE46-49A8-AADB-16C5C6022A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8F6D07E-DE46-49A8-AADB-16C5C6022A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8F6D07E-DE46-49A8-AADB-16C5C6022A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8F6D07E-DE46-49A8-AADB-16C5C6022A04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A4579F2-84F1-45DE-9980-9BB95C53846F}
+	EndGlobalSection
+EndGlobal

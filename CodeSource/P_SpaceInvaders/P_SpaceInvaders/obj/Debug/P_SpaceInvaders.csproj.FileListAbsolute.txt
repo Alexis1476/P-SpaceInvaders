@@ -1,0 +1,16 @@
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\Ressources\hitInvader.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\Ressources\hitShip.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\Ressources\laserShoot.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\Ressources\menuChange.wav
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\P_SpaceInvaders.exe.config
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\P_SpaceInvaders.exe
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\P_SpaceInvaders.pdb
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\obj\Debug\P_SpaceInvaders.csproj.AssemblyReference.cache
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\obj\Debug\P_SpaceInvaders.csproj.SuggestedBindingRedirects.cache
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\obj\Debug\P_SpaceInvaders.csproj.CoreCompileInputs.cache
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\obj\Debug\P_SpaceInvaders.exe
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\obj\Debug\P_SpaceInvaders.pdb
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\P_SpaceInvaders.exe.manifest
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\bin\Debug\P_SpaceInvaders.application
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\obj\Debug\P_SpaceInvaders.exe.manifest
+E:\ETML\CFC\Pratique\Projets\P_Dev\P-SpaceInvaders\CodeSource\P_SpaceInvaders\P_SpaceInvaders\obj\Debug\P_SpaceInvaders.application
