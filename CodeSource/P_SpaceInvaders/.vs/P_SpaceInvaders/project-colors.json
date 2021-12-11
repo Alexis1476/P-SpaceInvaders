@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "23fd6993-567c-467c-a69c-6d0af4804e1e": {
+      "ProjectGuid": "23fd6993-567c-467c-a69c-6d0af4804e1e",
+      "DisplayName": "P_SpaceInvaders",
+      "ColorIndex": 0
+    },
+    "e8f6d07e-de46-49a8-aadb-16c5c6022a04": {
+      "ProjectGuid": "e8f6d07e-de46-49a8-aadb-16c5c6022a04",
+      "DisplayName": "P_SpaceInvaders.Tests",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
