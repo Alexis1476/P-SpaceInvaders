@@ -82,14 +82,25 @@ namespace P_SpaceInvaders
             "  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
             "░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
             "      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
-            "                                                     ░                   ";
+            "                                                     ░                   \n\n";
+        /// <summary>
+        /// Titre You Win!
+        /// </summary>
+        public const string TITLEYOUWIN =
+            "                                                           \n " +
+            "▓██   ██▓ ▒█████   █    ██     █     █░ ██▓ ███▄    █  ▐██▌\n" +
+            " ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▓█░ █ ░█░▓██▒ ██ ▀█   █  ▐██▌\n" +
+            "  ▒██ ██░▒██░  ██▒▓██  ▒██░   ▒█░ █ ░█ ▒██▒▓██  ▀█ ██▒ ▐██▌\n" +
+            "  ░ ▐██▓░▒██   ██░▓▓█  ░██░   ░█░ █ ░█ ░██░▓██▒  ▐▌██▒ ▓██▒\n" +
+            "  ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░░██▒██▓ ░██░▒██░   ▓██░ ▒▄▄ \n" +
+            "   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒    ░ ▓░▒ ▒  ░▓  ░ ▒░   ▒ ▒  ░▀▀▒\n" +
+            " ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░      ▒ ░ ░   ▒ ░░ ░░   ░ ▒░ ░  ░\n" +
+            " ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░      ░   ░   ▒ ░   ░   ░ ░     ░\n" +
+            " ░ ░         ░ ░     ░            ░     ░           ░  ░   \n\n";
+
         #endregion
 
         #region [Textes]
-        /// <summary>
-        /// Question lorsque la pertie est finir
-        /// </summary>
-        public const string QUESTION = "Souhaitez-vous continuer le jeu? \n (Enter pour continuer) (Esc pour sortir au ménu principal)";
         /// <summary>
         /// Texte déscriptif du projet
         /// </summary>

@@ -233,21 +233,32 @@ namespace P_SpaceInvaders
             //Repositionnement du curseur
             Console.SetCursorPosition(0, 0);
 
-            //Affichage titre GameOver
-            Console.ForegroundColor = ConsoleColor.Red;
-            Menu.WriteCenteredText(AsciiChars.TITLEGAMEOVER);
+            //Si le joueur a perdu
+            if (_game.Ship == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Menu.WriteCenteredText(AsciiChars.TITLEGAMEOVER);
+            }
+            //Si le joueur a gagné
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Menu.WriteCenteredText(AsciiChars.TITLEYOUWIN);
+            }
             Console.ResetColor();
 
             //Demande le pseudo à l'utilisateur
-            Menu.WriteCenteredText("Votre score : " + _game.Score);
-            Console.Write("Votre pseudo : ");
+            Menu.WriteCenteredText("Your score : " + _game.Score);
+            string askName = "Your nickname : ";
+            Console.SetCursorPosition((Console.WindowWidth - askName.Length) / 2, Console.CursorTop);
+            Console.Write(askName);
             string nick = Console.ReadLine();
 
             //Enregistre le score dans un fichier texte
             SaveScore(_PATHSCORES, nick, _game.Score);
 
             //Demande à l'utilisateur s'il souahite continuer une nouvelle partie
-            Menu.WriteCenteredText("Press 'Esc' to return to main menu\n Press 'Enter' to play again");
+            Menu.WriteCenteredText("\nPress 'Esc' to return to main menu\n Press 'Spacebar' to play again");
             bool exit = false;
             while (!exit)
             {
@@ -260,7 +271,6 @@ namespace P_SpaceInvaders
                         exit = true;
                         break;
                 }
-
             }
         }
         /// <summary>
