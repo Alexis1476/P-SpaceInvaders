@@ -56,7 +56,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Menu scores
         /// </summary>
-        static Menu _menuScore;
+        static Menu _menuHighScore;
         /// <summary>
         /// Indique si le son doit être activé
         /// </summary>
@@ -108,13 +108,13 @@ namespace P_SpaceInvaders
             _mainMenu = new Menu(AsciiChars.MAINTITLE);
             _menuOptions = new Menu(AsciiChars.TITLEOPTIONS, _mainMenu);
             _menuAbout = new Menu(AsciiChars.TITLEABOUT, _mainMenu, AsciiChars.TEXTABOUT);
-            _menuScore = new Menu(AsciiChars.TITLESCORE, _mainMenu);
+            _menuHighScore = new Menu(AsciiChars.TITLESCORE, _mainMenu);
             #endregion
 
             #region [Ajout des options à MainMenu]
             _mainMenu.AddMenuItems(1, "Play", Play);
             _mainMenu.AddMenuItems(2, "Options", _menuOptions.DrawAllMenu);
-            _mainMenu.AddMenuItems(3, "Score", _menuScore.DrawAllMenu);
+            _mainMenu.AddMenuItems(3, "Score", _menuHighScore.DrawAllMenu);
             _mainMenu.AddMenuItems(4, "About", _menuAbout.DrawAllMenu);
             _mainMenu.AddMenuItems(5, "Exit", Exit);
             #endregion
@@ -125,7 +125,7 @@ namespace P_SpaceInvaders
             #endregion
 
             //Ajout fichier .score au ménu score
-            _menuScore.PathFile = _PATHSCORES;
+            _menuHighScore.PathFile = _PATHSCORES;
 
             //Affichage du ménu
             _mainMenu.DrawAllMenu();

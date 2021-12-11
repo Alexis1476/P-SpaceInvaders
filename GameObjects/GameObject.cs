@@ -233,8 +233,10 @@ namespace P_SpaceInvaders.GameObjects
         /// <returns></returns>
         public bool IsAtCoordinates(int posX, int posY)
         {
+            //Pour i jusqu'à la hauteur de l'objet
             for (int y = 0; y < HeightChars - 1; y++)
             {
+                //Si les positions en X coincident
                 if (posY == PosY + y && posX >= PosX && posX < PosX + WidthChars ||
                 posY == PosY + y && posX >= PosX && posX < PosX + WidthChars)
                 {
@@ -242,8 +244,6 @@ namespace P_SpaceInvaders.GameObjects
                 }
             }
             return false;
-            //return posY == PosY && posX >= PosX && posX < PosX + WidthChars ||
-            //    posY == PosY + HeightChars - 2 && posX >= PosX && posX < PosX + WidthChars;
         }
         #endregion
     }

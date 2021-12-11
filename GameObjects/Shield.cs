@@ -8,9 +8,21 @@ namespace P_SpaceInvaders.GameObjects
 {
     class Shield : GameObject
     {
+        public const string CHARSHIELD = "■";
         public Shield(Game game, string chars) : base(game, chars)
         {
 
         }
+        #region [Attributs]
+
+        #endregion
+
+        #region [Constructeurs]
+
+        #endregion
+
+        #region [Methodes]
+
+        #endregion
     }
 }

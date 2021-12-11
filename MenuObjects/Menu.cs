@@ -400,7 +400,7 @@ namespace P_SpaceInvaders.MenuObjects
                             }
                         }
                         break;
-                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
                         {
                             //Si le ménu a des options
                             if (_menuItems != null)

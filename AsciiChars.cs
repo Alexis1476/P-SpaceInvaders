@@ -11,6 +11,9 @@ namespace P_SpaceInvaders
     public static class AsciiChars
     {
         #region [Titres]
+        /// <summary>
+        /// Titre ménu principal
+        /// </summary>
         public const string MAINTITLE = 
             "                                                                                                                 \n" +
             "  ██████  ██▓███   ▄▄▄       ▄████▄  ▓█████     ██▓ ███▄    █ ██▒   █▓ ▄▄▄      ▓█████▄ ▓█████  ██▀███    ██████ \n" +
@@ -23,6 +26,9 @@ namespace P_SpaceInvaders
             "░  ░  ░  ░░         ░   ▒   ░           ░       ▒ ░   ░   ░ ░     ░░    ░   ▒    ░ ░  ░    ░     ░░   ░ ░  ░  ░  \n" +
             "      ░                 ░  ░░ ░         ░  ░    ░           ░      ░        ░  ░   ░       ░  ░   ░           ░  \n" +
             "                            ░                                     ░              ░                               \n\n";
+        /// <summary>
+        /// Titre ménu d'options
+        /// </summary>
         public const string TITLEOPTIONS = 
             "                                                            \n" +
             " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ \n" +
@@ -34,18 +40,23 @@ namespace P_SpaceInvaders
             "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░\n" +
             "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  \n" +
             "    ░ ░                     ░      ░ ░           ░       ░  \n\n";
-        public const string TITLESCORE = 
-            "                                           \n" +
-            "  ██████  ▄████▄   ▒█████   ██▀███  ▓█████ \n" +
-            "▒██    ▒ ▒██▀ ▀█  ▒██▒  ██▒▓██ ▒ ██▒▓█   ▀ \n" +
-            "░ ▓██▄   ▒▓█    ▄ ▒██░  ██▒▓██ ░▄█ ▒▒███   \n" +
-            "  ▒   ██▒▒▓▓▄ ▄██▒▒██   ██░▒██▀▀█▄  ▒▓█  ▄ \n" +
-            "▒██████▒▒▒ ▓███▀ ░░ ████▓▒░░██▓ ▒██▒░▒████▒\n" +
-            "▒ ▒▓▒ ▒ ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░░ ▒░ ░\n" +
-            "░ ░▒  ░ ░  ░  ▒     ░ ▒ ▒░   ░▒ ░ ▒░ ░ ░  ░\n" +
-            "░  ░  ░  ░        ░ ░ ░ ▒    ░░   ░    ░   \n" +
-            "      ░  ░ ░          ░ ░     ░        ░  ░\n" +
-            "         ░                                 \n\n";
+        /// <summary>
+        /// Titre scores
+        /// </summary>
+        public const string TITLESCORE =
+            "                                                                       \n" +
+            " ██░ ██  ██▓  ▄████  ██░ ██   ██████  ▄████▄   ▒█████   ██▀███  ▓█████ \n" +
+            "▓██░ ██▒▓██▒ ██▒ ▀█▒▓██░ ██▒▒██    ▒ ▒██▀ ▀█  ▒██▒  ██▒▓██ ▒ ██▒▓█   ▀ \n" +
+            "▒██▀▀██░▒██▒▒██░▄▄▄░▒██▀▀██░░ ▓██▄   ▒▓█    ▄ ▒██░  ██▒▓██ ░▄█ ▒▒███   \n" +
+            "░▓█ ░██ ░██░░▓█  ██▓░▓█ ░██   ▒   ██▒▒▓▓▄ ▄██▒▒██   ██░▒██▀▀█▄  ▒▓█  ▄ \n" +
+            "░▓█▒░██▓░██░░▒▓███▀▒░▓█▒░██▓▒██████▒▒▒ ▓███▀ ░░ ████▓▒░░██▓ ▒██▒░▒████ \n" +
+            " ▒ ░░▒░▒░▓   ░▒   ▒  ▒ ░░▒░▒▒ ▒▓▒ ▒ ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░░ ▒░ ░\n" +
+            " ▒ ░▒░ ░ ▒ ░  ░   ░  ▒ ░▒░ ░░ ░▒  ░ ░  ░  ▒     ░ ▒ ▒░   ░▒ ░ ▒░ ░ ░  ░\n" +
+            " ░  ░░ ░ ▒ ░░ ░   ░  ░  ░░ ░░  ░  ░  ░        ░ ░ ░ ▒    ░░   ░    ░   \n" +
+            " ░  ░  ░ ░        ░  ░  ░  ░      ░  ░ ░          ░ ░     ░        ░  ░\n\n";
+        /// <summary>
+        /// Titre à propos de
+        /// </summary>
         public const string TITLEABOUT = 
             "                                             \n" +
             " ▄▄▄       ▄▄▄▄    ▒█████   █    ██ ▄▄▄█████▓\n" +
@@ -57,6 +68,9 @@ namespace P_SpaceInvaders
             "  ▒   ▒▒ ░▒░▒   ░   ░ ▒ ▒░ ░░▒░ ░ ░     ░    \n" +
             "  ░   ▒    ░    ░ ░ ░ ░ ▒   ░░░ ░ ░   ░      \n" +
             "      ░  ░ ░          ░ ░     ░              \n\n";
+        /// <summary>
+        /// Titre gameOver
+        /// </summary>
         public const string TITLEGAMEOVER = 
             "                                                                         \n" +
             "  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
@@ -72,7 +86,13 @@ namespace P_SpaceInvaders
         #endregion
 
         #region [Textes]
+        /// <summary>
+        /// Question lorsque la pertie est finir
+        /// </summary>
         public const string QUESTION = "Souhaitez-vous continuer le jeu? \n (Enter pour continuer) (Esc pour sortir au ménu principal)";
+        /// <summary>
+        /// Texte déscriptif du projet
+        /// </summary>
         public const string TEXTABOUT =
             "╔═══════════════════════════════════════════════════════════╗\n" +
             "║                  P_DEV - Space Invaders                   ║\n" +

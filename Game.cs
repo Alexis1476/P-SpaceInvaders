@@ -36,6 +36,18 @@ namespace P_SpaceInvaders
         /// Temps en millisecondes pour le déplacement des invaders
         /// </summary>
         const int _TIMETOMOVEINVADER = 200;
+        /// <summary>
+        /// Nombre de boucliers
+        /// </summary>
+        const int _NBSHIELDS = 6;
+        /// <summary>
+        /// Colonnes des boucliers
+        /// </summary>
+        const int _WIDTHSHIELDS = 10;
+        /// <summary>
+        /// Lignes de boucliers
+        /// </summary>
+        const int _HEIGHTSHIELDS = 2;
         #endregion
 
         #region [Attributs]
@@ -99,7 +111,14 @@ namespace P_SpaceInvaders
         /// Timer qui détermine le moment pour déplacer l'essaim d'invaders
         /// </summary>
         Timer _timerToMoveInvader;
+        /// <summary>
+        /// Compteur d'invaders tués / Si le joueur meurt _combo se reinitialise
+        /// </summary>
         int _combo;
+        /// <summary>
+        /// Liste de boucliers (Chaque caractère est un bouclier)
+        /// </summary>
+        List<Shield> _shields;
         #endregion
 
         #region [Constructeurs]
@@ -116,6 +135,7 @@ namespace P_SpaceInvaders
             _bullets = new List<Bullet>();
             _ship = new Ship(this, AsciiChars.CHARSHIP, SHIPLIFES);
             _random = new Random();
+            _shields = new List<Shield>();
             _difficulty = difficulty;
             _combo = 1;
 
@@ -124,6 +144,9 @@ namespace P_SpaceInvaders
 
             //Génère les invaders
             GenerateInvaders();
+
+            //Génère les boucliers
+            GenerateShields();
 
             #region [Effets audio]
             _shotSound = new SoundPlayer(".\\Ressources\\laserShoot.wav");
@@ -262,6 +285,9 @@ namespace P_SpaceInvaders
             //Met à jour les positions des invaders
             UpdateInvaders();
         }
+        /// <summary>
+        /// Met à jour les positions des invaders
+        /// </summary>
         public void UpdateInvaders()
         {
             //Si la liste d'invaders est déjà initialisé
@@ -441,11 +467,65 @@ namespace P_SpaceInvaders
                 Ship.Draw();
             }
 
-            //Parcoure la liste d'invaders
+            //Parcourt la liste d'invaders
             foreach (Invader invader in Invaders)
             {
                 //Desinne chaque invader
                 invader.Draw();
+            }
+
+            //Parcourt la liste de bouciers
+            foreach (Shield shield in _shields)
+            {
+                shield.Draw();
+            }
+        }
+        /// <summary>
+        /// Génère les boucliers et calcule leur position
+        /// </summary>
+        public void GenerateShields()
+        {
+            //Agrégation des boucliers à la liste
+            for (int i = 0; i < _NBSHIELDS * _WIDTHSHIELDS * _HEIGHTSHIELDS; i++)
+            {
+                _shields.Add(new Shield(this, "█"));
+            }
+
+            //Positions initials
+            int startPosX = Map.Width / _NBSHIELDS;
+            int startPosY = Map.Height - Ship.HeightChars * 2;
+
+            //Calcul espaces entre les boucliers
+            int rangeShield = Map.Width - startPosX * 2;
+            int spaceBetween = (rangeShield - _NBSHIELDS * _WIDTHSHIELDS) / (_NBSHIELDS - 1);
+
+            //Position du premier bouclier
+            _shields[0].PosX = startPosX;
+            _shields[0].PosY = startPosY;
+
+            //Variables pour le calcul des coordonées
+            int posX = startPosX;
+            int posY = startPosY;
+
+            //Calcul positions des boucliers
+            for (int i = 1; i < _shields.Count; i++)
+            {
+                //Si i arrive à la lareur d'un bouclier
+                if (i % _WIDTHSHIELDS == 0)
+                {
+                    posX += spaceBetween;
+                }
+                //Dès que la boucle fait une ligne de boucliers
+                if (i % (_NBSHIELDS * _WIDTHSHIELDS) == 0) 
+                {
+                    //Incrémente la position en Y
+                    posY++;
+
+                    //Réinitialise las position en X
+                    posX = startPosX - 1;
+                }
+                _shields[i].PosX = ++posX;
+                _shields[i].PosY = posY;          
             }
         }
         /// <summary>
@@ -483,7 +563,7 @@ namespace P_SpaceInvaders
             int lastPosX = Map.Offset * 2;
 
             //Dernière PosY calculé
-            int lastPosY = Map.Offset * 2;
+            int lastPosY = Map.Offset * Invaders[0].HeightChars;
 
             //Parcourt la liste d'invaders
             for (int i = 0; i < Invaders.Count; i++)
