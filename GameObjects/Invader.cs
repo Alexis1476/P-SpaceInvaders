@@ -2,34 +2,36 @@
 ///Auteur : Alexis Rojas
 ///Date : 26.11.2021
 ///Description: Class qui permet de créer un ennemi (Invader)
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace P_SpaceInvaders.GameObjects
 {
+    /// <summary>
+    /// Permet de créer des ennemis (Invader) avec un tableau de frames
+    /// </summary>
     class Invader : MovingObject
     {
-        #region Attributs
+        #region [Attributs]
+        /// <summary>
+        /// Id de l'invader
+        /// </summary>
         int _id;
         #endregion
 
-        #region Constructeurs
-        public Invader(int id, Game game, string chars, int posX, int posY) : base(game, chars, posX, posY)
-        {
-            _id = id;
-        }
+        #region [Constructeurs]
         public Invader(int id, Game game, string chars) : base(game, chars)
         {
             _id = id;
         }
+        public Invader(int id, Game game, string[] frames) : base(game, frames)
+        {
+            _id = id;
+        }
         #endregion
 
-        #region Getteurs et setteurs
+        #region [Propriétés des attributs]
+        /// <summary>
+        /// Propriétés du membre _id
+        /// </summary>
         public int Id
         {
             get { return _id; }
@@ -37,12 +39,19 @@ namespace P_SpaceInvaders.GameObjects
         }
         #endregion
 
-        #region Methodes
+        #region [Methodes]
+        /// <summary>
+        /// Permet à l'invader de tirer
+        /// </summary>
         public void Fire()
         {
             //Ajout d'une balle qui se génère à partir du centre de l'objet et qui va vers le haut
-            Game.Bullets.Add(new Bullet(Game, "§", PosX + WidthChars / 2, PosY + 1, Direction.Down));
+            Game.Bullets.Add(new Bullet(Game, AsciiChars.BULLETINVADER, PosX + WidthChars / 2, PosY + HeightChars , Direction.Down));
         }
+        /// <summary>
+        /// Déplace l'invader dans une direction détérminée
+        /// </summary>
+        /// <param name="direction">Direction</param>
         public new void Move(Direction direction)
         {
             switch (direction)
@@ -56,85 +65,10 @@ namespace P_SpaceInvaders.GameObjects
                     PosX += 1;
                     break;
                 case Direction.Down:
-                    PosY += 1;
+                    PosY += HeightChars;
                     break;
             }
         }
         #endregion
-
-        //#region Attributs
-        //private bool _alive;
-        //private string[] _invaderFrames;
-        //private int _invaderWidth;
-        //#endregion
-
-        //#region Constructors
-        //public Invader(string[] invaderFrames, int posX, int posY) : base(posX, posY)
-        //{
-        //    _invaderFrames = invaderFrames;
-        //}
-        //#endregion
-
-        //#region Methodes
-        ////TESTS
-        //public void UpdateInvader()
-        //{
-        //    int y = 0, x = 0; //pos X et Y des invaders
-        //    int dir = 1; //Direction des invaders
-        //    for (int i = 0; ; i++)
-        //    {
-        //        Thread.Sleep(100);
-        //        x += dir;
-        //        //Si x = windowWidth - lineAlien.lenght
-        //        //Console.MoveBufferArea
-        //        if (x == Console.WindowWidth - 18)
-        //        {
-        //            dir = -1; //Inversion de la direcion
-        //            y++; //Descend un pas en Y
-        //        }
-        //        //Si x=0 Direction positive
-        //        else if (x == 0) { y++; dir = 1; }
-        //        //Affichage invader
-        //        if (i % 6 == 0)
-        //        {
-        //            DrawInvader(InvaderFrames[0], x, y); //Dessiner invader
-        //        }
-        //        else
-        //        {
-        //            DrawInvader(InvaderFrames[1], x, y); //Dessiner invader
-        //        }
-
-        //    }
-        //}
-        //public void DrawInvader(string invader, int x, int y)
-        //{
-        //    using (StringReader reader = new StringReader(invader))
-        //    {
-        //        string line = "";
-        //        do
-        //        {
-        //            line = reader.ReadLine();
-        //            if (line != null)
-        //            {
-        //                Console.SetCursorPosition(x, y);
-        //                Console.WriteLine(line);
-        //            }
-        //            y++;
-        //        }
-        //        while (line != null);
-        //    }
-        //}
-        //#endregion
-
-        //#region Getteurs et setteurs
-        //public string [] InvaderFrames
-        //{
-        //    get { return _invaderFrames; }
-        //}
-        //public int InvaderWidth
-        //{
-        //    get { return _invaderWidth; }
-        //}
-        //#endregion
     }
 }

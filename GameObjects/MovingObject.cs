@@ -3,38 +3,70 @@
 ///Date : 26.11.2021
 ///Description: Class parent de tous les objets du jeu qui peuvent bouger
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P_SpaceInvaders.GameObjects
 {
+    /// <summary>
+    /// Gère les objets qui peuvent se déplacer
+    /// </summary>
     class MovingObject : GameObject
     {
-        #region Attributs
+        #region [Attributs]
+        /// <summary>
+        /// Dernière position en X
+        /// </summary>
         private int _lastPosX;
+        /// <summary>
+        /// Dernière position en Y
+        /// </summary>
         private int _lastPosY;
         #endregion
 
-        #region Constructors
+        #region [Constructors]
+        /// <summary>
+        /// Constructeur par game, caractères, posX, posY
+        /// </summary>
+        /// <param name="game">Game</param>
+        /// <param name="chars">String représenant l'objet</param>
+        /// <param name="x">Position en X</param>
+        /// <param name="y">Position en Y</param>
         public MovingObject(Game game, string chars, int x, int y) : base(game, chars, x, y)
         {
             _lastPosX = x;
             _lastPosY = y;
         }
+        /// <summary>
+        /// Constructeur par game et caractères
+        /// </summary>
+        /// <param name="game">Game</param>
+        /// <param name="chars">String réprésenant l'objet</param>
         public MovingObject(Game game, string chars) : base(game, chars)
+        {
+
+        }
+        /// <summary>
+        /// Constructeur par game, et tableau de frames (String)
+        /// </summary>
+        /// <param name="game">Game</param>
+        /// <param name="frames">Tableau de string représentant les frames</param>
+        public MovingObject(Game game, string[] frames) : base(game, frames)
         {
 
         }
         #endregion
 
-        #region Getteurs et setteurs
+        #region [Propriétés des attributs]
+        /// <summary>
+        /// Propriété membre _lastPosX
+        /// </summary>
         public int LastPosX
         {
             get { return _lastPosX; }
             set { _lastPosX = value; }
         }
+        /// <summary>
+        /// Propriété membre _lastPosY
+        /// </summary>
         public int LastPosY
         {
             get { return _lastPosY; }
@@ -42,7 +74,10 @@ namespace P_SpaceInvaders.GameObjects
         }
         #endregion
 
-        #region Methodes
+        #region [Methodes]
+        /// <summary>
+        /// Redessine l'objet s'il change de position
+        /// </summary>
         public void ReDraw()
         {
             //Si la position a changé
@@ -56,22 +91,35 @@ namespace P_SpaceInvaders.GameObjects
                 LastPosY = PosY;
             }
         }
-        public void Delete()
+        /// <summary>
+        /// Efface l'objet de la console
+        /// </summary>
+        public new void Delete()
         {
             //Efface l'objet de sa position précédente
             Console.SetCursorPosition(LastPosX, LastPosY);
-            Console.Write(new string(' ', WidthChars));
+
+            for (int i = 0; i < HeightChars - 1; i++)
+            {
+                Console.SetCursorPosition(LastPosX, LastPosY + i);
+                Console.Write(new string(' ', WidthChars));
+            }
         }
+        /// <summary>
+        /// Efface l'objet de sa position précedente
+        /// </summary>
         public void Clear()
         {
             //Si la position a changé
             if (PosX != LastPosX || PosY != LastPosY)
             {
-                //Efface l'objet de sa position précédente
-                Console.SetCursorPosition(LastPosX, LastPosY);
-                Console.Write(new string(' ', WidthChars));
+                Delete();
             }
         }
+        /// <summary>
+        /// Deplace l'objet vers une direction donnée
+        /// </summary>
+        /// <param name="direction">Direction du mouvement</param>
         public void Move(Direction direction)
         {
             switch (direction)
