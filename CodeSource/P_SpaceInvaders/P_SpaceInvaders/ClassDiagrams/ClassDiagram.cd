@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="P_SpaceInvaders.GameObjects.Bullet" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAACAAAAAEACAAAAAAAABIAAAAAAA=</HashCode>
+      <FileName>GameObjects\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.GameObject" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAgAQAAAEwAAAAI8gIAAAAAAAgAEEQAQ=</HashCode>
+      <FileName>GameObjects\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.Invader" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAAAAAAAABAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Invader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.MovingObject" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAIAAgAAAAAAAAAAAAAEAAAAAABBAAABAAAA=</HashCode>
+      <FileName>GameObjects\MovingObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.Shield" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Shield.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.GameObjects.Ship" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAQAAAAAEAAACAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Ship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.MenuObjects.Menu" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAgABCEIASAAFBAAQAABAAEECCEAAAIAAAAAEAABIA=</HashCode>
+      <FileName>MenuObjects\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.MenuObjects.MenuItem" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAACAAAAAAAwAAAAAAgAAAAAABAgAAAQAQ=</HashCode>
+      <FileName>MenuObjects\MenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.MenuObjects.MenuSwitch" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAQAAAAAAAAAgwAYAAAAgAgAgAAFQAAAAQAA=</HashCode>
+      <FileName>MenuObjects\MenuSwitch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.CharsASCII" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAACAAAAAAAIAAgAoAAAABKAAgAAAAAQAASABAA=</HashCode>
+      <FileName>CharsASCII.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.ConsoleHelper" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAQAAAAAAAAAAAAAkAAAAAAAIAAAACAAABAAAA=</HashCode>
+      <FileName>ConsoleHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.Game" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAwSgACIAhASAggAAFCCAEgAAISIBCASIMAAAEaAABE=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.Map" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABACAAgAAIAAAAEAAABAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.Program" Collapsed="true">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAgAAIAAAQIAAAIAAAEAgQAAgAQAEApAACBgQAAAU=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P_SpaceInvaders.Score" Collapsed="true">
+    <Position X="13.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAEAAAAAEgAAAAA=</HashCode>
+      <FileName>Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="P_SpaceInvaders.Direction" Collapsed="true">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <FileName>Direction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
