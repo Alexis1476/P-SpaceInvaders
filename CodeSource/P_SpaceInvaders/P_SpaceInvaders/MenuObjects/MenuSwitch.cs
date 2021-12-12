@@ -9,33 +9,33 @@ namespace P_SpaceInvaders.MenuObjects
     /// <summary>
     /// Permet de créer un switch pour activer le son ou un switch pour modifier la difficulté du jeu
     /// </summary>
-    class MenuSwitch
+    public class MenuSwitch
     {
         #region [Attributs]
         /// <summary>
         /// Id du paramètre
         /// </summary>
-        private int _idItem;
+        int _idItem;
         /// <summary>
         /// Nom du paramètre Sound ou Difficulty
         /// </summary>
-        private string _name;
+        string _name;
         /// <summary>
         /// Position sur l'axe X du nom du paramètre dans la console
         /// </summary>
-        private int _posX;
+        int _posX;
         /// <summary>
         /// Position sur l'axe Y du nom du paramètre dans la console
         /// </summary>
-        private int _posY;
+        int _posY;
         /// <summary>
         /// Liste string des differents options
         /// </summary>
-        private List<string> _options;
+        List<string> _options;
         /// <summary>
         /// Détermine la difficulté du jeu avec un index de 0 à 2 (Facile -> Difficil)
         /// </summary>
-        private int _index;
+        int _index;
         /// <summary>
         /// Détermine si l'option à été activé
         /// </summary>

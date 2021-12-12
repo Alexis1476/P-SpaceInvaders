@@ -9,7 +9,7 @@ namespace P_SpaceInvaders
     /// <summary>
     /// Permet de créer une map délimitée pour le jeu
     /// </summary>
-    class Map
+    public class Map
     {
         #region [Attributs]
         /// <summary>

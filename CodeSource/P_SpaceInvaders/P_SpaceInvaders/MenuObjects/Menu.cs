@@ -17,21 +17,21 @@ namespace P_SpaceInvaders.MenuObjects
     /// 2. Lit les touches du clavier et permet l'interaction avec les ménus. 
     /// 3. Lit un fichier texte et écrit son contenu au centre de la fenêtre.
     /// </summary>
-    class Menu
+    public class Menu
     {
         #region [Constantes]
         /// <summary>
         /// Largeur de la fenêtre
         /// </summary>
-        private const int _MENUWIDTH = 180;
+        const int _MENUWIDTH = 180;
         /// <summary>
         /// Hauteur de la fenêtre
         /// </summary>
-        private const int _MENUHEIGHT = 30;
+        const int _MENUHEIGHT = 30;
         /// <summary>
         /// Nombre des sauts de ligne par option
         /// </summary>
-        private const int _LINEBREAK = 2;
+        const int _LINEBREAK = 2;
         /// <summary>
         /// Effet de son pour le changement d'option
         /// </summary>
@@ -39,34 +39,34 @@ namespace P_SpaceInvaders.MenuObjects
         /// <summary>
         /// Couleur pour le thème des ménus
         /// </summary>
-        private const ConsoleColor _COLOR = ConsoleColor.Magenta;
+        const ConsoleColor _COLOR = ConsoleColor.Magenta;
         #endregion
 
         #region [Attributs]
         /// <summary>
         /// Titre du menu
         /// </summary>
-        private string _header;
+        string _header;
         /// <summary>
         /// Text à afficher
         /// </summary>
-        private string _text;
+        string _text;
         /// <summary>
         /// Liste des options
         /// </summary>
-        private List<MenuItem> _menuItems;
+        List<MenuItem> _menuItems;
         /// <summary>
         /// List des switchs de configuration 
         /// </summary>
-        private List<MenuSwitch> _optionSwitch;
+        List<MenuSwitch> _menuSwitchs;
         /// <summary>
         /// Menu parent
         /// </summary>
-        private Menu _parentMenu;
+        Menu _parentMenu;
         /// <summary>
         /// Chemin + nom du fichier des scores
         /// </summary>
-        private string _pathFile;
+        string _pathFile;
         #endregion
 
         #region [Constructeurs]
@@ -182,12 +182,12 @@ namespace P_SpaceInvaders.MenuObjects
         public void AddOptionSwitchItems(int id, string name)
         {
             //Si la liste est vide alors on l'initialise
-            if (_optionSwitch == null)
+            if (_menuSwitchs == null)
             {
-                _optionSwitch = new List<MenuSwitch>();
+                _menuSwitchs = new List<MenuSwitch>();
             }
             //Ajout le switch de configuration
-            _optionSwitch.Add(new MenuSwitch(id, name));
+            _menuSwitchs.Add(new MenuSwitch(id, name));
         }
         /// <summary>
         /// Dessiner le titre centré
@@ -256,9 +256,9 @@ namespace P_SpaceInvaders.MenuObjects
 
             #region [OptionSwitch]
             //S'il y a une liste d'options Switch
-            else if (_optionSwitch != null)
+            else if (_menuSwitchs != null)
             {
-                foreach (MenuSwitch optionSwitch in _optionSwitch)
+                foreach (MenuSwitch optionSwitch in _menuSwitchs)
                 {
                     //Récupération des coordonées de la première option
                     optionSwitch.PosY = y + _LINEBREAK;
@@ -294,10 +294,10 @@ namespace P_SpaceInvaders.MenuObjects
             }
 
             //Si le ménu a des switchs de configuration
-            else if (_optionSwitch != null)
+            else if (_menuSwitchs != null)
             {
-                Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
-                WriteTextInColor(_optionSwitch[cursor].NameAndOption(), _COLOR);
+                Console.SetCursorPosition(_menuSwitchs[cursor].PosX, _menuSwitchs[cursor].PosY);
+                WriteTextInColor(_menuSwitchs[cursor].NameAndOption(), _COLOR);
             }
             while (!exit)
             {
@@ -325,7 +325,7 @@ namespace P_SpaceInvaders.MenuObjects
                                 }
                             }
                             //Si le ménu a des switchs de configuration
-                            else if (_optionSwitch != null)
+                            else if (_menuSwitchs != null)
                             {
                                 //Si le cursor est supérieur à l'ID de la première option
                                 if (cursor > 0)
@@ -334,13 +334,13 @@ namespace P_SpaceInvaders.MenuObjects
                                     Program.PlaySound(_menuSound);
 
                                     //Reecrit l'option précedent en blanc
-                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
-                                    WriteTextInColor(_optionSwitch[cursor].NameAndOption(), ConsoleColor.Gray);
+                                    Console.SetCursorPosition(_menuSwitchs[cursor].PosX, _menuSwitchs[cursor].PosY);
+                                    WriteTextInColor(_menuSwitchs[cursor].NameAndOption(), ConsoleColor.Gray);
 
                                     //Change d'option
                                     cursor--;
-                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
-                                    WriteTextInColor(_optionSwitch[cursor].NameAndOption(), _COLOR);
+                                    Console.SetCursorPosition(_menuSwitchs[cursor].PosX, _menuSwitchs[cursor].PosY);
+                                    WriteTextInColor(_menuSwitchs[cursor].NameAndOption(), _COLOR);
                                 }
                             }
                         }
@@ -367,22 +367,22 @@ namespace P_SpaceInvaders.MenuObjects
                                 }
                             }
                             //Si le ménu a des switchs de configuration
-                            else if (_optionSwitch != null)
+                            else if (_menuSwitchs != null)
                             {
                                 //Tant que le cursor reste entre le nombre d'options possibles
-                                if (cursor < _optionSwitch.Count - 1)
+                                if (cursor < _menuSwitchs.Count - 1)
                                 {
                                     //Réproduit le son de changement d'option
                                     Program.PlaySound(_menuSound);
 
                                     //Reecrit l'option précedent en blanc
-                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
-                                    WriteTextInColor(_optionSwitch[cursor].NameAndOption(), ConsoleColor.Gray);
+                                    Console.SetCursorPosition(_menuSwitchs[cursor].PosX, _menuSwitchs[cursor].PosY);
+                                    WriteTextInColor(_menuSwitchs[cursor].NameAndOption(), ConsoleColor.Gray);
 
                                     //Change d'option
                                     cursor++;
-                                    Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
-                                    WriteTextInColor(_optionSwitch[cursor].NameAndOption(), _COLOR);
+                                    Console.SetCursorPosition(_menuSwitchs[cursor].PosX, _menuSwitchs[cursor].PosY);
+                                    WriteTextInColor(_menuSwitchs[cursor].NameAndOption(), _COLOR);
                                 }
                             }
                         }
@@ -409,11 +409,11 @@ namespace P_SpaceInvaders.MenuObjects
                                 _menuItems[cursor].Action();
                             }
                             //Si le ménu a des switchs d'options
-                            else if (_optionSwitch != null)
+                            else if (_menuSwitchs != null)
                             {
-                                _optionSwitch[cursor].ChangeOption();
-                                Console.SetCursorPosition(_optionSwitch[cursor].PosX, _optionSwitch[cursor].PosY);
-                                WriteTextInColor(_optionSwitch[cursor].NameAndOption(), _COLOR);
+                                _menuSwitchs[cursor].ChangeOption();
+                                Console.SetCursorPosition(_menuSwitchs[cursor].PosX, _menuSwitchs[cursor].PosY);
+                                WriteTextInColor(_menuSwitchs[cursor].NameAndOption(), _COLOR);
                             }
                         }
                         break;
@@ -448,10 +448,10 @@ namespace P_SpaceInvaders.MenuObjects
         /// <summary>
         /// Propriétés membre _optionSwitch
         /// </summary>
-        public List<MenuSwitch> OptionSwitch
+        public List<MenuSwitch> MenuSwitchs
         {
-            get { return _optionSwitch; }
-            private set { _optionSwitch = value; }
+            get { return _menuSwitchs; }
+            private set { _menuSwitchs = value; }
         }
         /// <summary>
         /// Propriétés membre _pathFile

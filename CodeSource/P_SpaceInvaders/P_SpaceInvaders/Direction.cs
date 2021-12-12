@@ -7,7 +7,7 @@ namespace P_SpaceInvaders
     /// <summary>
     /// Possibles mouvements des objets du jeu (Left, rigth, up, down)
     /// </summary>
-    enum Direction
+    public enum Direction
     {
         Left,
         Right,

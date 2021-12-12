@@ -9,17 +9,17 @@ namespace P_SpaceInvaders.GameObjects
     /// <summary>
     /// Permet de créer une balle (Pour l'ennemi ou pour le vaisseau)
     /// </summary>
-    class Bullet : MovingObject
+    public class Bullet : MovingObject
     {
         #region [Constantes]
         /// <summary>
         /// Couleur des balles du joueur
         /// </summary>
-        private const ConsoleColor _BULLETSHIPCOLOR = ConsoleColor.Blue;
+        const ConsoleColor _BULLETSHIPCOLOR = ConsoleColor.Blue;
         /// <summary>
         /// Couleur des balles des invaders
         /// </summary>
-        private const ConsoleColor _BULLETINVADERCOLOR = ConsoleColor.Red;
+        const ConsoleColor _BULLETINVADERCOLOR = ConsoleColor.Red;
         #endregion
 
         #region [Attributs]

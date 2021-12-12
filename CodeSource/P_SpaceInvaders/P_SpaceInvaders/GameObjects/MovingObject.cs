@@ -9,7 +9,7 @@ namespace P_SpaceInvaders.GameObjects
     /// <summary>
     /// Gère les objets qui peuvent se déplacer
     /// </summary>
-    class MovingObject : GameObject
+    public class MovingObject : GameObject
     {
         #region [Attributs]
         /// <summary>

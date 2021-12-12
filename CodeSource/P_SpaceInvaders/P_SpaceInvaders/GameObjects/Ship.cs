@@ -9,7 +9,7 @@ namespace P_SpaceInvaders.GameObjects
     /// <summary>
     /// Permet de créer le vaisseau du joueur
     /// </summary>
-    class Ship : MovingObject
+    public class Ship : MovingObject
     {
         #region [Attributs]
         /// <summary>

@@ -136,7 +136,7 @@ namespace P_SpaceInvaders
         public static void CheckOptionsSwitch()
         {
             //Parcourt la liste de switchs d'options du _menuOptions
-            foreach (MenuSwitch optionSwitch in _menuOptions.OptionSwitch)
+            foreach (MenuSwitch optionSwitch in _menuOptions.MenuSwitchs)
             {
                 //Si c'est le switch pour le son
                 if (optionSwitch.Name == "Sound")

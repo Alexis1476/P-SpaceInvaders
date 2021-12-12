@@ -13,7 +13,7 @@ namespace P_SpaceInvaders
     /// <summary>
     /// Gère le temps et les rélations entre les objets du jeu
     /// </summary>
-    class Game
+    public class Game
     {
         #region [Constantes]
         /// <summary>

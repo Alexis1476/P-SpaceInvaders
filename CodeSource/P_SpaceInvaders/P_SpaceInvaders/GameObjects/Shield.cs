@@ -7,7 +7,7 @@ namespace P_SpaceInvaders.GameObjects
     /// <summary>
     /// Permet de créer un bouclier
     /// </summary>
-    class Shield : GameObject
+    public class Shield : GameObject
     {
         /// <summary>
         /// Constructeur par game et par caractère

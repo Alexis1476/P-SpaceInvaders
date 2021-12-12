@@ -9,29 +9,29 @@ namespace P_SpaceInvaders.MenuObjects
     /// <summary>
     /// Permet de créer une option d'un ménu laquelle exécute une action
     /// </summary>
-    class MenuItem
+    public class MenuItem
     {
         #region [Attributs]
         /// <summary>
         /// Identifiant de l'option
         /// </summary>
-        private int _idItem;
+        int _idItem;
         /// <summary>
         /// Nom de l'option
         /// </summary>
-        private string _name;
+        string _name;
         /// <summary>
         /// Function de l'option
         /// </summary>
-        private Action _action;
+        Action _action;
         /// <summary>
         /// Position sur l'axe X de l'option dans la console
         /// </summary>
-        private int _posX;
+        int _posX;
         /// <summary>
         /// Position sur l'axe Y de l'option dans la console
         /// </summary>
-        private int _posY;
+        int _posY;
         #endregion
 
         #region [Constructeurs]

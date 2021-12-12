@@ -8,7 +8,7 @@ namespace P_SpaceInvaders.GameObjects
     /// <summary>
     /// Permet de créer des ennemis (Invader) avec un tableau de frames
     /// </summary>
-    class Invader : MovingObject
+    public class Invader : MovingObject
     {
         #region [Attributs]
         /// <summary>

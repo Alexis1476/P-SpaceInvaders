@@ -10,7 +10,7 @@ namespace P_SpaceInvaders.GameObjects
     /// <summary>
     /// Class parent de tous les objets du jeu qui permet d'afficher l'objet crée et de vérifier ses positions
     /// </summary>
-    class GameObject
+    public class GameObject
     {
         #region [Attributs]
         /// <summary>

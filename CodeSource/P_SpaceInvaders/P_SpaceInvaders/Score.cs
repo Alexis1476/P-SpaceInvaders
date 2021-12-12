@@ -8,7 +8,7 @@ namespace P_SpaceInvaders
     /// <summary>
     /// Crée un objet score composé de NickName et Score
     /// </summary>
-    class Score
+    public class Score
     {
         #region [Attributs]
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace PSpaceInvaders.Tests
+namespace P_SpaceInvaders.Tests
 {
     [TestClass]
     public class P_SpaceInvadersTests
@@ -9,7 +9,7 @@ namespace PSpaceInvaders.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            
+            Game game = new Game(200, 200, 20);
         }
     }
 }
