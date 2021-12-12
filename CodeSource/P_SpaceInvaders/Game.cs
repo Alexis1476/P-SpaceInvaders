@@ -48,6 +48,7 @@ namespace P_SpaceInvaders
         /// Lignes de boucliers
         /// </summary>
         const int _HEIGHTSHIELDS = 2;
+        const int _POINTSPERKILL = 20;
         #endregion
 
         #region [Attributs]
@@ -429,7 +430,7 @@ namespace P_SpaceInvaders
                         Bullets.RemoveAt(i--);
 
                         //Incrémentation du score
-                        _score += (20 * _combo++);
+                        _score += (_POINTSPERKILL * _combo++);
                     }
                     //Si la balle impacte le joueur
                     else if (impact)

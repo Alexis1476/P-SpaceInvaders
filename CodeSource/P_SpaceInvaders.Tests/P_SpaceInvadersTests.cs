@@ -56,5 +56,59 @@ namespace P_SpaceInvaders.Tests
             // Assert
             Assert.AreEqual(true, result, "Le résultat doit être true");
         }
+        [TestMethod]
+        public void IsInMap_With_ShipPosY_Value_70_Result_false()
+        {
+            // Arrange
+            Game game = new Game(50, 50, 5);
+            game.Ship.PosY = 70;
+
+            // Act
+            bool result = game.Ship.IsInMap();
+
+            // Assert
+            Assert.AreEqual(false, result, "Le résultat doit être false");
+        }
+        [TestMethod]
+        public void IsInMap_With_ShipPosY_Value_40_Result_true()
+        {
+            // Arrange
+            Game game = new Game(50, 50, 5);
+            game.Ship.PosY = 40;
+
+            // Act
+            bool result = game.Ship.IsInMap();
+
+            // Assert
+            Assert.AreEqual(true, result, "Le résultat doit être true");
+        }
+        [TestMethod]
+        public void IsAtCoordinates_WithValues_30_And_40_Result_True()
+        {
+            // Arrange
+            Game game = new Game(50, 50, 5);
+            game.Ship.PosX = 30;
+            game.Ship.PosY = 40;
+
+            // Act
+            bool result = game.Ship.IsAtCoordinates(30, 40);
+
+            // Assert
+            Assert.AreEqual(true, result, "Le résultat doit être true");
+        }
+        [TestMethod]
+        public void IsAtCoordinates_WithValues_30_And_50_Result_false()
+        {
+            // Arrange
+            Game game = new Game(50, 50, 5);
+            game.Ship.PosX = 30;
+            game.Ship.PosY = 40;
+
+            // Act
+            bool result = game.Ship.IsAtCoordinates(30, 50);
+
+            // Assert
+            Assert.AreEqual(false, result, "Le résultat doit être false");
+        }
     }
 }
