@@ -679,6 +679,7 @@ namespace P_SpaceInvaders
         public Ship Ship
         {
             get { return _ship; }
+            set { _ship = value; }
         }
         /// <summary>
         /// Propriétés membre _bullets
