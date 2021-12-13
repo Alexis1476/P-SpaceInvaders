@@ -224,6 +224,9 @@ namespace P_SpaceInvaders
                 GameOver();
             }
         }
+        /// <summary>
+        /// Dès que la partie est fini
+        /// </summary>
         private static void GameOver()
         {
             //Nettoie la console et la redimonsionne
