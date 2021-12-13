@@ -174,7 +174,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Design UFO
         /// </summary>
-        const string UFO =
+        public const string UFO =
             "    ▄▄█▄▄    \n" +
             "  ▄███████▄  \n" +
             "▄██▄█▄█▄█▄██▄\n" +
