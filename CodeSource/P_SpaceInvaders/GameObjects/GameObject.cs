@@ -136,7 +136,7 @@ namespace P_SpaceInvaders.GameObjects
             //Efface l'objet de sa position précédente
             Console.SetCursorPosition(PosX, PosY);
 
-            for (int i = 0; i < HeightChars - 1; i++)
+            for (int i = 0; i <= HeightChars; i++)
             {
                 Console.SetCursorPosition(PosX, PosY);
                 Console.Write(new string(' ', WidthChars));
@@ -159,13 +159,12 @@ namespace P_SpaceInvaders.GameObjects
             using (StringReader reader = new StringReader(chars))
             {
                 int y = 0;
-                string line = "";
-                do
+                string line = reader.ReadLine();
+                while (line != null)
                 {
                     line = reader.ReadLine();
                     y++;
-                }
-                while (line != null);
+                }                
                 _heightChars = y;
             }
         }
@@ -248,7 +247,7 @@ namespace P_SpaceInvaders.GameObjects
         public bool IsAtCoordinates(int posX, int posY)
         {
             //Pour i jusqu'à la hauteur de l'objet
-            for (int y = 0; y < HeightChars - 1; y++)
+            for (int y = 0; y < HeightChars; y++)
             {
                 //Si les positions en X coincident
                 if (posY == PosY + y && posX >= PosX && posX < PosX + WidthChars ||

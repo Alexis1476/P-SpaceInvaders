@@ -99,7 +99,7 @@ namespace P_SpaceInvaders.GameObjects
             //Efface l'objet de sa position précédente
             Console.SetCursorPosition(LastPosX, LastPosY);
 
-            for (int i = 0; i < HeightChars - 1; i++)
+            for (int i = 0; i < HeightChars; i++)
             {
                 Console.SetCursorPosition(LastPosX, LastPosY + i);
                 Console.Write(new string(' ', WidthChars));
