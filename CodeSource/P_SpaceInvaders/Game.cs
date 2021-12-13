@@ -48,7 +48,22 @@ namespace P_SpaceInvaders
         /// Lignes de boucliers
         /// </summary>
         const int _HEIGHTSHIELDS = 2;
+        /// <summary>
+        /// Nombre de points par invader tué
+        /// </summary>
         const int _POINTSPERKILL = 20;
+        /// <summary>
+        /// Nombre de points par Ovni
+        /// </summary>
+        const int _POINTSPEROVNI = 200;
+        /// <summary>
+        /// Nombre max d'ovnis générés dans une partie
+        /// </summary>
+        const int _NBMAXOVNI = 5;
+        /// <summary>
+        /// Temps pour générer un ovni
+        /// </summary>
+        const int _TIMETOGENERATEOVNI = 12000;
         #endregion
 
         #region [Attributs]
@@ -120,6 +135,18 @@ namespace P_SpaceInvaders
         /// Liste de boucliers (Chaque caractère est un bouclier)
         /// </summary>
         List<Shield> _shields;
+        /// <summary>
+        /// OVNI qui apparait en haut de l'écran
+        /// </summary>
+        static Invader _ovni;
+        /// <summary>
+        /// Timer qui génère l'OVNI chaque n millisecondes
+        /// </summary>
+        Timer _timerToGenerateOvni;
+        /// <summary>
+        /// Nombre d'ovnis restants
+        /// </summary>
+        int _nbOvni;
         #endregion
 
         #region [Constructeurs]
@@ -139,6 +166,7 @@ namespace P_SpaceInvaders
             _shields = new List<Shield>();
             _difficulty = difficulty;
             _combo = 1;
+            _nbOvni = _NBMAXOVNI;
 
             //Initialise la position du vaisseau
             ShipSpawnPos();
@@ -155,7 +183,7 @@ namespace P_SpaceInvaders
             _deathSound = new SoundPlayer(".\\Ressources\\hitShip.wav");
             #endregion
 
-            #region Paramètres du Timer
+            #region [Paramètres du Timer]
             _timerToShoot = new Timer(_TIMETOSHOOT);
             _timerToShoot.Elapsed += OnTimedEvent;
             _timerToShoot.AutoReset = true;
@@ -167,6 +195,13 @@ namespace P_SpaceInvaders
             _timerToMoveInvader.Elapsed += OnTimedEventMoveInvader;
             _timerToMoveInvader.AutoReset = true;
             _timerToMoveInvader.Enabled = true;
+            #endregion
+
+            #region [Timer Ovni]
+            _timerToGenerateOvni = new Timer(_TIMETOGENERATEOVNI);
+            _timerToGenerateOvni.Elapsed += OnTimedEventGenerateOvni;
+            _timerToGenerateOvni.AutoReset = true;
+            _timerToGenerateOvni.Enabled = true;
             #endregion
         }
         #endregion
@@ -191,6 +226,7 @@ namespace P_SpaceInvaders
                         //Arret des timers
                         _timerToMoveInvader.Stop();
                         _timerToShoot.Stop();
+                        _timerToGenerateOvni.Stop();
 
                         //Tant que la variable pause ne soit pas en false
                         while (pause)
@@ -214,6 +250,7 @@ namespace P_SpaceInvaders
                                         //Reinitialise les timers
                                         _timerToMoveInvader.Start();
                                         _timerToShoot.Start();
+                                        _timerToGenerateOvni.Start();
                                         break;
                                     }
                             }
@@ -285,6 +322,48 @@ namespace P_SpaceInvaders
 
             //Met à jour les positions des invaders
             UpdateInvaders();
+
+            //Met à jour la position de l'OVNI
+            UpdateOvni();
+        }
+        /// <summary>
+        /// Génère un OVNI
+        /// </summary>
+        public void GenerateOvni()
+        {
+            //Décrémentation nbOvni
+            if (_nbOvni-- > 0)
+            {
+                //Génère l'ovni et calcule ses positions
+                _ovni = new Invader(1, this, CharsASCII.UFO);
+                _ovni.PosX = Map.Offset * 2;
+                _ovni.PosY = Map.Offset * 2;
+                _ovni.LastPosX = _ovni.PosX;
+                _ovni.LastPosY = _ovni.PosY;
+            }          
+        }
+        /// <summary>
+        /// Met à jour les positions de l'ovni
+        /// </summary>
+        public void UpdateOvni()
+        {
+            if (_ovni != null) 
+            {
+                //Mouvement de l'invader vers la droite
+                _ovni.Move(Direction.Right);
+
+                //L'invader est redesinné
+                _ovni.Clear();
+                _ovni.ReDraw();
+
+                //Si l'invader arrive à la limite de la map
+                if (_ovni.PosX == Map.Width - _ovni.WidthChars)
+                {
+                    //On l'efface de l'écran et du jeu
+                    _ovni.Delete();
+                    _ovni = null;
+                } 
+            }     
         }
         /// <summary>
         /// Met à jour les positions des invaders
@@ -365,7 +444,20 @@ namespace P_SpaceInvaders
                     bool impact = false;
                     bool impactInvader = false;
                     bool impactShield = false;
+                    bool impactOvni = false;
 
+                    //Verifier si la balle impacte l'ovni
+                    if (_ovni != null)
+                    {
+                        //Si la balle impacte l'ovni
+                        if (_ovni.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) || _ovni.IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY))
+                        {
+                            impactOvni = true;
+                            //Efface l'ovni de l'écran et du jeu
+                            _ovni.Delete();
+                            _ovni = null;
+                        }
+                    }
                     //Verifier si la balle impacte un bouclier
                     for (int k = 0; k < _shields.Count; k++)
                     {
@@ -417,7 +509,7 @@ namespace P_SpaceInvaders
                                 Program.PlaySound(_deathSound);
                             }
                             //Si la balle n'impacte pas
-                            else if (!impactInvader && !impact && !impactShield)
+                            else if (!impactInvader && !impact && !impactShield && !impactOvni)
                             {
                                 Bullets[i].ReDraw();
                             }
@@ -449,10 +541,18 @@ namespace P_SpaceInvaders
                             _combo = 1;
                         }
                     }
+                    //Si la balle impacte un bouclier
                     else if (impactShield)
                     {
                         //On efface la balle de la liste
                         Bullets.RemoveAt(i--);
+                    }
+                    //Si la balle impacte l'ovni
+                    else if (impactOvni)
+                    {
+                        //On efface la balle de la liste
+                        Bullets.RemoveAt(i--);
+                        _score += 200;
                     }
                 }
                 //Si la balle est sortie de la map
@@ -585,7 +685,7 @@ namespace P_SpaceInvaders
             int lastPosX = Map.Offset * 2;
 
             //Dernière PosY calculé
-            int lastPosY = Map.Offset * Invaders[0].HeightChars;
+            int lastPosY = Map.Offset * Invaders[0].HeightChars + Map.Offset;
 
             //Parcourt la liste d'invaders
             for (int i = 0; i < Invaders.Count; i++)
@@ -644,6 +744,15 @@ namespace P_SpaceInvaders
                 _timerToShoot.Stop();
                 return false;
             }
+        }
+        /// <summary>
+        /// Permet de créer un ovni chaque n millisecondes
+        /// </summary>
+        /// <param name="source">Objet timer</param>
+        /// <param name="e">Fournit les données pour l'événement</param>
+        void OnTimedEventGenerateOvni(Object source, ElapsedEventArgs e)
+        {
+            GenerateOvni();
         }
         /// <summary>
         /// Permet au joueur de tirer quand le timer arrive aux millisecondes spécifiés

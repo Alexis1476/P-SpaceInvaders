@@ -217,7 +217,7 @@ namespace P_SpaceInvaders
                             Console.Write(" ");
                         }
                     }
-                    Thread.Sleep(2);
+                    Thread.Sleep(5);
                 }
 
                 //Affichage GameOver et demande à l'utilisateur s'il souhaite continuer

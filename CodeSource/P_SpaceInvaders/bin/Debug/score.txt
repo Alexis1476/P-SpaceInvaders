@@ -1,2 +1,3 @@
+sam	8640
  Alexis	2660
 Alex	880
