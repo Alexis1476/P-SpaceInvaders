@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="P_SpaceInvaders.exe" size="49584">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="P_SpaceInvaders.exe" size="362416">
       <assemblyIdentity name="P_SpaceInvaders" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>S3QUu7ZDWkAIAUYQTza+C5Acf6HUTEwX0oBsfqPRSL8=</dsig:DigestValue>
+        <dsig:DigestValue>ohiR/U6veUVlKlOETDXJodU7tsIfLVNCbrJCzgCYwkk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -60,42 +60,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Ressources\hitInvader.wav" size="81612">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>0UUuls7JXBeeUqaLvoyQO3LT8nuB7BYYAwvtW5Pv7hE=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Ressources\hitShip.wav" size="120830">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>C90UE8wsF6z3RaAB14ZMeken2/zirSuQVArLFb2O2Pw=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Ressources\laserShoot.wav" size="87818">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>QjAlfBexAZo/h/ZH5gjqieo1ouodTWy47lbvtJyVA8k=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Ressources\menuChange.wav" size="21328">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>t2tNWn44gWxIfAJe1UvrQ61Zkp1qy18cxVVAx1kHiSA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

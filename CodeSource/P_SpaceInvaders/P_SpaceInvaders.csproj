@@ -71,6 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Audio.resx</DependentUpon>
+    </Compile>
     <Compile Include="CharsASCII.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Direction.cs" />
@@ -94,20 +99,6 @@
     <None Include="P_SpaceInvaders_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ressources\hitInvader.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ressources\hitShip.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ressources\laserShoot.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ressources\menuChange.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 et x64%29</ProductName>
@@ -118,6 +109,24 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Audio.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Audio.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hitShip.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\laserShoot.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menuChange.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hitInvader.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

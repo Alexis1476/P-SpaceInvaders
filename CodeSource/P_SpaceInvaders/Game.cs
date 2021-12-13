@@ -178,9 +178,9 @@ namespace P_SpaceInvaders
             GenerateShields();
 
             #region [Effets audio]
-            _shotSound = new SoundPlayer(".\\Ressources\\laserShoot.wav");
-            _explosionSound = new SoundPlayer(".\\Ressources\\hitInvader.wav");
-            _deathSound = new SoundPlayer(".\\Ressources\\hitShip.wav");
+            _shotSound = new SoundPlayer(Audio.laserShoot);
+            _explosionSound = new SoundPlayer(Audio.hitInvader);
+            _deathSound = new SoundPlayer(Audio.hitShip);
             #endregion
 
             #region [Paramètres du Timer]
@@ -337,7 +337,7 @@ namespace P_SpaceInvaders
                 //Génère l'ovni et calcule ses positions
                 _ovni = new Invader(1, this, CharsASCII.UFO);
                 _ovni.PosX = Map.Offset * 2;
-                _ovni.PosY = Map.Offset * 2;
+                _ovni.PosY = Map.Offset;
                 _ovni.LastPosX = _ovni.PosX;
                 _ovni.LastPosY = _ovni.PosY;
             }          
@@ -453,6 +453,10 @@ namespace P_SpaceInvaders
                         if (_ovni.IsAtCoordinates(Bullets[i].PosX, Bullets[i].PosY) || _ovni.IsAtCoordinates(Bullets[i].LastPosX, Bullets[i].LastPosY))
                         {
                             impactOvni = true;
+
+                            //Réproduit l'effet de son
+                            Program.PlaySound(_explosionSound);
+
                             //Efface l'ovni de l'écran et du jeu
                             _ovni.Delete();
                             _ovni = null;
@@ -709,7 +713,7 @@ namespace P_SpaceInvaders
                     {
                         //Reinitialisation de posX et incrémentation de PosY de 2 
                         lastPosX = 2;
-                        lastPosY += Invaders[i].HeightChars;
+                        lastPosY += Invaders[i].HeightChars + Map.Offset;
                     }
 
                     //PosX et PosY de l'invader

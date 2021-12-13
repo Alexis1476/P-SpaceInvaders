@@ -35,7 +35,7 @@ namespace P_SpaceInvaders.MenuObjects
         /// <summary>
         /// Effet de son pour le changement d'option
         /// </summary>
-        static readonly SoundPlayer _menuSound = new SoundPlayer(".\\Ressources\\menuChange.wav");
+        static readonly SoundPlayer _menuSound = new SoundPlayer(Audio.menuChange);
         /// <summary>
         /// Couleur pour le thème des ménus
         /// </summary>
