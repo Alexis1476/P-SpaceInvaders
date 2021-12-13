@@ -1,3 +1,5 @@
+sam	13520
+AlexRojas	13320
 sam	8640
 Alex	2720
  Alexis	2660
@@ -6,4 +8,3 @@ Alex	880
    	200
 	180
   	140
-	120

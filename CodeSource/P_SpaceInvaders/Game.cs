@@ -564,7 +564,8 @@ namespace P_SpaceInvaders
             }
         }
         /// <summary>
-        /// Met à jour l'ID de chaque invader
+        /// Met à jou
+        /// r l'ID de chaque invader
         /// </summary>
         public void UpdateIdFromInvaders()
         {
