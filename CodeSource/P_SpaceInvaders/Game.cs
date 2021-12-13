@@ -742,6 +742,7 @@ namespace P_SpaceInvaders
                 //Arret des timers
                 _timerToMoveInvader.Stop();
                 _timerToShoot.Stop();
+                _timerToGenerateOvni.Stop();
                 return false;
             }
         }
