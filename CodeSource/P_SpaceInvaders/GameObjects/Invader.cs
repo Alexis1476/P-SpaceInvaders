@@ -18,10 +18,22 @@ namespace P_SpaceInvaders.GameObjects
         #endregion
 
         #region [Constructeurs]
+        /// <summary>
+        /// Constructeur par id, game et chars
+        /// </summary>
+        /// <param name="id">Id de l'invader</param>
+        /// <param name="game">Game</param>
+        /// <param name="chars">String représentant l'objet</param>
         public Invader(int id, Game game, string chars) : base(game, chars)
         {
             _id = id;
         }
+        /// <summary>
+        /// Constructeur par id, game, et tableau de frames (String)
+        /// </summary>
+        /// <param name="id">Id de l'invader</param>
+        /// <param name="game">Game</param>
+        /// <param name="frames">Tableau de string qui répresente les frames</param>
         public Invader(int id, Game game, string[] frames) : base(game, frames)
         {
             _id = id;
