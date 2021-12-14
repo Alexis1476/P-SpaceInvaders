@@ -13,9 +13,7 @@ using System.Media;
 namespace P_SpaceInvaders.MenuObjects
 {
     /// <summary>
-    /// 1. Permet de créer des ménus, des sous-ménus avec des options, des switchs, ou simplement qu'avec du texte.
-    /// 2. Lit les touches du clavier et permet l'interaction avec les ménus. 
-    /// 3. Lit un fichier texte et écrit son contenu au centre de la fenêtre.
+    /// Permet de créer des ménus, des sous-ménus avec des options, des switchs, ou simplement qu'avec du texte.
     /// </summary>
     public class Menu
     {

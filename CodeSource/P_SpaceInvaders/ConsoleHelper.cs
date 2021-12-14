@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 
 namespace P_SpaceInvaders
 {
+    /// <summary>
+    /// Permet de changer la taille de la police de la console
+    /// </summary>
     public class ConsoleHelper
     {
         private const int FixedWidthTrueType = 54;
@@ -26,6 +29,7 @@ namespace P_SpaceInvaders
         private static readonly IntPtr ConsoleOutputHandle = GetStdHandle(StandardOutputHandle);
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        
         public struct FontInfo
         {
             internal int cbSize;
