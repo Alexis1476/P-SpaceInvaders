@@ -113,7 +113,12 @@ namespace P_SpaceInvaders
             "║ programmé en C# (Projet en parallèle avec le module 226). ║\n" +
             "║                                                           ║\n" +
             "║ Le jeu vous permet de modifier la difficulté, d'activer   ║\n" +
-            "║ le son et de vous montrer les scores.                     ║\n" +
+            "║ le son et d'enregistrer les highscores.                   ║\n" +
+            "║                                                           ║\n" +
+            "║ Touches:                                                  ║\n" +
+            "║ - Déplacez-vous avec les flèches ← ↑ → ↓                  ║\n" +
+            "║ - Tirez, et selectionnez les options avec 'Spacebar'      ║\n" +
+            "║ - Revenez en arriere et mettez le jeu en pause avec 'ESC' ║\n" +
             "╚═══════════════════════════════════════════════════════════╝";
         #endregion
 
