@@ -4,6 +4,9 @@
 ///Description: Class qui permet de créer une option d'un ménu laquelle exécute une action
 using System;
 
+/// <summary>
+/// Objets rélatifs aux ménus
+/// </summary>
 namespace P_SpaceInvaders.MenuObjects
 {
     /// <summary>

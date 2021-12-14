@@ -3,6 +3,9 @@
 ///Date : 26.11.2021
 ///Description: Class qui permet de créer un ennemi (Invader)
 
+/// <summary>
+/// Objets du jeu
+/// </summary>
 namespace P_SpaceInvaders.GameObjects
 {
     /// <summary>

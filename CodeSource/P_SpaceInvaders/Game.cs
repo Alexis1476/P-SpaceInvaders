@@ -138,7 +138,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// OVNI qui apparait en haut de l'écran
         /// </summary>
-        static Invader _ovni;
+        Invader _ovni;
         /// <summary>
         /// Timer qui génère l'OVNI chaque n millisecondes
         /// </summary>

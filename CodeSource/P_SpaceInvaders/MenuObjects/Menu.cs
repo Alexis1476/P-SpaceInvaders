@@ -5,11 +5,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Objets rélatifs aux ménus
+/// </summary>
 namespace P_SpaceInvaders.MenuObjects
 {
     /// <summary>

@@ -5,6 +5,9 @@
 using System;
 using System.IO;
 
+/// <summary>
+/// Objets du jeu
+/// </summary>
 namespace P_SpaceInvaders.GameObjects
 {
     /// <summary>

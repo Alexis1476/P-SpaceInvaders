@@ -4,6 +4,9 @@
 ///Description: Class parent de tous les objets du jeu qui peuvent bouger
 using System;
 
+/// <summary>
+/// Objets du jeu
+/// </summary>
 namespace P_SpaceInvaders.GameObjects
 {
     /// <summary>

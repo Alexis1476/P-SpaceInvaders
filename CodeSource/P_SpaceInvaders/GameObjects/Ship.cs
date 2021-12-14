@@ -4,6 +4,9 @@
 ///Description: Class qui permet de créer le vaisseau du joueur
 using System;
 
+/// <summary>
+/// Objets du jeu
+/// </summary>
 namespace P_SpaceInvaders.GameObjects
 {
     /// <summary>

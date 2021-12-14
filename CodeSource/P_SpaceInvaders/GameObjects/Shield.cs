@@ -2,6 +2,10 @@
 ///Auteur : Alexis Rojas
 ///Date : 26.11.2021
 ///Description: Class qui permet de créer un bouclier
+
+/// <summary>
+/// Objets du jeu
+/// </summary>
 namespace P_SpaceInvaders.GameObjects
 {
     /// <summary>

@@ -4,6 +4,9 @@
 ///Description: Class qui permet de créer une balle pour les ennemis et pour le joueur
 using System;
 
+/// <summary>
+/// Objets du jeu
+/// </summary>
 namespace P_SpaceInvaders.GameObjects
 {
     /// <summary>

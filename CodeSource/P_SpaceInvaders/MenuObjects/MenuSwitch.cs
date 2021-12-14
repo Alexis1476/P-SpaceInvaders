@@ -4,6 +4,9 @@
 ///Description: Class qui permet de créer un switch pour activer le son ou un switch pour modifier la difficulté du jeu
 using System.Collections.Generic;
 
+/// <summary>
+/// Objets rélatifs aux ménus
+/// </summary>
 namespace P_SpaceInvaders.MenuObjects
 {
     /// <summary>
