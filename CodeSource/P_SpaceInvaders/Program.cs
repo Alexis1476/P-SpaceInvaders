@@ -29,7 +29,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Path du fichier de scores
         /// </summary>
-        const string _PATHSCORES = ".\\score.txt";
+        static readonly string _PATHSCORES = Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Desktop\Score.txt");
         /// <summary>
         /// Nombre de Scores à enregistrer
         /// </summary>
