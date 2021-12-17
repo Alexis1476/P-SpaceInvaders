@@ -21,7 +21,7 @@ namespace P_SpaceInvaders.MenuObjects
         /// <summary>
         /// Largeur de la fenêtre
         /// </summary>
-        const int _MENUWIDTH = 180;
+        const int _MENUWIDTH = 150;
         /// <summary>
         /// Hauteur de la fenêtre
         /// </summary>
