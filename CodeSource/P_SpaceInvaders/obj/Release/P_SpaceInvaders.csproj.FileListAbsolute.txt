@@ -1,0 +1,14 @@
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\bin\Release\P_SpaceInvaders.exe.config
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\bin\Release\P_SpaceInvaders.exe.manifest
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\bin\Release\P_SpaceInvaders.application
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\bin\Release\P_SpaceInvaders.exe
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\bin\Release\P_SpaceInvaders.pdb
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.csproj.AssemblyReference.cache
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.csproj.SuggestedBindingRedirects.cache
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.Audio.resources
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.csproj.GenerateResource.cache
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.csproj.CoreCompileInputs.cache
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.exe.manifest
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.application
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.exe
+E:\ETML\CFC\Pratique\Projets\P_Dev\P_SpaceInvaders\CodeSource\P_SpaceInvaders\obj\Release\P_SpaceInvaders.pdb
