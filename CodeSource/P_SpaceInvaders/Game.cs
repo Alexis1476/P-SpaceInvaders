@@ -102,11 +102,11 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Détermine si le joueur peut tirer
         /// </summary>
-        static bool _shoot;
+        bool _shoot;
         /// <summary>
         /// Détermine si les invaders peuvent se déplacer
         /// </summary>
-        static bool _moveInvader;
+        bool _moveInvader;
         /// <summary>
         /// Son de tir
         /// </summary>
@@ -223,11 +223,6 @@ namespace P_SpaceInvaders
                         //Pause active
                         bool pause = true;
 
-                        //Arret des timers
-                        _timerToMoveInvader.Stop();
-                        _timerToShoot.Stop();
-                        _timerToGenerateOvni.Stop();
-
                         //Tant que la variable pause ne soit pas en false
                         while (pause)
                         {
@@ -246,11 +241,6 @@ namespace P_SpaceInvaders
                                     {
                                         //Quitte la pause
                                         pause = false;
-
-                                        //Reinitialise les timers
-                                        _timerToMoveInvader.Start();
-                                        _timerToShoot.Start();
-                                        _timerToGenerateOvni.Start();
                                         break;
                                     }
                             }
@@ -744,10 +734,6 @@ namespace P_SpaceInvaders
             }
             else
             {
-                //Arret des timers
-                _timerToMoveInvader.Stop();
-                _timerToShoot.Stop();
-                _timerToGenerateOvni.Stop();
                 return false;
             }
         }
@@ -765,7 +751,7 @@ namespace P_SpaceInvaders
         /// </summary>
         /// <param name="source">Objet timer</param>
         /// <param name="e">Fournit les données pour l'événement</param>
-        static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             _shoot = true;
         }
@@ -774,7 +760,7 @@ namespace P_SpaceInvaders
         /// </summary>
         /// <param name="source">Objet timer</param>
         /// <param name="e">Fournit les données pour l'événement</param>
-        static void OnTimedEventMoveInvader(Object source, ElapsedEventArgs e)
+        void OnTimedEventMoveInvader(Object source, ElapsedEventArgs e)
         {
             _moveInvader = true;
         }
