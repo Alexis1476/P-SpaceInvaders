@@ -21,7 +21,7 @@ namespace P_SpaceInvaders
         /// <summary>
         /// Largeur de la fenêtre
         /// </summary>
-        const int _WINDOWWIDTH = 150;
+        const int _WINDOWWIDTH = 130;
         /// <summary>
         /// Hauteur de la fenêtre
         /// </summary>
